@@ -2,7 +2,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "devlk_blood_culture";
+    $dbname = "devlk_antibiogram";
     
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);

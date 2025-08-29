@@ -119,7 +119,7 @@ $stmt->close();
                                             $profilePic = isset($user['profile_picture']) && !empty($user['profile_picture']) ? $user['profile_picture'] : 'default.jpg';
 
                                             // Display profile picture with timestamp to force refresh
-                                            echo "<img src='uploads/$profilePic?" . time() . "' alt='Profile Picture' class='img-thumbnail mb-1' style='width: 100px; height: 100px; border-radius:50%;'>";
+                                            echo "<img src='uploads/$profilePic?" . time() . "' alt='Profile Picture' class='img-thumbnail mb-1' style='width: 180px; height: 180px; border-radius:50%;'>";
                                             ?>
                                             
                                             <form action="update-profile-picture.php" method="POST" enctype="multipart/form-data">
