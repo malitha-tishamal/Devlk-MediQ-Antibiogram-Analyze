@@ -3,12 +3,12 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
-        <li class="nav-item">
+        <!--li class="nav-item">
             <a class="nav-link " href="pages-home.php">
                 <i class="bi bi-house-door"></i>
                 <span>Home</span>
             </a>
-        </li>
+        </li-->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="user-profile.php">

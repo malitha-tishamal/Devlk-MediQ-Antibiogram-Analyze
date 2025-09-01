@@ -1,0 +1,1001 @@
+Lab_no,Pt_Name,Age,D_M_Y,Sex,Date_admission,Ward,bht,Organism,ESBL,Ampicillin,Amoxicillin_clavulanic acid,Aztrionam,Cefuroxime,Ceftriaxone,Cefotaxime,Ceftazidime,Cefepime,Cefoperazone_sulbactam,Cefoxitin,Cefpodoxime,Chlorampenicol,Ciprofloxacin,Levofloxacin,Clindamycin,Cotrimoxazole,Trimethoprim_sulphamethoxazole,Doxycycline,Tetracycline,Minocycline,Erythromycin,Furazolidone,Nalidixic acid,Amikacin,Gentamicin,Netilmicin,Meropenem,Imipenem,Piperacillin_tazobactam,Linezolid,Vancomycin,Mecillinam,Penicillin,Oxacillin,Ticarcillin_clavulanic acid,Teicoplanin,Rifampicin,Clinical_diagnosis,Outcome,Reporting_date,Comment
+4/BT/JUN,SITHUM HASARA,6,Years,Male,1-Jun-23,2,74921,ACINETOBACTER SPP,No,Resistant,Resistant,,,Resistant,Resistant,Resistant,Sensitive,Sensitive,,,,Sensitive,,,,,OS,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,5-Jun-23,CRP 5
+152/BAC/JUN,WEERARATHNA,15,Years,Female,11-Jun-23,1,57992,ACINETOBACTER SPP,No,,,,,,Resistant,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,,Sensitive,OS,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,13-Jun-23,CRP 18
+309/BT/APR,SARATH DG,53,Years,Male,18-Apr-23,Medical,53517,AEROMONAS HYDROPHILA,No,OS,Resistant,,Sensitive,Sensitive,Sensitive,OS,Sensitive,Sensitive,,,,Resistant,,,OS,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Skin and soft tissue infection,Survived,27-Apr-23,CRP 97 TREATED FOR CELLULITIS AND HEPATIC ENCEPHALOPATHY
+486/BT/MAR,NAWAZ,57,Years,Male,,ETU,44811,BETA HAEMOLYTIC STREPTOCOCCUS,No,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,Sensitive,,,,,,,,,,Sensitive,,Sensitive,Resistant,,,,Community acquired pneumonia,Survived,6-Apr-23,CRP WAS 148.
+418/BAC/JUN,EDIRISURIYA,71,Years,Female,24-Jun-23,Medical,86686,BURKHOLDERIA CEPACIA,No,Resistant,Resistant,,Resistant,Resistant,Resistant,Resistant,Resistant,Resistant,,,,Resistant,,,Sensitive,,,,,,,,Resistant,Resistant,,Resistant,,Resistant,,,,,,,,,Community acquired pneumonia,Survived,30-Jun-23,CRP120
+530/BAC/APR,CHANDRASENA,55,Years,Male,30-Apr-23,Medical,55152,BURKHOLDERIA PSEUDOMALLEI,No,,,,,,,OS,Resistant,Sensitive,,,,Sensitive,,,,,,,,,,,Resistant,Resistant,,Sensitive,,Sensitive,,,,,,,,,Pyelonephritis,Survived,3-May-23,CRP 150.
+680/BAC/MAY,CHITHRA DE SILVA,52,Years,Female,30-May-23,Medical,74905,BURKHOLDERIA PSEUDOMALLEI,No,,,,,,,Sensitive,Resistant,Sensitive,,,,Sensitive,,,,,,,,,,,Resistant,Resistant,,Sensitive,,Sensitive,,,,,,,,,Skin and soft tissue infection,Survived,2-Jun-23,CRP 301.
+169/BAC/APR,JAGATH,39,Years,Male,,Medical,49155,BURKHOLDERIA PSEUDOMALLEI,No,,,,,,,OS,,,,,,Resistant,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,,,,,SPLEENIC MELIOIDOSIS,Survived,17-Apr-23,CRP WAS 101. O.CO-TRIMOXAZOLE ALSO GIVEN.
+861/BT/JAN,WIMALAWATHI,66,Years,Female,31-Dec-22,Medical,169510,CITROBACTOR KOSERI,No,Resistant,Sensitive,,Sensitive,Sensitive,,,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,OS,,OS,,Sensitive,,,,,,,,,UROSEPSIS,Survived,3-Jan-23,CRP WAS 253.
+148/BT/JUN,DAYAWATHI MG,64,Years,Female,12-Jun-23,Medical,76945,ENTERCOCCUS SPP,No,Resistant,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Intermediate Sensitive,,Resistant,,,,,Sepsis with unclear source,Death - related to sepsis,16-Jun-23,CRP 300
+51/BT/JUN,HANSANI,23,Years,Female,3-Jun-23,Medical,76341,ENTEROCOCCUS SPP,No,Sensitive,,,,,,,,,,,,,,,,,,,,,,,,OS,,,,,,Resistant,,Sensitive,,,,,Intra Abdominal Infections,Survived,9-Jun-23,CRP 68
+191/BT/JUN,DAHANAYAKA,67,Years,Male,14-Jun-23,Medical,77531,ENTEROCOCCUS SPP,No,Resistant,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Sensitive,,Resistant,,,,,Intra Abdominal Infections,Survived,20-Jun-23,CRP 286
+279/BT/JUN,PAHANSITH,4,Years,Male,20-Jun-23,1,84498,ENTEROCOCCUS SPP,No,Resistant,,,,,,,,,,,,,,,,,,,,,,,,Sensitive,,,,,,Resistant,,Sensitive,,,,,Sepsis with unclear source,Survived,25-Jun-23,CRP 90
+17/BAC/JUN,SENADYA,3,Months,Male,1-Jun-23,PICU,70061,ENTEROCOCCUS SPP,No,Resistant,,,,,,,,,,,,,,,,,,,,,,,,OS,,,,,,Resistant,,Resistant,,,,,Community acquired pneumonia,Survived,7-Jun-23,CRP 82
+305/BT/JAN,SAMARASINGHE,70,Years,Male,15-Jan-23,Medical,6841,ESCHERICHIA COLI 1,No,Resistant,Resistant,,Resistant,Sensitive,OS,,Resistant,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Death - related to sepsis,19-Jan-23,CRP NOT AVAILABLE.
+420/BT/JAN,KUMARI,31,Years,Female,21-Jan-23,Medical,10044,ESCHERICHIA COLI 1,No,Resistant,Sensitive,,Sensitive,Sensitive,OS,,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,OS,,Sensitive,,Sensitive,,,,,,,,,UROSEPSIS,Survived,23-Jan-23,CRP WAS 132.
+542/BT/JAN,NALANI,64,Years,Female,29-Jan-23,ETU,13965,ESCHERICHIA COLI 1,No,Resistant,Resistant,,Sensitive,Sensitive,,,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,OS,,Sensitive,,Resistant,,,,,,,,,UROSEPSIS,Survived,31-Jan-23,CRP WAS 135.
+563/BT/JAN,NETHMINA,12-Feb,Months,Male,30-Jan-23,PEAD,14456,ESCHERICHIA COLI 1,No,Resistant,Resistant,,Resistant,Sensitive,,,Sensitive,Sensitive,,,,Intermediate Sensitive,,,Sensitive,,,,,,,,Sensitive,OS,,Sensitive,,Intermediate Sensitive,,,,,,,,,URISEPSIS,Survived,2-Feb-23,CRP WAS 253.
+343/BT/MAR,PREMARATHNA,64,Years,Male,23-Mar-23,Medical,40979,ESCHERICHIA COLI 1,No,Resistant,Resistant,,Resistant,Sensitive,,Resistant,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Death - related to sepsis,28-Mar-23,CRP NOT AVAILABLE.
+195/BAC/APR,HANIFA,83,Years,Male,11-Apr-23,Medical,49687,ESCHERICHIA COLI 1,No,OS,Resistant,,Sensitive,Sensitive,,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Sensitive,,,,,,,,,GASTROENTERITIS,Survived,13-Apr-23,CRP WAS 120.
+227/BT/APR,DHARMADASA,72,Years,Male,15-Apr-23,ETU,50824,ESCHERICHIA COLI 1,No,OS,Resistant,,Sensitive,Sensitive,,Sensitive,Sensitive,Sensitive,,,,Resistant,,,OS,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,18-Apr-23,CRP WAS 194.
+381/BAC/APR,HASSAN AVM,72,Years,Male,24-Apr-23,Medical,55520,ESCHERICHIA COLI 1,Yes,OS,Resistant,,Resistant,Resistant,Resistant,OS,Resistant,Sensitive,,,,Resistant,,,OS,,,,,,,,Sensitive,Resistant,,Sensitive,,Resistant,,,,,,,,,,Death - related to sepsis,24-Apr-23,PATIENT EXPIRED FOLLOWING ADMISSION. CRP 109
+491/BAC/APR,JAYAWARDENA,63,Years,Male,28-Apr-23,53,52160,ESCHERICHIA COLI 1,Yes,OS,Resistant,,Resistant,,Resistant,OS,Resistant,Sensitive,,,,Resistant,,,OS,,,,,,,,Sensitive,Resistant,,Sensitive,,Intermediate Sensitive,,,,,,,,,Skin and soft tissue infection,Survived,1-May-23,CRP 80.
+483/BAC/APR,HETTIARACHCHI,57,Years,Male,28-Apr-23,Medical,58294,ESCHERICHIA COLI 1,No,OS,Resistant,,Resistant,,Sensitive,OS,Sensitive,Sensitive,,,,Resistant,,,OS,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Intra Abdominal Infections,Survived,3-May-23,CRP 200.
+83/BT/MAY,RALIYA,69,Years,Female,5-May-23,Medical,61667,ESCHERICHIA COLI 1,No,Sensitive,Sensitive,,Sensitive,Sensitive,Sensitive,OS,Sensitive,Sensitive,,,,Resistant,,,OS,,,,,,,,Sensitive,OS,Sensitive,,,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,8-May-23,CRP 343
+129/BAC/MAY,PRIYANGIKA,53,Years,Female,7-May-23,Medical,62253,ESCHERICHIA COLI 1,Yes,Resistant,Resistant,,Resistant,,Resistant,OS,Resistant,Resistant,,,,Resistant,,,OS,,,,,,,,Resistant,OS,,Resistant,,Resistant,,,,,,,,,Sepsis with unclear source,Survived,10-May-23,CRP 25. PATIENT WITH CEREBRAL LUPUS
+130/BT/MAY,SUNIL A,60,Years,Male,8-May-23,Medical,62531,ESCHERICHIA COLI 1,Yes,OS,Resistant,,Resistant,,Resistant,OS,Resistant,Sensitive,,,,Resistant,,,OS,,,,,,,,Sensitive,OS,Sensitive,,,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,10-May-23,CRP 102
+79/BT/MAY,SIRIMAL,70,Years,Male,5-May-23,Medical,61591,ESCHERICHIA COLI 1,Yes,OS,Resistant,,Resistant,,Resistant,OS,Resistant,Sensitive,,,,Resistant,,,OS,,,,,,,,Sensitive,OS,Resistant,Sensitive,,Intermediate Sensitive,,,,,,,,,Intra Abdominal Infections,Survived,10-May-23,CRP 270
+154/BT/MAY,RENUKA,57,Years,Female,9-May-23,Medical,63984,ESCHERICHIA COLI 1,No,OS,Resistant,,Resistant,Sensitive,Sensitive,OS,Sensitive,Sensitive,,,,Sensitive,,,OS,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,15-May-23,CRP 50
+199/BT/MAY,THILAKASIRI,63,Years,Male,14-May-23,Medical,66083,ESCHERICHIA COLI 1,No,Sensitive,Sensitive,,Sensitive,Sensitive,Sensitive,,Sensitive,Sensitive,,,,Resistant,,,OS,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,16-May-23,CRP 108
+203/BT/MAY,UNKNOWN,UNKNOWN,,Male,14-May-23,Medical,65966,ESCHERICHIA COLI 1,Yes,Resistant,Resistant,,Resistant,Resistant,Resistant,OS,Resistant,Sensitive,,,,Resistant,,,OS,,,,,,,,Sensitive,OS,Intermediate Sensitive,Sensitive,,Resistant,,,,,,,,,Sepsis with unclear source,Death - related to sepsis,18-May-23,PATIENT HAS EXPIRED SOON AFTER ADMISSION.
+277/BT/MAY,SUDATH PRIYANTHA,55,Years,Male,16-May-23,Medical,67163,ESCHERICHIA COLI 1,Yes,Resistant,Resistant,,Resistant,Resistant,Resistant,,Resistant,Sensitive,,,,Resistant,,,OS,,,,,,,,Resistant,OS,OS,Sensitive,,Resistant,,,,,,,,,Intra Abdominal Infections,Survived,18-May-23,CRP 324.
+281/BT/MAY,KARUNADASA,70,Years,Male,17-May-23,Medical,67785,ESCHERICHIA COLI 1,No,Sensitive,Sensitive,,Sensitive,Sensitive,Sensitive,,Sensitive,Sensitive,,,,Intermediate Sensitive,,,OS,,,,,,,,Intermediate Sensitive,OS,OS,Sensitive,,Sensitive,,,,,,,,,Intra Abdominal Infections,Survived,18-May-23,CRP 200
+413/BAC/MAY,SIRISENA KL,82,Years,Male,20-May-23,46,69470,ESCHERICHIA COLI 1,Yes,OS,Resistant,,Resistant,Resistant,Resistant,,Sensitive,Sensitive,,,,Resistant,,,OS,,,,,,,,Sensitive,OS,OS,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,24-May-23,CRP 203
+453/BAC/MAY,DHARMADASA,69,Years,Male,22-May-23,Medical,69830,ESCHERICHIA COLI 1,No,OS,Sensitive,,Sensitive,Sensitive,Sensitive,OS,Sensitive,Sensitive,,,,Resistant,,,OS,,,,,,,,Intermediate Sensitive,OS,OS,Sensitive,,Sensitive,,,,,,,,,Intra Abdominal Infections,Survived,24-May-23,CRP 108
+621/BAC/MAY,RAMANI RODRIGO,61,Years,Female,28-May-23,Medical,73851,ESCHERICHIA COLI 1,No,OS,Resistant,,Sensitive,Sensitive,Sensitive,,Sensitive,Sensitive,,,,Resistant,,,OS,,,,,,,,Sensitive,OS,OS,Sensitive,,Sensitive,,,,,,,,,Pyelonephritis,Survived,1-Jun-23,CRP 110
+79/BT/JUN,PIYASEELI,53,Years,Female,4-Jun-23,ICU,75192,ESCHERICHIA COLI 1,Yes,Resistant,Resistant,,Resistant,Resistant,Resistant,Resistant,Resistant,Resistant,,,,Resistant,,,Resistant,,,,,,,,Sensitive,Resistant,,Resistant,,Resistant,,,,,,,,,Pyelonephritis,Survived,6-Jun-23,CRP 322
+41/BAC/JUN,JEEWALAL,67,Years,Male,6-Jun-23,5,72045,ESCHERICHIA COLI 1,Yes,Resistant,Resistant,,Resistant,Resistant,Resistant,Resistant,Resistant,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,8-Jun-23,CRP 64
+150/BT/MAY,SOMADASA,86,Years,Male,7-Jun-23,Medical,78965,ESCHERICHIA COLI 1,No,Resistant,Resistant,,Sensitive,Sensitive,Sensitive,OS,Sensitive,Sensitive,,,,Resistant,,,Resistant,,,,,,,,Intermediate Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Pyelonephritis,Death - related to sepsis,24-Jun-23,CRP N/A. PATIENT ADMITTED WITH SEPTIC SHOCK AND EXPIRED
+199/BT/JUN,THARINSA,5,Years,Male,15-Jun-23,PICU,80027,ESCHERICHIA COLI 1,Yes,Resistant,Resistant,,Resistant,,Resistant,Resistant,Resistant,Sensitive,,,,Resistant,,,Resistant,,,,,,,,Intermediate Sensitive,Resistant,,Sensitive,,Intermediate Sensitive,,,,,,,,,Community acquired pneumonia,Death - related to sepsis,17-Jun-23,CRP 150
+328/BAC/JUN,DAYANANDA,67,Years,Male,19-Jun-23,Medical,85168,ESCHERICHIA COLI 1,Yes,Resistant,Resistant,,Resistant,Resistant,Resistant,Resistant,Resistant,Sensitive,,,,Sensitive,,,Resistant,,,,,,,,Sensitive,Intermediate Sensitive,,Sensitive,,Sensitive,,,,,,,,,Pelvic infection,Survived,22-Jun-23,CRP 371
+311/BAC/JUN,SUNETHRA,50,Years,Female,19-Jun-23,Medical,84664,ESCHERICHIA COLI 1,No,Resistant,Sensitive,,Sensitive,Sensitive,Sensitive,Sensitive,Sensitive,Sensitive,,,,Resistant,,,Resistant,,,,,,,,Intermediate Sensitive,Intermediate Sensitive,,Sensitive,,Sensitive,,,,,,,,,Pelvic infection,Survived,22-Jun-23,CRP 213
+337/BAC/JUN,SIRIYAWATHI,63,Years,Female,20-Jun-23,7,86205,ESCHERICHIA COLI 1,No,Resistant,Sensitive,,Sensitive,Sensitive,Sensitive,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Pyelonephritis,Survived,22-Jun-23,CRP 300
+335/BT/JUN,KAMAL,47,Years,Male,24-Jun-23,Medical,88353,ESCHERICHIA COLI 1,Yes,Resistant,Resistant,,Resistant,Resistant,Resistant,Resistant,Resistant,Sensitive,,,,Resistant,,,Sensitive,,,,,,,,Intermediate Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Death - related to sepsis,27-Jun-23,EXPIRED SOON AFTER ADMISSION.
+464/BAC/JUN,SUNI KK,59,Years,Male,27-Jun-23,9,90285,ESCHERICHIA COLI 1,Yes,Resistant,Resistant,,Resistant,Resistant,Resistant,Resistant,Resistant,Sensitive,,,,Resistant,,,Resistant,,,,,,,,Intermediate Sensitive,Sensitive,,Sensitive,,Intermediate Sensitive,,,,,,,,,Pyelonephritis,Survived,30-Jun-23,CRP 46
+280/BT/JAN,CHANDRALATHA,64,Years,Female,13-Jan-23,Medical,6613,ESCHERICHIA COLI 1,No,Resistant,Sensitive,,Resistant,Sensitive,OS,,Sensitive,Sensitive,,,,Resistant,,,Sensitive,,,,,,,,Resistant,OS,,Sensitive,,Sensitive,,,,,,,,,Pyelonephritis,Survived,16-Jan-23,CRP WAS 07.
+124/BAC/APR,WIMALADASA,10,Years,Female,6-Apr-23,PAED,48006,ESCHERICHIA COLI 1,Yes,OS,Resistant,,Resistant,Resistant,,Resistant,Resistant,Sensitive,,,,Resistant,,,Resistant,,,,,,,,Sensitive,OS,Intermediate Sensitive,Sensitive,,Intermediate Sensitive,,,,,,,,,GASTROENTERITIS,Survived,10-Apr-23,CRP WAS 182.
+284/BT/FEB,GEESARA,15,Years,Male,,PICU,17701,ESCHERICHIA COLI 1,No,Resistant,Sensitive,,Sensitive,,Sensitive,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Pelvic infection,Survived,22-Feb-23,CRP WAS 378.
+178/BAC/FEB,FAWSIYA,67,Years,Female,,Medical,21475,ESCHERICHIA COLI 1,No,Sensitive,Sensitive,,Sensitive,,Sensitive,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,Resistant,,Sensitive,,Sensitive,,,,,,,,,UROSEPSIS,Survived,21-Feb-23,CRP WAS 200.
+465/BT/FEB,WANIGARATHNA,62,Years,Female,,Medical,28436,ESCHERICHIA COLI 1,No,Sensitive,Sensitive,,,Sensitive,,,,,,,,,,Resistant,,,,,,Resistant,,,Sensitive,,,,,,,Sensitive,,Sensitive,Sensitive,,,,Skin and soft tissue infection,Survived,24-Feb-23,CRP NOT AVAILABLE.IV VANCOMYCIN ALSO GIVEN.
+3/25 FEB,AKASH,7,Months,Male,,PAED,27787,ESCHERICHIA COLI 1,Yes,Resistant,Resistant,,,,,,,,,,,Sensitive,,,,Sensitive,OS,,,,,,Sensitive,,,,,,,,,,,,,,Ventilator associated pneumonia,Survived,28-Feb-23,CRP WAS 436. THIS IS A PATIENT WITH MYASTHENIA GRAVIS.DOXYCYCLINE AND IV METRONIDAZOLE ALSO GIVEN.
+22/BT/APR,WEERAWICKRAMA,56,Years,Female,,Medical,45249,ESCHERICHIA COLI 1,No,Sensitive,Sensitive,,Sensitive,,Sensitive,Sensitive,Sensitive,Sensitive,,,,Resistant,,,Sensitive,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,27-Feb-23,CRP WAS 85.
+52/BAC/MAR,EKANAYAKA,52,Years,Female,,Medical,30889,ESCHERICHIA COLI 1,Yes,Resistant,Resistant,,Resistant,,Resistant,OS,Resistant,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,Resistant,,Sensitive,,Sensitive,,,,,,,,,Pyelonephritis,Survived,6-Mar-23,CRP WAS 227. TWO PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR SAME ORGANISM.
+176/BT/MAR,DHAMMIKA,55,Years,Female,,Medical,35961,ESCHERICHIA COLI 1,Yes,Resistant,Resistant,,Resistant,Sensitive,,,Resistant,Sensitive,,,,Sensitive,,,Resistant,,,,,,,,Sensitive,Sensitive,,,Sensitive,Sensitive,,,,,,,,,Sepsis with unclear source,Death - related to sepsis,16-Mar-23,MANAGED AS DKA WITH SEPSIS.
+769/BAC/MAR,CYRIL,62,Years,Male,,Medical,42196,ESCHERICHIA COLI 1,No,Resistant,Resistant,,Resistant,Resistant,,Sensitive,Sensitive,Sensitive,,,,NOT REPORTED,,,Resistant,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,UROSEPSIS,Unknown,29-Mar-23,CRP WAS NOT AVAILABLE.
+27/BT/APR,DHARMADASA,67,Years,Male,,Medical,43665,ESCHERICHIA COLI 1,No,OS,Resistant,,Sensitive,Sensitive,,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,,CRP WAS 40.
+32/BT/APR,ATTANAYAKA,57,Years,Male,,ETU,45592,ESCHERICHIA COLI 1,No,Sensitive,Sensitive,,Intermediate Sensitive,Sensitive,,Sensitive,Sensitive,Sensitive,,,,Resistant,,,Sensitive,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Sensitive,,,,,,,,,UROSEPSIS,Survived,6-Apr-23,CRP WAS 164.
+194/BT/JUN,SANDARUWAN,12,Years,Male,14-Jun-23,1,82660,FLAVOBACTERIUM SPP,No,Sensitive,Sensitive,,Sensitive,Sensitive,Sensitive,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,20-Jun-23,CRP 100. MANAGED AS RHEUMATIC CARDITIS
+232/BAC/JUN,GUNARATHNA,72,Years,Female,15-Jun-23,Medical,62671,FLAVOBACTERIUM SPP,No,,,,,,,Sensitive,Sensitive,Sensitive,,,,Resistant,,,,,,,,,,,Sensitive,Sensitive,Sensitive,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Death - related to sepsis,23-Jun-23,PATIENT HAS EXPIRED AT THE TIME OF BLOOD CULTURE BECAME POSITIVE
+466/BAC/MAR,RANASINGHE,10,Years,Male,,PAED,42363,GROUP B STREPTOCOCCUS,No,,,,,Sensitive,,,,,,,,,,Resistant,,,,,,Resistant,,,,,,,,,,Sensitive,,Sensitive,Resistant,,,,Septic arthritis,Survived,4-Apr-23,CRP NOT AVAILABLE.
+173/BT/MAR,KAVEESHA,11,Years,Female,16-Mar-23,PAED,36757,HAEMOPHILUS INFLUENZAE,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Community acquired pneumonia,Survived,21-Mar-23,CRP WAS 58.ESR IS 80. ABST DID NOT GROW.
+131/BT/APR,THASANYA,11  3/4 ,Years,Female,,PAED,48094,HAEMOPHILUS INFLUENZAE,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SINUSITIS + PERIORBITAL SWELLING,Survived,13-Apr-23,CRP WAS 57.ABST NOT GROWN.
+47/BAC/APR,DINUSARI,5,Months,Female,,ETU,46635,HAEMOPHILUS INFLUENZAE TYPE B,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Community acquired pneumonia,Survived,13-Apr-23,CRP NOT AVAILABLE. ABST DID NOT GROW.
+384/BAC/APR,RANJITH EK,61,Years,Male,24-Apr-23,Medical,55687,KLEBSIE+T98:T131LLA SPP,No,OS,Sensitive,,Intermediate Sensitive,Sensitive,Sensitive,OS,Sensitive,Sensitive,,,,Intermediate Sensitive,,,OS,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Death - related to sepsis,26-Apr-23,PATIENT EXPIRED FOLLOWING ADMISSION.
+431/BT/APR,GAMAGE M,52,Years,Male,26-Apr-23,Medical,57048,KLEBSIELLA SPP,No,OS,Sensitive,,Sensitive,,Sensitive,OS,Sensitive,Sensitive,,,,Sensitive,,,OS,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Intra Abdominal Infections,Survived,1-May-23,CRP 212.
+443/BT/APR,WIJEDASA HWG,65,Years,Male,27-Apr-23,46,56768,KLEBSIELLA SPP,Yes,OS,Resistant,,Resistant,,Resistant,OS,Resistant,Sensitive,,,,Resistant,,,OS,,,,,,,,Sensitive,Resistant,,Sensitive,,Intermediate Sensitive,,,,,,,,,Pelvic infection,Survived,29-Apr-23,CRP108. TREATED FOR UROSEPSIS
+471/BT/APR,YASARATHNA AW,62,Years,Male,29-Apr-23,37,53667,KLEBSIELLA SPP,No,OS,Sensitive,,Sensitive,,Sensitive,OS,Sensitive,Sensitive,,,,Sensitive,,,OS,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Meningitis / Meningo Encephalitis,Survived,1-May-23,CRP 167.
+82/BT/MAY,LASANTHA,75,Years,Male,5-May-23,Medical,61645,KLEBSIELLA SPP,Yes,,Resistant,,Resistant,Resistant,Resistant,OS,Sensitive,Sensitive,,,,Sensitive,,,OS,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Resistant,,,,,,,,,Sepsis with unclear source,Death - related to sepsis,8-May-23,CRP N/A
+69/BAC/MAY,WIMALASENA,58,Years,Male,4-May-23,ICU,61019,KLEBSIELLA SPP,No,OS,Sensitive,,Sensitive,,Sensitive,OS,Sensitive,Sensitive,,,,Sensitive,,,OS,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Sensitive,,,,,,,,,Community acquired pneumonia,Death - related to sepsis,11-May-23,CRP 300
+157/BAC/MAY,KUMARA WTRD,51,Years,Male,8-May-23,Medical,62927,KLEBSIELLA SPP,Yes,OS,Resistant,,Resistant,,Resistant,OS,Resistant,Resistant,,,,Resistant,,,OS,,,,,,,,Resistant,OS,Resistant,Resistant,,Resistant,,,,,,,,,Intra Abdominal Infections,Survived,15-May-23,CRP 300. BLOOD CULTURE ISOLATED AN ESCHERICHIA COLI WHICH IS SENSITIVE TO ALL
+249/BAC/MAY,THILAKAWATHI,63,Years,Female,11-May-23,Medical,64653,KLEBSIELLA SPP,Yes,OS,Resistant,,Resistant,Resistant,Resistant,,Resistant,Sensitive,,,,Resistant,,,OS,,,,,,,,Sensitive,,,Sensitive,,Resistant,,,,,,,,,Community acquired pneumonia,Survived,15-May-23,CRP 193
+168/BT/MAY,THEWNULA,6,Months,Male,11-May-23,ICU,60114,KLEBSIELLA SPP,Yes,Resistant,Resistant,,Resistant,Resistant,Resistant,,Intermediate Sensitive,Resistant,,,,Resistant,,,OS,,,,,,,,Sensitive,OS,Resistant,Resistant,,Resistant,,,,,,,,,Sepsis with unclear source,Survived,15-May-23,CRP 120
+355/BAC/MAY,NIMALASIRI,59,Years,Male,18-May-23,Medical,67766,KLEBSIELLA SPP,Yes,OS,Resistant,,Resistant,Resistant,Resistant,,Resistant,Sensitive,,,,Intermediate Sensitive,,,OS,,,,,,,,Sensitive,OS,OS,Sensitive,,Intermediate Sensitive,,,,,,,,,Community acquired pneumonia,Survived,22-May-23,CRP 140
+135/BAC/JUN,KUMARA ARSP,40,Years,Male,11-Jun-23,70,80870,KLEBSIELLA SPP,Yes,Resistant,Resistant,,Resistant,Resistant,Resistant,Resistant,Resistant,Sensitive,,,,Resistant,,,Resistant,,,,,,,,Resistant,Resistant,,Sensitive,,Resistant,,,,,,,,,CRBSI,Survived,17-Jun-23,CRP 50. BOTH LINE AND PERIPHERAL SAMPLES WERE POSITIVE FOR MSSA + KLEBSIELLA SPP
+245/BAC/JUN,NIMALASIRI,67,Years,Male,16-Jun-23,Medical,83896,KLEBSIELLA SPP,No,Resistant,Sensitive,,Sensitive,Sensitive,Sensitive,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Pelvic infection,Survived,20-Jun-23,CRP 126
+272/BAC/JUN,GUNAWATHI AA,60,Years,Female,17-Jun-23,Medical,84082,KLEBSIELLA SPP,Yes,Resistant,Resistant,,Resistant,Resistant,Resistant,Resistant,Resistant,Sensitive,,,,Resistant,,,Resistant,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Pelvic infection,Survived,20-Jun-23,CRP 200
+368/BAC/JUN,ASHF,25,Years,Female,21-Jun-23,10,76885,KLEBSIELLA SPP,No,Resistant,Resistant,,Resistant,Resistant,Resistant,Resistant,Resistant,Resistant,,,,Resistant,,,Resistant,,,,,,,,Intermediate Sensitive,Sensitive,,Resistant,,Resistant,,,,,,,,,Intra Abdominal Infections,Survived,24-Jun-23,CRP 190
+329/BT/JUN,SAROJINI,50,Years,Female,23-Jun-23,ETU,87882,KLEBSIELLA SPP,Yes,Resistant,Resistant,,Resistant,Resistant,Resistant,Resistant,Resistant,Sensitive,,,,Resistant,,,Sensitive,,,,,,,,Intermediate Sensitive,Intermediate Sensitive,,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Death - related to sepsis,26-Jun-23,PATIENT EXPIRED SOON AFTER ADMISSION AT ETU.
+326/BAC/APR,LIYANAARACHCHI,73,Years,Male,20-Apr-23,Medical,54023,KLEBSIELLA SPP,No,OS,Sensitive,,Sensitive,Sensitive,Sensitive,,Sensitive,Sensitive,,,,Sensitive,,,OS,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Intra Abdominal Infections,Survived,23-Apr-23,CRP 280
+310/BT/APR,SAYON,3,Years,Male,17-Apr-23,2,50954,KLEBSIELLA SPP,No,OS,Resistant,,Resistant,Resistant,Resistant,,Resistant,Sensitive,,,,Sensitive,,,OS,,,,,,,,Sensitive,Sensitive,,Sensitive,OS,Sensitive,,,,,,,,,Intra Abdominal Infections,Survived,21-Apr-23,"CRP 66. TREATED WITH IV VANCOMYCIN, IV FLAGYL AND IV CEFTRIAXONE"
+350/BAC/MAR,NIHAL,75,Years,Male,20-Mar-23,Medical,38729,KLEBSIELLA SPP.,No,Resistant,Sensitive,,Sensitive,Sensitive,,,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,Sensitive,,OS,,Sensitive,,,,,,,,,Community acquired pneumonia,Survived,21-Mar-23,CRP WAS 252.
+64/BT/APR,DANI,82,Years,Male,3-Apr-23,Medical,45983,KLEBSIELLA SPP.,No,OS,Sensitive,,Intermediate Sensitive,Sensitive,,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Sensitive,,,,,,,,,Community acquired pneumonia,Survived,8-Apr-23,CRP WAS 26. PAST HISTORY OF PULMONARY TB AND TREATMENT COMPLETED.
+306/BT/FEB,RAMANI,59,Years,Female,18-Feb-23,Medical,24559,KLEBSIELLA SPP.,No,Resistant,Sensitive,,Sensitive,,Sensitive,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,Resistant,,Sensitive,,Sensitive,,,,,,,,,RENAL ABCESS,Survived,21-Feb-23,CRP WAS 290. ESR WAS 102.
+240/BT/FEB,BANDULASENA,84,Years,Male,,SURG,20556,KLEBSIELLA SPP.,No,Resistant,Sensitive,,Sensitive,,Sensitive,,Sensitive,Sensitive,,,,Resistant,,,Resistant,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Intra Abdominal Infections,Survived,14-Feb-23,CRP WAS 100.
+455/BT/FEB,CHANDRATHILAKA,55,Years,Male,,ETU,28126,KLEBSIELLA SPP.,No,Resistant,Sensitive,,Resistant,,Resistant,,Resistant,Sensitive,,,,Resistant,,,Resistant,,,,,,,,Sensitive,Resistant,,Sensitive,,Resistant,,,,,,,,,Neonatal sepsis,Survived,22-Feb-23,CRP WAS 136.
+1/18 APR,KANAKASABAPATHI,68,Years,Male,,CCU,52400,KLEBSIELLA SPP.,No,OS,Sensitive,,Sensitive,Sensitive,,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,OS,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Skin and soft tissue infection,Survived,23-Apr-23,CRP WAS 293.
+119/BT/MAY,DAYANI,54,Years,Female,5-Jun-23,Medical,78098,KLEBSIELLS SPP,No,Resistant,Sensitive,,Sensitive,Sensitive,Sensitive,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Pyelonephritis,Survived,7-Jun-23,CRP 207
+148/BT/JUN,MAHINDASIRI,62,Years,Male,7-Jun-23,49,78344,KLEBSIELLS SPP,Yes,Resistant,Resistant,,Resistant,Resistant,Resistant,OS,Resistant,Sensitive,,,,Resistant,,,Resistant,,,,,,,,Intermediate Sensitive,Resistant,,Sensitive,,Resistant,,,,,,,,,Pyelonephritis,Survived,9-Jun-23,CRP 110
+269/BT/FEB,THARUSHIKA,10,Years,Female,,PAED,23102,KOCURIA KRISTINAE,No,,,,,Sensitive,,,,,,,,,,Resistant,,,,,,Resistant,,,,,,,,,,Sensitive,,Sensitive,Sensitive,,,,Infective endocarditis,Survived,21-Feb-23,CRP WAS 54.THREE PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR SAME ORGANISM.
+173/BAC/JUN,METHUJA,4,Years,Male,11-Jun-23,PICU,81354,OCHROMOBACTRUM ANTHROPI,No,Resistant,Sensitive,,Sensitive,Sensitive,Sensitive,Resistant,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Death - related to sepsis,16-Jun-23,TRANSFERRED FOR ICU CARE. EXPIRED SOON AFTER ADMISSION.
+100/BT/JAN,SUMANAWATHI,64,Years,Female,7-Jan-23,Medical,2616,PROBABLE STREPTOCOCCUS GROUP A,No,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,Sensitive,,,,,,,,,,Sensitive,,Sensitive,,,,,Skin and soft tissue infection,Death - related to sepsis,11-Jan-23,CRP NOT AVAILABLE.
+156/BAC/JUN,ARIYADASA MG,70,Years,Male,12-Jun-23,9,80823,PROTEUS SPP,Yes,Resistant,Resistant,,Resistant,,Resistant,Resistant,Resistant,Resistant,,,,Resistant,,,Resistant,,,,,,,,Resistant,Resistant,,Resistant,,Resistant,,,,,,,,,Intra Abdominal Infections,Survived,16-Jun-23,CRP 202
+317/BT/MAY,DE SILVA LHIL,31,Years,Male,19-May-23,5,68475,PROVIDENCIA SPP,No,OS,Resistant,,Resistant,Resistant,Resistant,,Intermediate Sensitive,Resistant,,,,Resistant,,,OS,,,,,,,,Sensitive,OS,,Sensitive,,Intermediate Sensitive,,,,,,,,,Skin and soft tissue infection,Survived,24-May-23,CRP 211
+270/BT/MAR,SIRITHUNGA,59,Years,Male,20-Mar-23,Medical,39212,PSEUDOMONAS AERUGINOSA,No,,,,,,,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,,,,,,,,,Sensitive,Sensitive,,OS,Resistant,Sensitive,,,,,,,,,Sepsis with unclear source,Death - related to sepsis,22-Mar-23,CRP NOT AVAILABLE.
+96/BAC/MAY,SITHTHI MARALIYA,62,Years,Female,5-May-23,Medical,61733,PSEUDOMONAS AERUGINOSA,No,,,,,,,OS,Sensitive,Sensitive,,,,Resistant,,,,,,,,,,,Sensitive,OS,Resistant,Resistant,,Sensitive,,,,,,,,,Community acquired pneumonia,Survived,10-May-23,CRP 78
+98/BT/MAY,YASAWATHI,75,Years,Female,6-May-23,Medical,61498,PSEUDOMONAS AERUGINOSA,No,,,,,,,OS,Resistant,Sensitive,,,,Sensitive,,,,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,10-May-23,CRP 152
+278/BT/MAY,NANDASENA WK,63,Years,Male,16-May-23,Medical,61600,PSEUDOMONAS AERUGINOSA,No,,,,,,,OS,Sensitive,Sensitive,,,,Intermediate Sensitive,,,,,,,,,,,Sensitive,OS,OS,Sensitive,,Intermediate Sensitive,,,,,,,,,Sepsis with unclear source,Death - related to sepsis,18-May-23,PATIENT EXPIRED SOON AFTER ADMISSION
+481/BAC/MAY,JAYANTHI MH,50,Years,Female,22-May-23,Medical,70744,PSEUDOMONAS AERUGINOSA,No,,,,,,,OS,Sensitive,Sensitive,,,,Sensitive,,,,,,,,,,,Sensitive,OS,OS,Sensitive,,Sensitive,,,,,,,,,CRBSI,Survived,25-May-23,CRP 33. BOTH CENTRAL AND PERIPHERAL SAMPLES WERE POSITIVE FOR PSEUDOMONAS.
+365/BT/MAR,YASAWATHI,77,Years,Female,,Medical,41051,PSEUDOMONAS AERUGINOSA,No,,,,,,,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Sensitive,,,,,,,,,Pyelonephritis,Survived,28-Mar-23,CRP WAS 212.
+271/BAC/MAY,INDUWARA,3,Years,Male,12-May-23,1,62710,PSEUDOMONAS SPP.,No,,,,,,,OS,Sensitive,Sensitive,,,,Sensitive,,,,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Sensitive,,,,,,,,,Community acquired pneumonia,Survived,17-May-23,CRP 27
+416/BAC/MAY,SACHIRA KAVISHKA,18,Years,Male,20-May-23,70,69400,PSEUDOMONAS SPP.,No,,,,,,,OS,Resistant,Resistant,,,,Resistant,,,,,,,,,,,Resistant,Resistant,OS,Resistant,,Resistant,,,,,,,,,CRBSI,Survived,25-May-23,CRP 92
+198/BAC/JUN,HASHEN CHAMATHKA,17,Years,Male,13-Jun-23,Medical,82381,PSEUDOMONAS SPP.,No,,,,,,,Sensitive,Sensitive,Sensitive,,,,Intermediate Sensitive,,,,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Skin and soft tissue infection,Survived,16-Jun-23,CRP 140
+213/BAC/MAR,NANAYAKKARA,73,Years,Female,,Medical,34729,PSEUDOMONAS SPP.,No,,,,,,,,,,,,,,,,,,,,,,,,Sensitive,,,,,,,Resistant,,Resistant,,,,,Sepsis with unclear source,Survived,27-Feb-23,CRP WAS 47. VRE WAS ISOLATED.
+233/BAC/APR,DIMUTHU,24,Years,Male,15-Apr-23,SURG,50904,PSEUDOMONAS STUTZERI,No,,,,,,,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Sensitive,,,,,,,,,Intra Abdominal Infections,Survived,17-Apr-23,CRP WAS 200. IV METRONIDAZOLE ALSO GIVEN.
+318/BT/MAY,MALEESHA PG,13,Years,Female,19-May-23,1,67852,PSEUDOMONAS STUTZERI,No,,,,,,,OS,Sensitive,Sensitive,,,,Resistant,,,,,,,,,,,Sensitive,OS,OS,Sensitive,,Sensitive,,,,,,,,,Community acquired pneumonia,Survived,22-May-23,CRP 30
+228/BAC/APR,THISANDI,1  1/2 ,Years,Female,13-Apr-23,PAED,50453,SALMONELLA SPP,No,OS,,,,Sensitive,,,,,,,Sensitive,Sensitive,,,Sensitive,,,,,,,Sensitive,,,,,,,,,,,,,,,Sepsis with unclear source,Survived,18-Apr-23,CRP WAS 77.
+11/BT/MAY,GUNAWARDANA,65,Years,Male,2-May-23,Medical,52464,SALMONELLA SPP,No,OS,Sensitive,,Sensitive,,Sensitive,OS,Sensitive,Sensitive,,,,Sensitive,,,OS,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Death - related to sepsis,15-May-23,BLOOD CULTURE WAS POSITIVE AFTER 135HRS AFTER INCUBATION. INVESTIGATION REPORTS WERE UNAVAILABLE AT THE TIME
+76/BT/APR,ABUBAKAR,6,Years,Male,3-Apr-23,PAED,46657,SALMONELLA SPP,No,Sensitive,,,,Sensitive,,,,,,,Resistant,Resistant,,,Resistant,,,,,,,Resistant,,,,,,,,,,,,,,,Enteric fever,Survived,8-Apr-23,CRP WAS 18.
+395/BAC/MAR,WIJERATHNA,43,Years,Male,24-Mar-23,Medical,41327,SALMONELLA TYPHIMURIUM,No,Sensitive,,,,Sensitive,,,,,,,Sensitive,Sensitive,,,Sensitive,,,,,,,,,,,,,,,,,,,,,,Enteric fever,Survived,28-Mar-23,CRP WAS 98.
+240/BAC/APR,SARATH,62,Years,Male,15-Apr-23,Medical,50842,SALMONELLA TYPHIMURIUM,No,OS,,,,Sensitive,,,,,,,Sensitive,Sensitive,,,Sensitive,,,,,,,Sensitive,,,,,,,,,,,,,,,Enteric fever,Survived,18-Apr-23,CRP WAS 157.
+8/14FEB,PRIYADHARSHANI,55,Years,Female,14-Feb-23,ETU,22254,SERRATIA SPP.,No,Resistant,Sensitive,,Sensitive,,Sensitive,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Intra Abdominal Infections,Survived,18-Feb-23,CRP WAS 132.
+150/BT/JAN,PIYADASA,73,Years,Male,10-Jan-23,SURG,4259,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,Skin and soft tissue infection,Death - related to sepsis,13-Jan-23,CRP WAS NOT AVAILABLE.MRSA WAS ISOLATED.
+29/BAC/MAR,DANTHANARAYANA,73,Years,Female,2-Mar-23,Medical,30656,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,Sepsis with unclear source,Death - related to sepsis,16-Mar-23,MSSA WAS ISOLATED.CRP NOT AVAILABLE.
+289/BAC/APR,SUMANASIRI,57,Years,Male,18-Apr-23,Medical,52474,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Sensitive,OS,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,Sepsis with unclear source,Survived,23-Apr-23,CRP WAS 130.
+265/BT/APR,SEETHA,77,Years,Female,18-Apr-23,ETU,52237,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,OS,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,Community acquired pneumonia,Survived,23-Apr-23,CRP WAS 289. MSSA WAS ISOLATED.
+201/BT/MAY,NIMAL ET,55,Years,Male,14-May-23,Medical,66149,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Resistant,OS,,,,,Sensitive,,,,,,,,,OS,Sensitive,,,Sensitive,,,,Sepsis with unclear source,Survived,17-May-23,CRP 338.
+245/BT/MAY,SARATH MK,60,Years,Male,15-May-23,Medical,65746,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,OS,,,,,Sensitive,,,,,,,,,OS,Sensitive,,,Sensitive,,,,Skin and soft tissue infection,Survived,18-May-23,CRP 103. TREATED WITH IV CLINDAMYCIN
+478/BAC/MAY,SRIMATHI HRY,40,Years,Female,22-May-23,Medical,67004,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,OS,,,,,Resistant,,,,,,,,,OS,Sensitive,,,Sensitive,,,,Skin and soft tissue infection,Survived,25-May-23,CRP 222. MANAGED AS ENDOPHTHALMITIS.2 PERIPHERAL AND ONE CENTRAL LINE SAMPLE WERE POSITIVE FOR MSSA. MSSA SEPSIS WAS TREATED WITH IV VANCOMYCIN.
+617/BAC/MAY,SUMITH KP,58,Years,Male,28-May-23,Medical,73528,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,OS,,,,,Resistant,,,,,,,,,OS,Sensitive,,,Sensitive,,,,Skin and soft tissue infection,Survived,1-May-23,CRP 60
+404/BT/MAY,NIMAL ET,56,Years,Male,31-May-23,Medical,75557,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Resistant,Sensitive,,,,,Sensitive,,,,,,,,,OS,Sensitive,,,Sensitive,,,,CRBSI,Survived,5-Jun-23,CRP 28. BOTH LINE AND PERIPHERAL SAMPLES WERE POSITIVE FOR MSSA
+411/BT/MAY,NIMALAWATHI,68,Years,Female,29-May-23,Medical,74466,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Resistant,,,,,,,,,OS,Sensitive,,,Sensitive,,,,Community acquired pneumonia,Survived,5-Jun-23,CRP 91
+415/BT/MAY,IGALAWITHANA,60,Years,Female,29-May-23,Medical,74626,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Sensitive,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,Resistant,,,,CRBSI,Survived,7-Jun-23,CRP 30
+1/BT/JUN,NETHSILU,8,Years,Male,1-Jun-23,1,76038,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,OS,Sensitive,,Sensitive,Sensitive,,,,Community acquired pneumonia,Survived,5-Jun-23,CRP 123
+209/BAC/JUN,HEMALATHA,47,Years,Female,14-Jun-23,Medical,82727,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,OS,Sensitive,,Sensitive,Sensitive,,,,CRBSI,Survived,20-Jun-23,CRP 154. BOTH CENTRAN AND PERIPHERAL SAMPLES WERE POSITIVE FOR MSSA
+316/BAC/JUN,SOMASIRI,76,Years,Male,19-Jun-23,Medical,85165,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,OS,Sensitive,,Sensitive,Sensitive,,,,Intra Abdominal Infections,Survived,22-Jun-23,CRP 129
+4/4JAN,JAYARATHNA,50,Years,Male,3-Feb-23,Medical,16788,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Resistant,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,Sepsis with unclear source,Survived,8-Feb-23,CRP WAS 200. TREATED AS LEPTOSPIROSIS. MSSA WAS ISOLATED. O.DOXYCYCLINE ALSO GIVEN.
+161/BT/FEB,NARANGODA,82,Years,Male,6-Feb-23,Medical,18487,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,Immunocrompromised,Survived,11-Feb-23,CRP WAS 273. MSSA WAS ISOLATED.
+204/BT/APR,CHATHURANGA,37,Years,Male,10-Apr-23,Medical,49630,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,Sepsis with unclear source,Survived,15-Apr-23,CRP WAS 230. MRSA WAS ISOLATED.TREATED WITH IV VANCOMYCIN.
+5/26JAN,WASANTHA,47,Years,Male,,Medical,12155,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,Sepsis with unclear source,Survived,2-Feb-23,CRP NOT AVAILABLE. MSSA WAS ISOLATED.
+2/26JAN,PRIYADHARSHANA,27,Years,Male,29-Jan-23,Medical,12177,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Sensitive,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,Sepsis with unclear source,Survived,6-Feb-23,CRP WAS NOT AVAILABLE. PATIENT WAS DISCHARGED BY THE TIME OF CULTURE WAS POSITIVE.
+538/BT/JAN,SAMUDRAJANA,13,Years,Male,,PAED,13536,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,SACROILLITIS,Survived,1-Feb-23,CRP NOT AVAILABLE. MRSA WAS ISOLATED. TREATED WITH IV VANCOMYCIN.
+5/31JAN,PERUMAL,83,Years,Male,,Medical,15112,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,LOWER RESPIRATORY INFECTION,Survived,8-Feb-23,CRP WAS 238. MSSA WAS ISOLATED.
+4/19FEB,SUGATH,54,Years,Male,,Medical,23841,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,Sepsis with unclear source,Survived,23-Feb-23,CRP WAS 395.IV DRUG ABUSER.PAST HISTORY OF TB.MSSA WAS ISOLATED.2DECHO WAS NEGATIVE.
+4/20FEB,SEELASENA,62,Years,Male,,Medical,24437,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,Skin and soft tissue infection,Survived,25-Feb-23,CRP WAS 167. MSSA WAS ISOLATED.
+7/21FEB,NANAYAKKARA,80,Years,Female,,Medical,23216,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,Sepsis with unclear source,Death - related to sepsis,28-Feb-23,CRP NOT AVAILABLE.MSSA WAS ISOLATED.
+12/20FEB,USHAN,4,Years,Male,,PAED,25602,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,Sepsis with unclear source,Survived,28-Feb-23,CRP NOT AVAILABLE. MSSA WAS ISOLATED. MSSA WAS ISOLATED.
+1/21FEB,SENARATHNA,57,Years,Male,,Medical,29444,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Sensitive,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,Sepsis with unclear source,Survived,28-Feb-23,CRP NOT AVAILABLE.
+468/BAC/MAR,RUWANSIRI,33,Years,Male,,Medical,42323,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,Sepsis with unclear source,Survived,30-Mar-23,CRP WAS 323. O.DOXYCYCLINE ALSO GIVEN. MSSA WAS ISOLATED FROM THREE PERIPHERAL BLOOD CULTURES.
+273/BT/MAY,ISHARA CHATHURANGA,24,Years,Male,16-May-23,ICU,67293,STENOTROPHOMONAS MALTOPHILIA,Yes,Resistant,Resistant,,Resistant,Resistant,Resistant,OS,Sensitive,Sensitive,,,,Intermediate Sensitive,,,OS,,,,,,,,Resistant,OS,OS,Resistant,,Sensitive,,,,,,,,,Community acquired pneumonia,Survived,19-May-23,CRP 74
+259/BAC/JUN,ARIYADASA EL,75,Years,Male,16-Jun-23,ETU,75339,STENOTROPHOMONAS MALTOPHILIA,No,,,,,,,Resistant,Sensitive,Sensitive,,,,Resistant,,,,,,,,,,,Sensitive,Sensitive,,Resistant,,Sensitive,,,,,,,,,Skin and soft tissue infection,Death - related to sepsis,22-Jun-23,ADMITTED WITH SEPTIC SHOCK AND PATIENT EXPIRED SOON AFTER ADMISSION
+08/BAC/MAR,MADUWANTHI,39,Years,Female,,Medical,29411,STREPTOCCUS AGALACTIAE,No,,,,,,,,,,,,,Sensitive,,,,Sensitive,OS,,,,,,,,,,,,,,,,,,,,Sepsis with unclear source,Survived,25-Feb-23,CRP WAS 47.
+435/BT/JAN,YESHMITH,2  1/4 ,Years,Male,,PAED,10619,STREPTOCCUS ALACTOLYTICUS,No,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,Sensitive,,,,,,,,,,Sensitive,,Sensitive,Resistant,,,,Sepsis with unclear source,Survived,30-Jan-23,CRP NOT AVAILABLE.
+502/BT/APR,ANUKI,2  1/2 ,Years,Female,1-Apr-23,PAED,45315,STREPTOCCUS PNEUMONIAE,No,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,Resistant,,,,,,,,,,Sensitive,,Sensitive,Resistant,,,,Community acquired pneumonia,Survived,4-Apr-23,CRP WAS 129.AG OF S.PNEUMONIA WAS POSITIVE. CXR L/CONSOLIDATION. IV VANCOMYCIN ALSO GIVEN.
+218/BT/APR,INDIKA,45,Years,Male,14-Apr-23,Medical,50543,STREPTOCCUS PNEUMONIAE,No,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,Sensitive,,,,,,,,,,Sensitive,,Sensitive,Resistant,,,,Meningitis / Meningo Encephalitis,Survived,18-Apr-23,CRP NOT AVAILABLE.
+259/BAC/APR,MAHISANKA,24,Years,Male,16-Apr-23,Medical,51279,STREPTOCCUS PNEUMONIAE,No,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,Resistant,,,,,,,,,,Sensitive,,Sensitive,Resistant,,,,Community acquired pneumonia,Survived,20-Apr-23,DEFAULTED TREATMENT FOR HIV.
+93/BT/MAY,PIYADASA KP,74,Years,Male,5-May-23,Medical,61652,STREPTOCCUS PNEUMONIAE,No,,,,,,Sensitive,,,,,,,,,Resistant,,,,,,Resistant,,,,,,,,,,Sensitive,,Resistant,Resistant,,,,Intra Abdominal Infections,Survived,15-May-23,CRP 112
+153/BT/JUN,DULANGA,3,Months,Female,7-Jun-23,ETU,79212,STREPTOCCUS PNEUMONIAE,No,,,,,,Resistant,,,,,,,,,,,,,,,,,,,,,,,,,Sensitive,,Sensitive,Resistant,,,,Community acquired pneumonia,Death - related to sepsis,14-Jun-23,CHILD WITH CONGENITAL HEART DISEASE. EXPIRED AT ETU SOON AFTER ADMISSION. CTX MIC 1.0
+138/BT/FEB,ISUMLI,4,Years,Female,,PAED,17832,STREPTOCCUS PNEUMONIAE,No,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,Sensitive,,,,,,,,,,Sensitive,,Sensitive,Resistant,,,,Community acquired pneumonia,Survived,11-Feb-23,CRP WAS 255.
+66/BT/MAY,KODITHUWAKKU,44,Years,Male,4-May-23,Medical,60950,STREPTOCOCCUS GORDONII,No,,,,,Sensitive,Sensitive,,,,,,,,,,,,,,,,,,,,,,,,,Sensitive,,Sensitive,,,,,Infective endocarditis,Survived,22-May-23,CRP 43.
+136/BT/JUN,SAMARAWICKRAMA,53,Years,Female,11-Jun-23,7,80976,STREPTOCOCCUS GROUP A,No,,,,,,,,,,,,,,,Resistant,,,,,,Resistant,,,,,,,,,,,,Sensitive,,,,,Skin and soft tissue infection,Survived,14-Jun-23,CRP 39
+226/BT/APR,SAMANMALI,45,Years,Female,,ETU,50961,STREPTOCOCCUS GROUP A,No,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,Resistant,,,,,,,,,,Sensitive,,Sensitive,Sensitive,,,,Skin and soft tissue infection,Survived,18-Apr-23,CRP WAS 28.
+351/BT/JAN,SRIYALATHA,67,Years,Female,17-Jan-23,ETU,8089,STREPTOCOCCUS GROUP A(PROBABLE),No,,,,,,,,,,,,,,,Sensitive,,,,,,Sensitive,,,,,,,,,,,,Sensitive,,,,,Skin and soft tissue infection,Survived,19-Jan-23,CRP WAS 291.
+384/BT/MAY,PRADEEP KUMARA,51,Years,Male,29-May-23,Medical,74610,STREPTOCOCCUS GROUP B,No,,,,,,Sensitive,,,,,,,,,Resistant,,,,,,Resistant,,,,,,,,,,,,Sensitive,,,,,Skin and soft tissue infection,Survived,2-Jun-23,CRP 297
+576/BAC/MAY,YASOMA WIJESINGHE,78,Years,Female,25-May-23,3,72181,STREPTOCOCCUS GROUP B,No,,,,,,,,,,,,,,,Intermediate Sensitive,,,,,,Intermediate Sensitive,,,,,,,,,,,,Sensitive,,,,,Skin and soft tissue infection,Survived,31-May-23,CRP 185
+242/BAC/JUN,PRIYANKARA,38,Years,Male,16-Jun-23,Medical,83831,STREPTOCOCCUS GROUP B,No,,,,,,,,,,,,,,,Resistant,,,,,,Resistant,,,,,,,,,,,,Sensitive,,,,,Sepsis with unclear source,Survived,19-Jun-23,CRP 200
+294/BT/JUN,WILSON,68,Years,Male,21-Jun-23,Medical,86775,STREPTOCOCCUS GROUP B,No,,,,,,,,,,,,,,,Resistant,,,,,,Resistant,,,,,,,,,,,,Sensitive,,,,,Pyelonephritis,Death - related to sepsis,25-Jun-23,CRP 300. EXPIRED ON DAY1 OF ADMISSION
+574/BAC/MAY,ASMA NW,58,Years,Female,25-May-23,7,60459,ACINETOBACTER SPP,No,,,,,Resistant,Resistant,OS,Resistant,Resistant,,,,Resistant,,,,OS,OS,,,,,,Resistant,OS,OS,OS,,OS,,,,,,,,,Skin and soft tissue infection,Survived,29-Jun-23,CRP 99
+218/BAC/FEB,WASANTHA,56,Years,Male,24-Feb-23,NEPHRO,20942,BURKHOLDERIA CEPACIA,No,,,,,,,Resistant,,,,,,Sensitive,,,,Sensitive,OS,,,,,,,,,Sensitive,,,,,,,,,,,LINE COLONIZER,Survived,1-Mar-23,CRP WAS 293. ONLY THE CENTRAL BLOOD CULTURES WAS POSITIVE.
+140/BAC/MAR,WASANTHA,56,Years,Male,9-Mar-23,NEPHRO,33542,BURKHOLDERIA CEPACIA,No,,,,,,,Resistant,,,,,,Sensitive,,,,Sensitive,OS,,,,,,,,,Sensitive,,,,,,,,,,,LINE COLONIZER,Survived,14-Mar-23,ONLY THE CENTRAL LINE BLOOD CULTURE WAS POSITIVE.CRP WAS 60.
+48/BT/MAY,DAHANAYAKA,67,Years,Male,2-May-23,37,28697,ENTEROCOCCUS SPP,No,OS,,,,,,,,,,,,,,,,,,,,,,,,Sensitive,,,,,,Sensitive,,Resistant,,,,,Sepsis with unclear source,Survived,8-May-23,CRP 108
+291/BT/MAY,MALANI MANIKE,44,Years,Female,17-May-23,7,31285,ENTEROCOCCUS SPP,No,OS,,,,,,,,,,,,,,,,,,,,,,,,OS,,,,,,Resistant,,Resistant,,,,,Pelvic infection,Survived,22-May-23,CRP 190. POST SURGICAL PATIENT AFTER NNEPHRECTOMY. SURGICAL SITE INFECTED.
+77/BAC/MAR,SOMASIRI,52,Years,Male,5-Mar-23,Medical,30547,ENTEROCOCCUS SPP.,No,Sensitive,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Resistant,,Sensitive,,,,,Infective endocarditis,Survived,9-Mar-23,CRP WAS 41.RECENTLY MANAGED AS INFECTIVE ENDOCARDITIS IN DEC/2022. TWO BLOOD CULTURES WERE POSITIVE FOR VRE.
+864/BT/JAN,SAJEEWA,43,Years,Female,1-Jan-23,Medical,86,ESCHERICHIA COLI 1,Yes,Resistant,Resistant,,Resistant,,,,Resistant,Sensitive,,,,Resistant,,,Sensitive,,,,,,,,Intermediate Sensitive,OS,,OS,,Sensitive,,,,,,,,,Immunocrompromised,Survived,3-Jan-23,CRP NOT AVAILABLE.
+54/BT/JAN,NAYANA,32,Years,Female,4-Jan-23,Medical,1517,ESCHERICHIA COLI 1,Yes,Resistant,Resistant,,Resistant,Resistant,,,Resistant,Sensitive,,,,Sensitive,,,Resistant,,,,,,,,Sensitive,OS,,OS,,Sensitive,,,,,,,,,UROSEPSIS,Survived,10-Jan-23,CRP NOT AVAILABLE.
+432/BT/JAN,PATHMASIRI,66,Years,Male,22-Jan-23,ETU,10487,ESCHERICHIA COLI 1,No,Resistant,Resistant,,Resistant,Resistant,Resistant,,Resistant,Sensitive,,,,Resistant,,,Sensitive,,,,,,,,Intermediate Sensitive,OS,,Sensitive,,Resistant,,,,,,,,,Sepsis with unclear source,Survived,24-Jan-23,CRP WAS NOT AVAILABLE.
+590/BT/JAN,WEERASEKARA,78,Years,Male,31-Jan-23,Medical,15048,ESCHERICHIA COLI 1,Yes,Resistant,Resistant,,Resistant,Resistant,,,Sensitive,Sensitive,,,,Resistant,,,Resistant,,,,,,,,Sensitive,OS,,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,2-Feb-23,CRP WAS 67.
+2/12FEB,NAMALI,47,Years,Female,12-Feb-23,ETC/3,21093,ESCHERICHIA COLI 1,Yes,Resistant,Resistant,,Resistant,,Resistant,Resistant,Resistant,Sensitive,,,,Resistant,,,Sensitive,,,,,,,,Intermediate Sensitive,Resistant,,Sensitive,,Intermediate Sensitive,,,,,,,,,PROBABLE CRBSI,Death - related to sepsis,15-Feb-23,ONLY THE PERIPHERAL BLOOD CULTURE WAS SENT.BUT THERE WAS FEMORAL LINE AND THAT LIMB SWELLING.
+274/BT/MAR,KUMARATHUNGA,47,Years,Male,21-Mar-23,HDU,39240,ESCHERICHIA COLI 1,No,Resistant,Sensitive,,Intermediate Sensitive,Sensitive,,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,,Sensitive,,OS,Resistant,Sensitive,,,,,,,,,CRBSI,Survived,24-Mar-23,BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR SAME ORGANISM.
+404/BAC/MAR,KULARATHNA,70,Years,Male,25-Mar-23,ETU,41609,ESCHERICHIA COLI 1,Yes,Resistant,Resistant,,Resistant,Resistant,,Resistant,Resistant,Sensitive,,,,Resistant,,,Resistant,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,hospital acquired pneumonia,Survived,27-Mar-23,CRP WAS 96.
+268/BAC/APR,DIAS,73,Years,Male,17-Apr-23,Medical,51780,ESCHERICHIA COLI 1,No,OS,Intermediate Sensitive,,Intermediate Sensitive,Sensitive,,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,OS,,,,,,,,Sensitive,OS,Intermediate Sensitive,Sensitive,,Sensitive,,,,,,,,,Community acquired pneumonia,Survived,19-Apr-23,CRP NOT AVAILABLE.
+422/BAC/MAY,B/O IRESHA,1,Days,Male,20-May-23,NICU,69442,ESCHERICHIA COLI 1,Yes,OS,Resistant,,Resistant,Resistant,Resistant,,Resistant,Sensitive,,,,Resistant,,,OS,,,,,,,,Intermediate Sensitive,OS,OS,Sensitive,,Resistant,,,,,,,,,Neonatal sepsis,Survived,22-May-23,CRP 110. MANAGED AS MECONEUM ASPIRATION.
+460/BAC/JUN,AMARARATHNA,56,Years,Male,26-Jun-23,Medical,87923,ESCHERICHIA COLI 1,No,Resistant,Resistant,,Sensitive,Sensitive,Sensitive,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Community acquired pneumonia,Survived,2-Jul-23,CRP 200.BLOOD CULTURE ISOLATED BOTH E.COLI AND PSEUDOMONAS AERUGINOSA WHICH IS SENSITIVE TO ALL EXCEPT TO SXT.
+441/BT/JAN,WEERASINGHE,79,Years,Male,21-Jan-23,Medical,10567,ESCHERICHIA COLI 1,No,Resistant,Resistant,,Resistant,Resistant,,,Resistant,Resistant,,,,Resistant,,,Resistant,,,,,,,,Sensitive,OS,,OS,,Resistant,,,,,,',,,UROSEPSIS,Survived,27-Jan-23,CRP WAS 293.
+520/BT/JAN,FONSEKA,73,Years,Female,27-Jan-23,Medical,13548,ESCHERICHIA COLI 1,No,Resistant,Resistant,,Sensitive,Sensitive,,,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,OS,,Sensitive,,Resistant,,,,,,,,,hospital acquired pneumonia,Survived,30-Jan-23,CRP WAS 267.
+23/BT/FEB,RATHNAPALA,63,Years,Male,1-Feb-23,NEPHRO,16338,ESCHERICHIA COLI 1,Yes,Resistant,Resistant,,Resistant,Resistant,,,,Resistant,,,,Resistant,,,Sensitive,,,,,,,,Resistant,OS,,Sensitive,,Resistant,,,,,,,,,Pyelonephritis,Survived,5-Feb-23,CRP WAS 293.
+137/BT/APR,GAMINI,68,Years,Male,6-Apr-23,NEPHRO,47904,ESCHERICHIA COLI 1,Yes,OS,Resistant,,Resistant,Resistant,,,,Resistant,,,,Resistant,,,OS,,,,,,,,Intermediate Sensitive,OS,Sensitive,Sensitive,,Resistant,,,,,,,,,Skin and soft tissue infection,Survived,11-Apr-23,CRP WAS 260.
+206/BAC/APR,PREMAWANSA,65,Years,Male,13-Apr-23,Medical,50642,ESCHERICHIA COLI 1,No,OS,Resistant,,Resistant,Resistant,,Resistant,Resistant,Resistant,,,,Resistant,,,Sensitive,,,,,,,,Resistant,OS,Resistant,Sensitive,,Resistant,,,,,,,,,Pyelonephritis,Survived,17-Apr-23,CRP WAS 16.
+267/BAC/APR,NANDANI,63,Years,Female,16-Apr-23,35,51582,ESCHERICHIA COLI 1,Yes,OS,Resistant,,Resistant,Resistant,,,Resistant,Sensitive,,,,Sensitive,,,OS,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Sensitive,,,,,,,,,UROSEPSIS,Survived,19-Apr-23,CRP WAS 272.
+276/BT/APR,GUNATHILAKA,46,Years,Female,17-Apr-23,ETU,52928,ESCHERICHIA COLI 1,Yes,OS,Resistant,,Resistant,Resistant,,Resistant,Resistant,Sensitive,,,,Resistant,,,OS,,,,,,,,Sensitive,OS,,Sensitive,,Intermediate Sensitive,,,,,,,,,hospital acquired pneumonia,Survived,23-Apr-23,CRP WAS 382.
+453/BAC/APR,B/O LIYANAGE,6,Days,Male,25-Apr-23,NICU,54729,ESCHERICHIA COLI 1,No,OS,Resistant,,Resistant,,Resistant,OS,Resistant,Resistant,,,,Resistant,,,OS,,,,,,,,Resistant,Resistant,,Resistant,,Resistant,,,,,,,,,Sepsis with unclear source,Survived,29-Apr-23,"CRP13. BABY WITH CONGEINTAL DIAPHRAGMATIC HERNIA.REPAIR DONE. POST OP FEVER. TREATED WITH IV MEROPENEM,IV AMIKACIN,IV VANCOMYCIN,IV FLAGYL AND IV FLUCONAZOLE"
+467/BT/APR,LOHUS,6,Years,Male,28-Apr-23,PICU,58148,ESCHERICHIA COLI 1,Yes,OS,Resistant,,Resistant,,Resistant,OS,Resistant,Sensitive,,,,Resistant,,,OS,,,,,,,,Sensitive,Resistant,,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Death - related to sepsis,4-May-23,CRP 34. PATIENT WITH POLYTRAUMA.
+4/BAC/MAY,B/O WASANA,10,Days,Female,28-Apr-23,NICU,54729,ESCHERICHIA COLI 1,No,Resistant,Resistant,,Resistant,Resistant,Resistant,OS,,Resistant,,,,Resistant,,,Resistant,,,,,,,,Resistant,OS,,Resistant,,Resistant,,,,,,,,,Neonatal sepsis,Survived,3-May-23,UNDERWENT CONGENITAL DIAPHRAGMATIC HERNIA REPAIR AND DEVELOPED POST OP FEVER. CRP 200
+591/BT/JAN,CHAMINDA MDD,43,Years,Male,28-Jan-23,ICU,12772,ESCHERICHIA COLI 1,No,Resistant,Intermediate Sensitive,,Intermediate Sensitive,Sensitive,Sensitive,OS,Resistant,Sensitive,,,,Resistant,,,Resistant,,,,,,,,Sensitive,OS,,Sensitive,OS,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,7-Feb-23,CRP 96. MANAGED AS HEPATIC ENCEPHALOPATHY WITH SEPSIS
+366/BAC/APR,KEMINDU,2,Years,Male,22-Apr-23,PICU,55338,FLAVOBACTERIUM SPP,No,OS,Intermediate Sensitive,,Intermediate Sensitive,,Intermediate Sensitive,OS,Sensitive,Sensitive,,,,Sensitive,,,OS,,,,,,,,Intermediate Sensitive,Sensitive,,Resistant,,Sensitive,,,,,,,,,Meningitis / Meningo Encephalitis,Survived,3-May-23,CRP 65. INITIALLY TREATED WITH IV MEROPENEM. LATER ADDED IV VANCOMYCIN
+289/BAC/MAY,B/O DEEPIKA,3,Days,Male,13-May-23,NICU,65760,KLEBSIELLA SPP,Yes,Resistant,Resistant,,Resistant,Resistant,Resistant,,Resistant,Sensitive,,,,Resistant,,,OS,,,,,,,,Sensitive,OS,Resistant,Sensitive,,Resistant,,,,,,,,,Sepsis with unclear source,Survived,15-May-23,CRP 54
+28/BAC/MAY,THEWNULA,6,Months,Male,1-May-23,1,60114,KLEBSIELLA SPP,No,Resistant,Resistant,,Resistant,Resistant,Resistant,OS,Sensitive,Resistant,,,,Resistant,,,Resistant,,,,,,,,Sensitive,Resistant,,Resistant,,Resistant,,,,,,,,,Sepsis with unclear source,Survived,8-May-23,CRP 100.
+232/BAC/MAY,JAYASENA,76,Years,Male,10-May-23,ICU,64633,KLEBSIELLA SPP,No,Sensitive,Sensitive,,Sensitive,Sensitive,Sensitive,,Sensitive,Sensitive,,,,Sensitive,,,OS,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Sensitive,,,,,,,,,Intra Abdominal Infections,Survived,11-May-23,CRP 169.
+190/BT/JAN,PADMASIRI,51,Years,Male,11-Jan-23,NEPHRO,167610,KLEBSIELLA SPP.,No,Resistant,Resistant,,Resistant,Resistant,,,Resistant,Resistant,,,,Resistant,,,Resistant,,,,,,,,Resistant,OS,,Resistant,,Resistant,,,,,,,,,Immunocrompromised,Survived,14-Jan-23,CRP WAS 60. TREATED WITH IV COLISTIN.
+424/BT/JAN,KANCHANA,22,Years,Female,21-Jan-23,Medical,10274,KLEBSIELLA SPP.,No,Resistant,Sensitive,,Sensitive,,OS,,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,OS,,Sensitive,,Sensitive,,,,,,,,,Pyelonephritis,Survived,23-Jan-23,CRP WAS 154.
+6/17FEB,BORALESSA,65,Years,Male,17-Feb-23,NEPHRO,23813,KLEBSIELLA SPP.,No,Resistant,Sensitive,,Sensitive,,Sensitive,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,Intermediate Sensitive,,Sensitive,,Sensitive,,,,,,,,,LINE COLONIZER,Survived,20-Feb-23,CRP WAS 138.ONLY THE CENTRAL LINE CULTURE WAS POSITIVE.PATIENT WAS ON IV VANCOMYCIN.
+287/BT/FEB,MADURANGA,33,Years,Male,17-Feb-23,HDU,21412,KLEBSIELLA SPP.,Yes,Resistant,Resistant,,Resistant,,Resistant,Resistant,Resistant,Sensitive,,,,Resistant,,,Resistant,,,,,,,,Resistant,Resistant,,Sensitive,,Resistant,,,,,,,,,Immunocrompromised,Survived,20-Feb-23,CRP WAS 140.
+31/BAC/APR,DEEPA,58,Years,Female,4-Apr-23,NEPHRO,46523,KLEBSIELLA SPP.,No,OS,Intermediate Sensitive,,Intermediate Sensitive,Sensitive,,Sensitive,Sensitive,Sensitive,,,,Resistant,,,Resistant,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Sensitive,,,,,,,,,Immunocrompromised,Survived,6-Apr-23,CRP NOT AVAILABLE.
+258/BT/JAN,GUNASIRI,57,Years,Male,12-Jan-23,NEPHRO,6188,KLEBSIELLA SPP.,No,Resistant,Resistant,,Resistant,Resistant,OS,,Resistant,Resistant,,,,Resistant,,,Resistant,,,,,,,,Resistant,OS,,Resistant,,Resistant,,,,,,,,,UROSEPSIS,Survived,17-Jan-23,CRP WAS NOT AVAILABLE. THIS IS A PATIENT WITH URETHRAL STRICTURE.
+12/14FEB,NIRMA,58,Years,Female,12-Feb-23,Medical,21548,LEUCONOSTOC CITREUM,No,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,Sensitive,,,,,,,,,,Resistant,,Sensitive,Resistant,,,,Sepsis with unclear source,Survived,17-Feb-23,CRP WAS 113. ESR WAS 74.
+203/BT/MAR,RANJITH,62,Years,Male,16-Mar-23,Medical,36896,MORGANELLA MORGANII,No,,,,,,,OS,Sensitive,Sensitive,,,,Sensitive,,,,,,,,,,,Sensitive,Sensitive,,OS,,Sensitive,,,,,,,,,Skin and soft tissue infection,Survived,18-Mar-23,CRP WAS 191. IV METRONIDAZOLE ALSO GIVEN. THIS WAS A PT WITH FOURNIER GANGRENE.
+2/27JAN,BANDULA,64,Years,Male,26-Jan-23,Medical,13258,MYROIDES SPP.,No,Resistant,Resistant,,Resistant,Resistant,,,Sensitive,Resistant,,,,Resistant,,,Resistant,,,,,,,,Resistant,OS,,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,11-Feb-23,CRP WAS 361. THIS PATIENT HAS ENCYSTED EMPYMA AND ASPIRATION CULTURE ISOLATED COLIFORM SPP.
+7/5FEB,SUSANTHA,45,Years,Male,5-Feb-23,DU,17790,PROTEUS SPP.,No,Sensitive,Sensitive,,Sensitive,,Sensitive,,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,CRBSI,Survived,8-Feb-23,CRP WAS 115. BOTH CENTRAL AND LINE CULTURES WERE POSITIVE FOR PROTEUS SPP.
+155/BT/JAN,SOMASIRI,60,Years,Male,10-Jan-23,ETU,4516,PSEUDOMONAS AERUGINOSA,No,,,,,,,OS,Sensitive,Sensitive,,,,Sensitive,,,,,,,,,,,Intermediate Sensitive,OS,,OS,,Sensitive,,,,,,,,,Immunocrompromised,Survived,12-Jan-23,CRP WAS NOT AVAILABLE. TWO PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR SAME ORGANISM.
+20/BAC/MAR,NISA,74,Years,Female,1-Mar-23,ETU,30309,PSEUDOMONAS AERUGINOSA,No,,,,,,,OS,Sensitive,Sensitive,,,,Sensitive,,,,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Immunocrompromised,Survived,4-Mar-23,CRP WAS 387.
+57/BAC/MAR,WASANTHA,56,Years,Male,3-Mar-23,NEPHRO,30702,PSEUDOMONAS SPP.,No,,,,,,,OS,Resistant,Sensitive,,,,Sensitive,,,,,,,,,,,Sensitive,Resistant,,Sensitive,,Sensitive,,,,,,,,,CRBSI,Survived,8-Mar-23,BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR PSEUDOMONAS SPP.CRP WAS 155.
+464/BAC/MAR,MAZEENA,56,Years,Female,27-Mar-23,DU,42343,PSEUDOMONAS SPP.,No,,,,,,,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Sensitive,,,,,,,,,CRBSI,Survived,29-Mar-23,BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR SAME.
+536/BAC/APR,SENARA,3,Months,Female,30-Apr-23,PICU,45636,PSEUDOMONAS SPP.,No,,,,,,,OS,Resistant,Resistant,,,,Resistant,,,,,,,,,,,Resistant,Resistant,,Resistant,,Resistant,,,,,,,,,Sepsis with unclear source,Survived,2-May-23,CRP 
+693/BAC/MAY,THETHMIKA,?,,Male,31-May-23,PICU,75498,SERRATIA SPP,No,Resistant,Sensitive,,Resistant,Sensitive,Sensitive,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,Sensitive,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,2-Jun-23,CRP 125
+12/BT/JAN,VITHANAGE,64,Years,Male,2-Jan-23,Medical,169538,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,Sepsis with unclear source,Survived,5-Jan-23,CRP WAS 146.ONLY THE PERIPHERAL BLOOD CULTURE WAS POSITIVE FOR MSSA.
+283/BT/JAN,JAGATH,52,Years,Male,14-Jan-23,NEPHRO,6620,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,CRBSI,Survived,17-Jan-23,BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR MSSA.
+319/BT/JAN,NIMESHIKA,35,Years,Female,15-Jan-23,NEPHRO,7117,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Resistant,Resistant,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,CRBSI,Survived,18-Jan-23,BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR MRSA.TREATED WITH IV VANCOMYCIN.
+325/BT/JAN,SANDAMALI,48,Years,Female,15-Jan-23,NEPHRO,7272,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Resistant,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,CRBSI,Survived,18-Jan-23,BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR MRSA. TREATED WITH IV VANCOMYCIN.
+308/BT/JAN,SUMITH,53,Years,Male,15-Jan-23,NEPHRO,6187,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Resistant,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,Immunocrompromised,Survived,18-Jan-23,CRP WAS 330.MRSA WAS ISOLATED FROM PERIPHERAL BLOOD CULTURE. TREATED WITH IV VANCOMYCIN.
+15/25JAN,KARUNAWATHIE,62,Years,Female,25-Jan-23,NEPHRO,12616,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Sensitive,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,CRBSI,Survived,29-Jan-23,BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR MRSA. TREATED WITH IV VANCOMYCIN.
+11/27JAN,PRIYANTHA,54,Years,Male,27-Jan-23,NEPHRO,13523,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,CRBSI,Survived,30-Jan-23,BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR MSSA. TREATED WITH IV VANCOMYCIN.
+17/26/JAN,METHULI KYR,5,Years,Female,26-Jan-23,2,13121,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,NOT DONE,,,,,,,,,,Sensitive,,,Sensitive,,,,hospital acquired pneumonia,Survived,6-Feb-23,MSSA WAS ISOLATED.PATIENT DISCHARGED 2 DAYS BEFORE BLOOD CULTURE BECAME POSITIVE. TREATED WITH IV CEFUROXIME FOR 5 DAYS.
+125/BT/JAN,DHARSHANA NB,38,Years,Male,27-Jan-23,Medical,13283,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Resistant,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,Resistant,,,,CRBSI,Survived,3-Feb-23,CRP 206.MRSA WAS ISOLATED.PREVIOUSLY ENTERED.
+44/BT/FEB,CHATHURIKA WD,28,Years,Female,2-Feb-23,71,16624,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,Sensitive,,,,CRBSI,Survived,7-Feb-23,CRP 240. TREATED WITH IV VANCOMYCIN AND O CLARITHROMYCIN. MSSA WAS ISOLATED FROM BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES.
+155/BAC/FEB,KUMARATHUNGA,47,Years,Male,10-Feb-23,NEPHRO,19773,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,LINE COLONIZER,Survived,16-Feb-23,CRP WAS 73.ONLY THE CENTRAL LINE WAS POSITIVE FOR MSSA. TREATED WITH IV VANCOMYCIN.
+11/19FEB,DIMANTHA,29,Years,Male,19-Feb-23,NEPHRO,24692,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Sensitive,Resistant,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,CRBSI,Survived,23-Feb-23,BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR MRSA. TREATED WITH IV VANCOMYCIN.
+5/20FEB,SOMADASA,80,Years,Male,20-Feb-23,Medical,24680,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,Skin and soft tissue infection,Survived,28-Feb-23,CRP NOT AVAILABLE. MSSA WAS ISOLATED.
+15/20FEB,DAYANI,55,Years,Female,20-Feb-23,NEPHRO,162294,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,CRBSI,Survived,28-Feb-23,BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR MSSA. CRP NOT AVAILABLE.
+397/BT/FEB,HIRUN,15,Years,Male,23-Feb-23,HDU,27364,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,Sepsis with unclear source,Survived,28-Feb-23,ONLY THE PERIPHERAL BLOOD CULTURE WAS POSITIVE FOR MRSA.
+16/BT/MAR,NALINDA,49,Years,Male,2-Mar-23,NEPHRO,30287,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Resistant,Resistant,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,Skin and soft tissue infection,Survived,7-Mar-23,MRSA WAS ISOLATED FROM PERIPHERAL BLOOD CULTURE ONLY.DIALYSIS DONE VIA AVF. CRP NOT AVAILABLE.
+95/BAC/MAR,HETTIARACHCHI,55,Years,Female,6-Mar-23,HDU,31925,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Sensitive,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,CRBSI,Survived,9-Mar-23,BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR MRSA.
+,JAGATH,52,Years,Male,11-Mar-23,NEPHRO,34777,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,CRBSI,Survived,14-Mar-23,BOTH CENTRAL AND PERIPHERAL BLOOD CULTURE WERE POSITIVE FOR MSSA.
+202/BAC/MAR,SAMANTHA PRADEEP KUMARA,40,Years,Male,11-Mar-23,NEPHRO,34710,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Intermediate Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,CRBSI,Survived,14-Mar-23,BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR MSSA.
+157/BT/MAR,CHANDIMA,38,Years,Female,13-Mar-23,Medical,35323,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Resistant,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,Skin and soft tissue infection,Survived,17-Mar-23,CRP WAS 200. MRSA WAS ISOLATED.
+191/BT/MAR,KUMARA,40,Years,Male,16-Mar-23,NEPHRO,34710,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Intermediate Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,CRBSI,Survived,19-Mar-23,BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR MSSA.
+356/BT/MAR,SACHINTHA,20,Years,Male,24-Mar-23,NEPHRO,41024,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,CRBSI,Survived,27-Mar-23,BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR MSSA.
+507/BAC/MAR,DHANAPALA,64,Years,Male,28-Mar-23,Medical,42957,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,POSSIBLE CRBSI,Survived,30-Mar-23,LINE REMOVED WITHOUT BLOOD CULTURE. MRSA WAS ISOLATED FROM PERIPHERAL BLOOD CULTURE. TREATED WITH IV VANCOMYCIN.
+198/BT/APR,PRIYANTHA,56,Years,Male,11-Apr-23,NEPHRO,49541,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Sensitive,Sensitive,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,CRBSI,Survived,15-Apr-23,BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR MRSA.
+244/BAC/APR,NIHAL PRIYANTHA,55,Years,Male,16-Apr-23,Medical,51394,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,OS,,,,,Sensitive,,,,,,,,,,Sensitive,,,,,,,CRBSI,Survived,19-Apr-23,BOTH LINE AND PERIPHERAL SAMPLES WERE POSITIVE FOR MRSA. TREATED WITH VANCOMYCIN
+358/BAC/APR,SUMANARATHNA,67,Years,Male,23-Apr-23,Medical,55188,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Sensitive,OS,,,,,,,,,,,,,,,Sensitive,,,Resistant,,,,CRBSI,Survived,27-Apr-23,BOTH CENTRAL AND PERIPHERAL WERE POSITIVE FOR MRSA. TREATED WITH IV VANCOMYCIN
+371/BAC/APR,PRIYANTHA NHN,55,Years,Male,23-Apr-23,Medical,51934,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Sensitive,OS,,,,,Sensitive,,,,,,,,,,Sensitive,,,Sensitive,,,,Sepsis with unclear source,Survived,28-Apr-23,SUSPECTED FUNGAL LESION IN CXR. TREATED WITH IV FLUCONAZOLE. MRSA INFECTION TREATED WITH IV VANCOMYCIN
+367/BAC/APR,EDWIN PK,80,Years,Male,23-Apr-23,Medical,54844,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Resistant,OS,,,,,Resistant,,,,,,,,,,Sensitive,,,Resistant,,,,Sepsis with unclear source,Death - related to sepsis,28-Apr-23,PATIENT EXPIRED ON THE SAME DAY AS ADMISSION
+423/BAC/APR,NIMESHIKA,35,Years,Female,25-Apr-23,Medical,56201,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Resistant,OS,,,,,,,,,,,,,,,Sensitive,,,Resistant,,,,Sepsis with unclear source,Survived,29-Apr-23,CRP 41. TREATED WITH IV VANCOMYCIN
+449/BAC/APR,METHTHASINGHE,60,Years,Male,27-Apr-23,Medical,57524,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Resistant,OS,,,,,,,,,,,,,,,Sensitive,,,Resistant,,,,CRBSI,Survived,1-May-23,CRP 36. BOTH CENTRAL AND PERIPHERAL BLOOD WERE POSITIVE FOR MRSA. TREATED WITH IV VANCOMYCIN
+97/BT/MAY,KUSUMAWATHI,79,Years,Female,5-May-23,Medical,61640,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,OS,,,,,Resistant,,,,,,,,,OS,Sensitive,,,Sensitive,,,,Sepsis with unclear source,Survived,11-May-23,CRP 200
+133/BAC/MAY,ARIYAWANSA,64,Years,Male,7-May-23,Medical,61893,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,OS,,,,,Resistant,,,,,,,,,OS,Sensitive,,,Sensitive,,,,CRBSI,Survived,15-May-23,CRP 15. BOTH CENTRAL AND PERIPHERAL LINE SAMPLES WERE POSITIVE FOR MSSA. TREATED WITH IV VANCOMYCIN
+192/BAC/MAY,SARATH OK,59,Years,Male,9-May-23,Medical,63600,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Sensitive,OS,,,,,Resistant,,,,,,,,,OS,Sensitive,,,Resistant,,,,CRBSI,Survived,15-May-23,CRP 48. BOTH CENTRAL AND PERIPHERAL SAMPLES WERE POSITIVE FOR MRSA.TREATED WITH IV VANCOMYCIN
+259/BAC/MAY,KUSUMALATHA,68,Years,Female,12-May-23,Medical,61640,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,OS,,,,,Resistant,,,,,,,,,OS,Sensitive,,,Sensitive,,,,Skin and soft tissue infection,Survived,16-May-23,CRP 60.
+283/BAC/MAY,JINASENA,63,Years,Male,13-May-23,Medical,65364,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,OS,,,,,Sensitive,,,,,,,,,OS,Sensitive,,,Sensitive,,,,CRBSI,Survived,16-May-23,CRP WAS 263. BOTH PERIPHERAL AND CENTRAL LINES WERE POSITIVE FOR MSSA. TREATED WITH IV VANCOMYCIN
+508/BAC/JUN,SHANTHI,62,Years,Female,29-Jun-23,71,90986,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Sensitive,Sensitive,,,,,Resistant,,,,,,,,,OS,Sensitive,,,Resistant,,,,CRBSI,Survived,3-Jul-23,CRP 200. TREATED WITH IV VANCOMYCIN.
+294/BT/JAN,PATHIRANA,72,Years,Female,13-Jan-23,NEPHRO,6638,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Resistant,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,CRBSI,Survived,19-Jan-23,CRP WAS 165.BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR MSSA. IV VANCOMYCIN ALSO GIVEN.
+53/BAC/JAN,PRASAD,51,Years,Male,18-Jan-23,NEPHRO,9259,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Resistant,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,CRBSI,Survived,23-Jan-23,BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR MRSA. CRP WAS 134. TREATED WITH IV VANCOMYCIN.
+72/BAC/JAN,JINASENA,67,Years,Male,19-Jan-23,Medical,9711,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Resistant,Resistant,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,CRBSI,Survived,23-Feb-23,CRP WAS 100.BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR MRSA.
+384/BAC/MAR,SHANTHI,62,Years,Female,23-Mar-23,Medical,40516,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Sensitive,Resistant,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,LINE COLONIZER,Survived,27-Mar-23,ONLY THE CENTRAL LINE WAS POSITIVE FOR MRSA.CRP WAS 140. TREATED WITH IV VANCOMYCIN.
+67/BAC/APR,SANDAMALI,48,Years,Female,4-Apr-23,NEPHRO,470076,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Resistant,,,,,Resistant,Sensitive,,,,,Resistant,,,,,,,,,,Sensitive,,,,,,,CRBSI,Survived,10-Apr-23,BOTH CENTRAL AND PERIPHERAL BLOOD CULTURES WERE POSITIVE FOR MRSA. CRP WAS 320.TREATED WITH IV VANCOMYCIN.
+334/BT/APR,DULLAWATHI,68,Years,Female,18-Apr-23,Medical,53218,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,OS,,,,,Sensitive,,,,,,,,,,Sensitive,,,Sensitive,,,,CRBSI,Survived,24-Apr-23,CRP 127. BOTH LINE AND PERIPHERAL SAMPLES WERE POSITIVE. TREATED WITH IV FLUCLOXACILLIN
+296/BT/MAY,SANJEEWA,33,Years,Male,17-May-23,ICU,67141,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,OS,,,,,Resistant,,,,,,,,,OS,Sensitive,,,Sensitive,,,,Sepsis with unclear source,Survived,24-May-23,CRP 173
+825/BT/DEC,PIYASENA,63,Years,Male,29-Dec-22,ETU,168638,STENOTROPHOMONAS MALTOPHILIA,No,,,,,,,,,,,,,Sensitive,,,,Sensitive,,,,,,,,,,,,,,,,,,,,,hospital acquired pneumonia,Survived,2-Jan-23,CRP WAS 244.
+688/BAC/MAY,PREHAN,11,Years,Male,28-May-23,PICU,74749,STENOTROPHOMONAS MALTOPHILIA,No,Resistant,Resistant,,Resistant,Resistant,Resistant,OS,Sensitive,Sensitive,,,,Sensitive,,,OS,,,,,,,,Sensitive,OS,,Resistant,,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,1-Jun-23,CRP 8
+349/BT/JUN,PIYAL SAMANTHA,41,Years,Male,24-Jun-23,ICU,88318,ACINETOBACTER SPP,No,,,,,Resistant,Resistant,Resistant,Resistant,Resistant,,,,Resistant,,,,Resistant,OS,,,,,,Resistant,Resistant,,Resistant,,Resistant,,,,,,,,,CRBSI,Survived,26-Jun-23,CRP 118
+138/BAC/JUN,B/O KUMARASIRI,2,Days,Male,9-Jun-23,NICU,80897,ACINETOBACTER SPP,No,,,,,,Resistant,Resistant,Resistant,Resistant,,,,Resistant,,,,Sensitive,OS,,,,,,Resistant,Resistant,,Resistant,,Resistant,,,,,,,,,Neonatal sepsis,Survived,13-Jun-23,CRP 31
+393/BT/JAN,DAMSADEE,3,Months,Female,17-Jan-23,PICU,9020,ENTEROBACTER CLOACAE,Yes,Resistant,Resistant,,Resistant,Resistant,OS,,Resistant,Sensitive,,,,Resistant,,,Resistant,,,,,,,,Intermediate Sensitive,OS,,Sensitive,,Intermediate Sensitive,,,,,,,,,Ventilator associated pneumonia,Death - not related to sepsis,20-Jan-23,CRP WAS 09.
+41/BT/FEB,B/O SANDAMALI,16,Days,Female,,NICU,9142,KLEBSIELLA SPP.,Yes,Resistant,Resistant,,Resistant,Resistant,,,Resistant,Sensitive,,,,Resistant,,,Resistant,,,,,,,,Sensitive,OS,,Sensitive,,Intermediate Sensitive,,,,,,,,,Intra Abdominal Infections,Survived,5-Feb-23,CRP WAS 150.
+135/BT/JUN,DAMINI,7,Years,Female,5-Jun-23,PICU,78290,PSEUDOMONAS AERUGINOSA,No,,,,,,,Sensitive,Sensitive,Sensitive,,,,Sensitive,,,,,,,,,,,Sensitive,Sensitive,,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,,8-Jun-23,CRP 50. FOLLOWING POLYTRAUMA
+572/BT/JAN,AMANDI ALOKA,21,Years,Female,30-Jan-23,NSICU,12153,PSEUDOMONAS SPP.,No,,,,,,,,Resistant,Resistant,,,,Sensitive,,,,,,,,,,,Resistant,,,Resistant,Resistant,Resistant,,,,,,,,,Sepsis with unclear source,Survived,7-Feb-23,CRP 55. MANAGED AS TB MENINGITIS
+202/BT/JUN,NISANSALA,22,Years,Female,13-Jun-23,ICU,82210,BURKHOLDERIA PSEUDOMALLEI,No,Resistant,Sensitive,,Resistant,Sensitive,Sensitive,Sensitive,Resistant,Sensitive,,,,Resistant,,,Sensitive,,,,,,,,Resistant,Resistant,,Sensitive,,Sensitive,,,,,,,,,Community acquired pneumonia,Death - related to sepsis,22-Jun-23,"CRP WAS 200. PATIENT WITH NEPHROTIC SYNDROME, FOUND TO HAVE A LRTI WITH A THYROID ABSCESS"
+125/BAC/MAY,CHATHURIKA,28,Years,Female,6-May-23,Medical,61801,ESCHERICHIA COLI 1,No,OS,Sensitive,,Sensitive,,Sensitive,OS,Sensitive,Sensitive,,,,Sensitive,,,OS,,,,,,,,Sensitive,OS,Sensitive,Sensitive,,Sensitive,,,,,,,,,Sepsis with unclear source,Survived,11-May-23,CRP WAS 224. BLOOD CULTURE ISOLATED METHYCILLIN SENSITIVE STAPHYLOCOCCUS AUREUS TOO. SENSITIVE TO ALL.
+173/BT/JUN,SACHINTHA KUMARA,20,Years,Male,8-Jun-23,70,79670,STAPHYLOCOCCUS AUREUS,No,,,,,,,,,,Sensitive,,,,,Sensitive,Resistant,,,,,Sensitive,,,,,,,,,OS,Sensitive,,,Sensitive,,,,CRBSI,Survived,12-Jul-23,CRP 30. BOTH CENTRAL AND PERIPHERAL SAMPLES WERE POSITIVE FOR MSSA. TREATED WITH FLUCLOXACILLIN
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

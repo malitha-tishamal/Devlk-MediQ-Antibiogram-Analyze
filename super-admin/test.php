@@ -1,1172 +1,867 @@
+<?php
+session_start();
+
+require_once '../includes/db-conn.php';
+
+require_once '../includes/vendor/autoload.php';
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+
+// Redirect if not logged in
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: ../index.php");
+    exit();
+}
+
+// Fetch user details
+$user_id = $_SESSION['admin_id'];
+$sql = "SELECT name, email, nic, mobile, profile_picture FROM admins WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+$stmt->close();
+
+// Create tables if they don't exist
+$create_tables_sql = "
+CREATE TABLE IF NOT EXISTS antibiogram_reports (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    admin_id INT NOT NULL,
+    original_filename VARCHAR(255) NULL,
+    file_path VARCHAR(500) NULL,
+    pasted_data TEXT NULL,
+    upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (admin_id) REFERENCES admins(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS antibiogram_data (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    report_id INT NOT NULL,
+    organism VARCHAR(255) NOT NULL,
+    antibiotic VARCHAR(255) NOT NULL,
+    tested_count INT NOT NULL,
+    susceptible_count INT NOT NULL,
+    percentage FLOAT NULL,
+    FOREIGN KEY (report_id) REFERENCES antibiogram_reports(id) ON DELETE CASCADE
+);
+";
+
+$conn->multi_query($create_tables_sql);
+// Clear any remaining results
+while ($conn->next_result()) {;}
+
+/** Normalize a single cell to S/R/null */
+function normalize_result($val) {
+    if ($val === null) return null;
+    $v = trim(strtolower($val));
+    if ($v === '' || $v === '-' || $v === 'os' || $v === 'nt') return null; // not tested
+
+    $sus_patterns = ['sensitive', 'intermediate', 'intermediate sensitive', 's', 'i'];
+    $res_patterns = ['resistant','r'];
+
+    foreach ($sus_patterns as $p) if(strtolower($v)===strtolower($p)) return 'S';
+    foreach ($res_patterns as $p) if(strtolower($v)===strtolower($p)) return 'R';
+
+    return null;
+}
+
+/** Auto-detect delimiter */
+function detect_delimiter($text) {
+    $lines = preg_split("/\r\n|\n|\r/", $text);
+    $candidates = [",","\t",";","|"];
+    $best = ",";
+    $bestScore = 0;
+    foreach ($candidates as $d) {
+        $score = 0;
+        foreach (array_slice($lines,0,5) as $l) $score += substr_count($l,$d);
+        if ($score > $bestScore) { $bestScore=$score; $best=$d; }
+    }
+    return $best;
+}
+
+/** Parse table text */
+function parse_table_text($text) {
+    $del = detect_delimiter($text);
+    $lines = preg_split("/\r\n|\n|\r/", trim($text));
+    $data=[]; $header=null;
+    foreach ($lines as $i=>$line) {
+        $cells = str_getcsv($line,$del);
+        if ($i===0){ $header=array_map('trim',$cells); continue; }
+        if(count($cells)<count($header)) $cells=array_pad($cells,count($header),'');
+        elseif(count($cells)>count($header)) $cells=array_slice($cells,0,count($header));
+        $data[]=array_combine($header,$cells);
+    }
+    return [$header,$data];
+}
+
+/** Parse Excel file */
+function parse_excel_file($file_path) {
+    try {
+        $spreadsheet = IOFactory::load($file_path);
+        $sheet = $spreadsheet->getActiveSheet();
+        $rows = $sheet->toArray();
+        
+        if (empty($rows)) {
+            return [[], []];
+        }
+        
+        $header = array_map('trim', array_shift($rows));
+        $data = [];
+        
+        foreach ($rows as $row) {
+            if (count($row) < count($header)) {
+                $row = array_pad($row, count($header), '');
+            } elseif (count($row) > count($header)) {
+                $row = array_slice($row, 0, count($header));
+            }
+            $data[] = array_combine($header, $row);
+        }
+        
+        return [$header, $data];
+    } catch (Exception $e) {
+        return [[], []];
+    }
+}
+
+/** Save report to database */
+function save_report_to_db($conn, $user_id, $original_filename, $file_path, $pasted_data, $summary, $organism_list, $antibiotics) {
+    // Insert report metadata
+    $stmt = $conn->prepare("INSERT INTO antibiogram_reports (admin_id, original_filename, file_path, pasted_data) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("isss", $user_id, $original_filename, $file_path, $pasted_data);
+    $stmt->execute();
+    $report_id = $stmt->insert_id;
+    $stmt->close();
+    
+    // Insert summary data
+    $stmt = $conn->prepare("INSERT INTO antibiogram_data (report_id, organism, antibiotic, tested_count, susceptible_count, percentage) VALUES (?, ?, ?, ?, ?, ?)");
+    
+    foreach ($organism_list as $org) {
+        foreach ($antibiotics as $ab) {
+            $data = $summary[$org][$ab];
+            $tested = $data['tested'];
+            $susc = $data['susc'];
+            $pct = $data['pct'];
+            
+            $stmt->bind_param("issiid", $report_id, $org, $ab, $tested, $susc, $pct);
+            $stmt->execute();
+        }
+    }
+    
+    $stmt->close();
+    return $report_id;
+}
+
+/** Get user's report history */
+function get_report_history($conn, $user_id) {
+    $stmt = $conn->prepare("SELECT id, original_filename, file_path, upload_date FROM antibiogram_reports WHERE admin_id = ? ORDER BY upload_date DESC");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $reports = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    
+    return $reports;
+}
+
+/** Get report data */
+function get_report_data($conn, $report_id, $user_id) {
+    // Verify user owns this report
+    $stmt = $conn->prepare("SELECT id FROM antibiogram_reports WHERE id = ? AND admin_id = ?");
+    $stmt->bind_param("ii", $report_id, $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows === 0) {
+        return null;
+    }
+    
+    // Get report metadata
+    $stmt = $conn->prepare("
+        SELECT r.original_filename, r.file_path, r.pasted_data, r.upload_date, 
+               a.name as admin_name 
+        FROM antibiogram_reports r 
+        JOIN admins a ON r.admin_id = a.id 
+        WHERE r.id = ?
+    ");
+    $stmt->bind_param("i", $report_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $report_meta = $result->fetch_assoc();
+    $stmt->close();
+    
+    // Get report data
+    $stmt = $conn->prepare("
+        SELECT organism, antibiotic, tested_count, susceptible_count, percentage 
+        FROM antibiogram_data 
+        WHERE report_id = ? 
+        ORDER BY organism, antibiotic
+    ");
+    $stmt->bind_param("i", $report_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $report_data = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    
+    // Organize data by organism
+    $organized_data = [];
+    $antibiotics = [];
+    
+    foreach ($report_data as $row) {
+        $org = $row['organism'];
+        $ab = $row['antibiotic'];
+        
+        if (!in_array($ab, $antibiotics)) {
+            $antibiotics[] = $ab;
+        }
+        
+        if (!isset($organized_data[$org])) {
+            $organized_data[$org] = [];
+        }
+        
+        $organized_data[$org][$ab] = [
+            'tested' => $row['tested_count'],
+            'susc' => $row['susceptible_count'],
+            'pct' => $row['percentage']
+        ];
+    }
+    
+    $organism_list = array_keys($organized_data);
+    sort($organism_list);
+    
+    return [
+        'meta' => $report_meta,
+        'data' => $organized_data,
+        'organisms' => $organism_list,
+        'antibiotics' => $antibiotics
+    ];
+}
+
+/** Handle POST input */
+$input_text='';
+$upload_error = '';
+$report_id = null;
+
+// Check if viewing a saved report
+$view_report_id = isset($_GET['view_report']) ? intval($_GET['view_report']) : null;
+$saved_report = null;
+
+if ($view_report_id) {
+    $saved_report = get_report_data($conn, $view_report_id, $user_id);
+}
+
+if($_SERVER['REQUEST_METHOD']==='POST' && !isset($_POST['download_csv'])){
+    if(!empty($_FILES['datafile']['tmp_name'])) {
+        $file = $_FILES['datafile'];
+        $file_ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $original_filename = $file['name'];
+        
+        // Handle Excel files
+        if (in_array($file_ext, ['xlsx', 'xls'])) {
+            list($header, $rows) = parse_excel_file($file['tmp_name']);
+            
+            if (!empty($header) && !empty($rows)) {
+                // Convert the data to text format for compatibility with existing code
+                $input_text = implode(",", $header) . "\n";
+                foreach ($rows as $row) {
+                    $input_text .= implode(",", $row) . "\n";
+                }
+                
+                // Save the uploaded file
+                $upload_dir = '../uploads/antibiogram/';
+                if (!file_exists($upload_dir)) {
+                    mkdir($upload_dir, 0777, true);
+                }
+                
+                $file_path = $upload_dir . time() . '_' . $original_filename;
+                move_uploaded_file($file['tmp_name'], $file_path);
+            } else {
+                $upload_error = "Failed to parse the Excel file. Please check the format.";
+            }
+        } 
+        // Handle CSV/TSV files
+        else if (in_array($file_ext, ['csv', 'tsv', 'txt'])) {
+            $input_text = file_get_contents($file['tmp_name']);
+            
+            // Save the uploaded file
+            $upload_dir = '../uploads/antibiogram/';
+            if (!file_exists($upload_dir)) {
+                mkdir($upload_dir, 0777, true);
+            }
+            
+            $file_path = $upload_dir . time() . '_' . $original_filename;
+            move_uploaded_file($file['tmp_name'], $file_path);
+        } 
+        // Unknown file type
+        else {
+            $upload_error = "Unsupported file format. Please upload CSV, TSV, or Excel files.";
+        }
+    }
+    elseif(!empty($_POST['pasted'])) {
+        $input_text=$_POST['pasted'];
+        $pasted_data = $input_text;
+        $original_filename = null;
+        $file_path = null;
+    }
+}
+
+$summary=[]; $antibiotics=[]; $organism_list=[]; $raw_rows=[];
+
+if(!empty($input_text) && empty($upload_error)){
+    list($header,$rows)=parse_table_text($input_text);
+    $raw_rows=$rows;
+
+    // find Organism column
+    $organism_col=null;
+    foreach($header as $h) if(preg_match('/organism/i',$h)){$organism_col=$h; break;}
+    if($organism_col===null){ $organism_col=$header[ array_search('Organism',$header) ] ?? null; }
+
+    // antibiotic columns (skip meta)
+    $meta_patterns='/lab_no|pt_name|age|sex|date|admission|ward|bht|esbl|organism_type|organism id/i';
+    foreach($header as $h){ if(preg_match($meta_patterns,$h)) continue; if(trim($h)==='') continue; $antibiotics[]=$h; }
+    if(($k=array_search($organism_col,$antibiotics))!==false) array_splice($antibiotics,$k,1);
+
+    // stats
+    $stats=[];
+    foreach($rows as $r){
+        $org=trim($r[$organism_col]??'');
+        if($org==='') continue;
+        $org=preg_replace('/\s+/',' ',$org);
+        $org_key=$org;
+        if(!isset($stats[$org_key])){
+            $stats[$org_key]=[];
+            foreach($antibiotics as $ab) $stats[$org_key][$ab]=['tested'=>0,'susc'=>0];
+        }
+        foreach($antibiotics as $ab){
+            $cell = $r[$ab] ?? '';
+            // parse if S/I/R counts exist (e.g., S:5 I:0 /5)
+            if(preg_match('/S:(\d+)/i',$cell,$m)){
+                $susc=intval($m[1]);
+                if(preg_match('/\/(\d+)/',$cell,$n)) $tested=intval($n[1]);
+                else $tested=$susc;
+                $stats[$org_key][$ab]['tested']+=$tested;
+                $stats[$org_key][$ab]['susc']+=$susc;
+            } else {
+                $norm=normalize_result($cell);
+                if($norm===null) continue;
+                $stats[$org_key][$ab]['tested']++;
+                if($norm==='S') $stats[$org_key][$ab]['susc']++;
+            }
+        }
+    }
+
+    // summary % with tested counts
+    foreach($stats as $org=>$vals){
+        foreach($vals as $ab=>$v){
+            $tested=$v['tested']; $susc=$v['susc'];
+            $pct=$tested>0?($susc/$tested*100):null;
+            $summary[$org][$ab]=['tested'=>$tested,'susc'=>$susc,'pct'=>$pct];
+        }
+    }
+
+    $organism_list=array_keys($summary);
+    sort($organism_list);
+    
+    // Save to database
+    $pasted_data = isset($pasted_data) ? $pasted_data : null;
+    $report_id = save_report_to_db($conn, $user_id, $original_filename, $file_path, $pasted_data, $summary, $organism_list, $antibiotics);
+}
+
+// Get user's report history
+$report_history = get_report_history($conn, $user_id);
+
+// download CSV
+if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['download_csv']) && !empty($summary)){
+    header('Content-Type:text/csv;charset=utf-8');
+    header('Content-Disposition:attachment;filename=antibiogram_summary.csv');
+    $out=fopen('php://output','w');
+    fputcsv($out,array_merge(['Organism'],$antibiotics));
+    foreach($organism_list as $org){
+        $line=[$org];
+        foreach($antibiotics as $ab){
+            $s=$summary[$org][$ab];
+            $line[]= $s['pct']===null?'':round($s['pct'],0).'%';
+        }
+        fputcsv($out,$line);
+    }
+    fclose($out); exit;
+}
+
+function pct_class($pct){
+    if($pct===null) return '';
+    if($pct<70) return 'bg-danger';
+    if($pct<90) return 'bg-warning';
+    return 'bg-success';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Antibiotic Susceptibility Analysis</title>
+    <title>Antibiogram Generator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <?php include_once("../includes/css-links-inc.php"); ?>
     <style>
         :root {
             --primary: #2c3e50;
             --secondary: #3498db;
-            --success: #27ae60;
-            --warning: #f39c12;
-            --danger: #e74c3c;
+            --accent: #e74c3c;
             --light: #ecf0f1;
             --dark: #2c3e50;
         }
         
         body {
+            background-color: #f8f9fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: #333;
-            min-height: 100vh;
-            padding: 20px;
         }
         
-        .app-container {
-            max-width: 1600px;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .data-input-section {
-            background-color: var(--light);
-            padding: 20px;
-            border-bottom: 1px solid #dee2e6;
-        }
-        
-        .nav-tabs .nav-link {
-            color: var(--primary);
-            font-weight: 500;
-            border: none;
-            padding: 15px 20px;
-        }
-        
-        .nav-tabs .nav-link.active {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-        
-        .tab-content {
-            padding: 20px;
-        }
-        
-        .card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary) !important;
         }
         
         .card-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background-color: var(--primary);
             color: white;
             border-radius: 10px 10px 0 0 !important;
-            padding: 15px 20px;
             font-weight: 600;
         }
         
-        .susceptibility-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
+        .btn-primary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
         }
         
-        .susceptibility-table th {
+        .btn-primary:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+        }
+        
+        .btn-success {
+            background-color: #27ae60;
+            border-color: #27ae60;
+        }
+        
+        .table th {
             background-color: var(--primary);
             color: white;
-            padding: 10px;
-            text-align: center;
             position: sticky;
             top: 0;
-            font-size: 0.9rem;
+            z-index: 10;
         }
         
-        .susceptibility-table td {
-            padding: 8px;
+        .table-container {
+            max-height: 70vh;
+            overflow-y: auto;
+            border-radius: 5px;
+        }
+        
+        .percentage-cell {
+            font-weight: 600;
             text-align: center;
-            border: 1px solid #dee2e6;
-            font-size: 0.8rem;
+            cursor: pointer;
         }
         
-        .resistant {
-            background-color: #ffcccc;
+        .bg-success {
+            background-color: rgba(39, 174, 96, 0.15) !important;
+            color: #27ae60;
         }
         
-        .sensitive {
-            background-color: #ccffcc;
+        .bg-warning {
+            background-color: rgba(241, 196, 15, 0.15) !important;
+            color: #f39c12;
         }
         
-        .intermediate {
-            background-color: #fff9cc;
+        .bg-danger {
+            background-color: rgba(231, 76, 60, 0.15) !important;
+            color: #e74c3c;
         }
         
-        .filters {
-            background-color: var(--light);
+        .instructions {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary);
             padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        
-        .patient-table {
-            font-size: 0.85rem;
-        }
-        
-        .patient-table th {
-            background-color: var(--primary);
-            color: white;
-            padding: 10px;
-        }
-        
-        .highlight {
-            background-color: #e9f7ff;
-        }
-        
-        .organism-name {
-            font-weight: 600;
-            color: var(--primary);
-        }
-        
-        .antibiotic-name {
-            font-weight: 600;
-            color: var(--primary);
-        }
-        
-        .chart-container {
-            position: relative;
-            height: 300px;
-            margin-bottom: 30px;
-        }
-        
-        .data-textarea {
-            font-family: monospace;
             font-size: 0.9rem;
-            height: 200px;
         }
         
         .upload-area {
-            border: 2px dashed #ccc;
-            border-radius: 10px;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
             padding: 20px;
             text-align: center;
-            background-color: #f8f9fa;
-            cursor: pointer;
             transition: all 0.3s;
+            background-color: #f8f9fa;
         }
         
         .upload-area:hover {
             border-color: var(--secondary);
-            background-color: #e9f7ff;
+            background-color: #e8f4ff;
         }
         
-        @media (max-width: 768px) {
-            .table-responsive {
-                font-size: 0.75rem;
-            }
-            
-            .card-header {
-                font-size: 1rem;
-            }
-            
-            .susceptibility-table {
-                font-size: 0.7rem;
-            }
-            
-            .susceptibility-table th, 
-            .susceptibility-table td {
-                padding: 4px;
-            }
+        .stat-card {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: white;
         }
         
-        .instructions {
-            background-color: #e8f4fc;
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .tooltip-inner {
+            background-color: var(--dark);
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 0.85rem;
+        }
+        
+        .tab-pane {
+            padding: 20px 0;
+        }
+        
+        .nav-tabs .nav-link {
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        .nav-tabs .nav-link.active {
+            color: var(--secondary);
+            font-weight: 600;
+            border-bottom: 3px solid var(--secondary);
+        }
+        
+        .history-table {
+            font-size: 0.9rem;
+        }
+        
+        .history-table tr:hover {
+            background-color: #f5f5f5;
+            cursor: pointer;
+        }
+        
+        .saved-report-info {
+            background-color: #e8f4ff;
             border-left: 4px solid var(--secondary);
             padding: 15px;
             margin-bottom: 20px;
             border-radius: 4px;
         }
+        
+        @media (max-width: 768px) {
+            .table-container {
+                max-height: 50vh;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="app-container">
-        <div class="header">
-            <h1><i class="fas fa-bacteria me-2"></i>Antibiotic Susceptibility Analysis</h1>
-            <p class="lead">Upload data or paste tab-separated values to analyze antibiotic resistance patterns</p>
-        </div>
+    <?php include_once("../includes/header.php") ?>
+    <?php include_once("../includes/sadmin-sidebar.php") ?>
+    <main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Antibiogram Generator</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                <li class="breadcrumb-item active">Antibiogram Generator</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
 
-        <div class="data-input-section">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fas fa-database me-2"></i>Data Input
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card p-2">
+                    <h5 class="card-title"><i class="bi bi-upload me-2"></i>Upload Data</h5>
+                    
+                    <div class="card-body">
+                        <?php if (!empty($upload_error)): ?>
+                        <div class="alert alert-danger"><?php echo htmlspecialchars($upload_error); ?></div>
+                        <?php endif; ?>
+                        
+                        <?php if ($saved_report): ?>
+                        <div class="saved-report-info">
+                            <h5>Viewing Saved Report</h5>
+                            <p><strong>Uploaded on:</strong> <?php echo date('F j, Y, g:i a', strtotime($saved_report['meta']['upload_date'])); ?></p>
+                            <?php if ($saved_report['meta']['original_filename']): ?>
+                            <p><strong>File:</strong> <?php echo htmlspecialchars($saved_report['meta']['original_filename']); ?></p>
+                            <?php endif; ?>
+                            <p><strong>Generated by:</strong> <?php echo htmlspecialchars($saved_report['meta']['admin_name']); ?></p>
+                            <a href="antibiogram.php" class="btn btn-sm btn-primary">Back to New Upload</a>
                         </div>
-                        <div class="card-body">
-                            <div class="instructions">
-                                <h5><i class="fas fa-info-circle me-2"></i>How to use:</h5>
-                                <ol>
-                                    <li>Copy your data from Excel or similar spreadsheet software</li>
-                                    <li>Paste it into the text area below (tab-separated format)</li>
-                                    <li>Click "Process Data" to analyze the information</li>
-                                    <li>Use the tabs to navigate between different views of the data</li>
-                                </ol>
+                        <?php endif; ?>
+                        
+                        <form method="post" enctype="multipart/form-data" id="uploadForm">
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">Upload CSV/TSV/Excel File</label>
+                                <div class="upload-area">
+                                    <i class="bi bi-cloud-upload display-4 text-muted mb-3"></i>
+                                    <p class="text-muted">Drag & drop your file here or click to browse</p>
+                                    <input class="form-control d-none" type="file" name="datafile" id="datafile" accept=".csv,.tsv,.txt,.xlsx,.xls">
+
+                                    <button type="button" class="btn btn-outline-primary" onclick="document.getElementById('datafile').click()">
+                                        <i class="bi bi-folder2-open me-2"></i>Browse Files
+                                    </button>
+                                    <div class="mt-2" id="fileName"></div>
+                                    <small class="text-muted mt-2">Supported formats: CSV, TSV, XLSX, XLS</small>
+                                </div>
                             </div>
                             
                             <div class="mb-3">
-                                <label class="form-label">Paste tab-separated data (copy from Excel):</label>
-                                <textarea class="form-control data-textarea" id="dataInput" rows="6"></textarea>
+                                <label class="form-label fw-semibold">Or Paste Data Directly</label>
+                                <textarea class="form-control" name="pasted" rows="6" placeholder="Paste tabular data here..."><?php echo htmlspecialchars($input_text); ?></textarea>
                             </div>
-                            <div class="mb-3 upload-area" onclick="document.getElementById('fileUpload').click()">
-                                <i class="fas fa-cloud-upload-alt fa-3x mb-3" style="color: var(--secondary);"></i>
-                                <h5>Upload File</h5>
-                                <p class="text-muted">Click to browse or drag & drop a file here</p>
-                                <input type="file" id="fileUpload" accept=".txt,.csv,.tsv" class="d-none">
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <button class="btn btn-primary" onclick="processData()">
-                                    <i class="fas fa-cog me-2"></i>Process Data
-                                </button>
-                                <button class="btn btn-secondary" onclick="loadSampleData()">
-                                    <i class="fas fa-vial me-2"></i>Load Sample Data
-                                </button>
-                                <button class="btn btn-success" onclick="exportData()">
-                                    <i class="fas fa-download me-2"></i>Export Results
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="summary-tab" data-bs-toggle="tab" data-bs-target="#summary" type="button" role="tab" aria-controls="summary" aria-selected="true">Susceptibility Summary</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="patients-tab" data-bs-toggle="tab" data-bs-target="#patients" type="button" role="tab" aria-controls="patients" aria-selected="false">Patient Cases</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="insights-tab" data-bs-toggle="tab" data-bs-target="#insights" type="button" role="tab" aria-controls="insights" aria-selected="false">Key Insights</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="charts-tab" data-bs-toggle="tab" data-bs-target="#charts" type="button" role="tab" aria-controls="charts" aria-selected="false">Visualizations</button>
-            </li>
-        </ul>
-
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fas fa-table me-2"></i>Antibiotic Susceptibility Summary
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered susceptibility-table">
-                                <thead>
-                                    <tr>
-                                        <th>Organism / Antibiotic</th>
-                                        <th>Ampicillin</th>
-                                        <th>Amoxicillin-Clavulanic Acid</th>
-                                        <th>Ceftriaxone</th>
-                                        <th>Cefotaxime</th>
-                                        <th>Ceftazidime</th>
-                                        <th>Cefepime</th>
-                                        <th>Ciprofloxacin</th>
-                                        <th>Co-trimoxazole</th>
-                                        <th>Amikacin</th>
-                                        <th>Gentamicin</th>
-                                        <th>Netilmicin</th>
-                                        <th>Meropenem</th>
-                                        <th>Imipenem</th>
-                                        <th>Piperacillin-Tazobactam</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="summaryTableBody">
-                                    <!-- Data will be populated by JavaScript -->
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        <div class="mt-4">
-                            <div class="alert alert-info">
-                                <h5><i class="fas fa-info-circle me-2"></i>Susceptibility Guidelines</h5>
-                                <div class="d-flex flex-wrap">
-                                    <span class="badge bg-danger me-2 mb-2">Resistant</span>
-                                    <span class="badge bg-success me-2 mb-2">Sensitive</span>
-                                    <span class="badge bg-warning me-2 mb-2">Intermediate</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-pane fade" id="patients" role="tabpanel" aria-labelledby="patients-tab">
-                <div class="filters">
-                    <h5><i class="fas fa-filter me-2"></i>Filter Patient Cases</h5>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="mb-2">
-                                <label class="form-label">Organism</label>
-                                <select class="form-select" id="organismFilter">
-                                    <option value="">All Organisms</option>
-                                    <!-- Options will be populated by JavaScript -->
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-2">
-                                <label class="form-label">Outcome</label>
-                                <select class="form-select" id="outcomeFilter">
-                                    <option value="">All Outcomes</option>
-                                    <option value="Survived">Survived</option>
-                                    <option value="Death">Death</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-2">
-                                <label class="form-label">Antibiotic Used</label>
-                                <select class="form-select" id="antibioticFilter">
-                                    <option value="">All Antibiotics</option>
-                                    <!-- Options will be populated by JavaScript -->
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-2">
-                                <label class="form-label">Ward</label>
-                                <select class="form-select" id="wardFilter">
-                                    <option value="">All Wards</option>
-                                    <!-- Options will be populated by JavaScript -->
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fas fa-user-injured me-2"></i>Patient Cases
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover patient-table">
-                                <thead>
-                                    <tr>
-                                        <th>Lab No</th>
-                                        <th>Patient</th>
-                                        <th>Age</th>
-                                        <th>Organism</th>
-                                        <th>Diagnosis</th>
-                                        <th>Antibiotic Used</th>
-                                        <th>Outcome</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="patientTableBody">
-                                    <!-- Data will be populated by JavaScript -->
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <div>
-                                <span id="paginationInfo">Showing 0 of 0 entries</span>
-                            </div>
-                            <nav>
-                                <ul class="pagination" id="pagination">
-                                    <!-- Pagination will be generated by JavaScript -->
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-pane fade" id="insights" role="tabpanel" aria-labelledby="insights-tab">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <i class="fas fa-chart-line me-2"></i>Key Insights
-                            </div>
-                            <div class="card-body">
-                                <div class="alert alert-warning">
-                                    <h5><i class="fas fa-exclamation-triangle me-2"></i>Ampicillin Resistance</h5>
-                                    <p>Ampicillin shows very low susceptibility rates across all Gram-negative organisms (0-33%), making it a poor choice for empiric therapy.</p>
+                            
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="bi bi-gear-fill me-2"></i>Process Data
+                                    </button>
+                                    <?php if(!empty($summary) || $saved_report): ?>
+                                    <button class="btn btn-success ms-2" type="submit" name="download_csv">
+                                        <i class="bi bi-download me-2"></i>Export CSV
+                                    </button>
+                                    <?php endif; ?>
                                 </div>
                                 
-                                <div class="alert alert-info mt-3">
-                                    <h5><i class="fas fa-bacteria me-2"></i>ESBL Producers</h5>
-                                    <p>ESBL-producing organisms show very low susceptibility to 3rd generation cephalosporins (3.4%), highlighting the importance of alternative therapies.</p>
+                                <?php if(!empty($summary) || $saved_report): 
+                                    $display_organisms = $saved_report ? $saved_report['organisms'] : $organism_list;
+                                    $display_antibiotics = $saved_report ? $saved_report['antibiotics'] : $antibiotics;
+                                ?>
+                                <div class="d-flex">
+                                    <div class="stat-card me-3">
+                                        <div class="stat-number"><?php echo count($display_organisms); ?></div>
+                                        <div class="stat-label">Organisms</div>
+                                    </div>
+                                    <div class="stat-card">
+                                        <div class="stat-number"><?php echo count($display_antibiotics); ?></div>
+                                        <div class="stat-label">Antibiotics</div>
+                                    </div>
                                 </div>
-                                
-                                <div class="alert alert-success mt-3">
-                                    <h5><i class="fas fa-thumbs-up me-2"></i>Most Effective Antibiotics</h5>
-                                    <p>Carbapenems (Meropenem, Imipenem) and Aminoglycosides (Amikacin, Gentamicin) show the highest susceptibility rates (>90% for most organisms).</p>
-                                </div>
+                                <?php endif; ?>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <i class="fas fa-prescription me-2"></i>Empiric Therapy Recommendations
-                            </div>
-                            <div class="card-body">
-                                <h6>For Community-Acquired Gram-Negative Infections:</h6>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <span class="antibiotic-name">Carbapenems</span> (Meropenem/Imipenem) - First choice for severe infections
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span class="antibiotic-name">Piperacillin-Tazobactam</span> - Good alternative with broad coverage
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span class="antibiotic-name">Amikacin</span> - Excellent activity against most Gram-negative organisms
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span class="antibiotic-name">Cefepime</span> - Reasonable choice for non-ESBL infections
-                                    </li>
-                                </ul>
-                                
-                                <div class="alert alert-danger mt-3">
-                                    <h6><i class="fas fa-exclamation-circle me-极速快3"></i>Antibiotics to Avoid Empirically:</h6>
-                                    <p>Ampicillin, Amoxicillin-Clavulanic Acid, and Ciprofloxacin (for E. coli infections) due to high resistance rates.</p>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 
+                <div class="instructions mb-4">
+                    <h6><i class="bi bi-info-circle me-2"></i>Instructions</h6>
+                    <p class="mb-1">- Upload a CSV/TSV/Excel file or paste tabular data with organism names and antibiotic susceptibility results</p>
+                    <p class="mb-1">- The system will automatically detect the organism column and antibiotic columns</p>
+                    <p class="mb-0">- Supported susceptibility formats: "Sensitive", "Resistant", "S", "R", "I", "Intermediate", or patterns like "S:5 I:0 R:2 /7"</p>
+                </div>
+                
+                <?php if(!empty($summary) || $saved_report): 
+                    $display_data = $saved_report ? $saved_report['data'] : $summary;
+                    $display_organisms = $saved_report ? $saved_report['organisms'] : $organism_list;
+                    $display_antibiotics = $saved_report ? $saved_report['antibiotics'] : $antibiotics;
+                ?>
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="bi bi-table me-2"></i>Antibiogram Summary</h5>
+                        <?php if(!$saved_report && $report_id): ?>
+                        <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Saved to history</span>
+                        <?php endif; ?>
+                    </div>
+                    <div class="card-body">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="percentage-tab" data-bs-toggle="tab" data-bs-target="#percentage" type="button" role="tab">Percentage View</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="counts-tab" data-bs-toggle="tab" data-bs-target="#counts" type="button" role="tab">Raw Counts</button>
+                            </li>
+                        </ul>
+                        
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="percentage" role="tabpanel">
+                                <div class="table-container mt-3">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width: 200px; background-color: #2c3e50; color: white;">Organism</th>
+                                                <?php foreach($display_antibiotics as $ab): ?>
+                                                <th style="min-width: 100px; text-align: center;"><?php echo htmlspecialchars($ab); ?></th>
+                                                <?php endforeach; ?>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach($display_organisms as $org): ?>
+                                            <tr>
+                                                <td><strong><?php echo htmlspecialchars($org); ?></strong></td>
+                                                <?php foreach($display_antibiotics as $ab):
+                                                $cell = $display_data[$org][$ab]; 
+                                                $pct = $cell['pct'];
+                                                ?>
+                                                <td class="percentage-cell <?php echo pct_class($pct); ?>" 
+                                                    data-bs-toggle="tooltip" 
+                                                    title="Tested: <?php echo $cell['tested']; ?>, Susceptible: <?php echo $cell['susc']; ?>">
+                                                    <?php echo $pct === null ? 'N/A' : round($pct) . '%'; ?>
+                                                </td>
+                                                <?php endforeach; ?>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-pane fade" id="counts" role="tabpanel">
+                                <div class="table-container mt-3">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width: 200px; background-color: #2c3e50; color: white;">Organism</th>
+                                                <?php foreach($display_antibiotics as $ab): ?>
+                                                <th style="min-width: 100px; text-align: center;"><?php echo htmlspecialchars($ab); ?></th>
+                                                <?php endforeach; ?>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach($display_organisms as $org): ?>
+                                            <tr>
+                                                <td><strong><?php echo htmlspecialchars($org); ?></strong></td>
+                                                <?php foreach($display_antibiotics as $ab):
+                                                $cell = $display_data[$org][$ab]; 
+                                                ?>
+                                                <td style="text-align: center;">
+                                                    <?php echo $cell['tested'] . ' / ' . $cell['susc']; ?>
+                                                </td>
+                                                <?php endforeach; ?>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <div class="d-flex">
+                                <div class="me-3"><span class="badge bg-success p-2">≥90% Susceptible</span></div>
+                                <div class="me-3"><span class="badge bg-warning p-2">70-89% Susceptible</span></div>
+                                <div><span class="badge bg-danger p-2"><70% Susceptible</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
+                
+                <!-- History Section -->
                 <div class="card mt-4">
                     <div class="card-header">
-                        <极速快3 class="fas fa-stethoscope me-2"></i>Clinical Correlation
+                        <h5 class="mb-0"><i class="bi bi-clock-history me-2"></i>Upload History</h5>
                     </div>
                     <div class="card-body">
-                        <p>The patient case data demonstrates that:</p>
-                        <ul>
-                            <li>Appropriate empiric antibiotic selection based on local susceptibility patterns is crucial for patient outcomes</li>
-                            <li>Resistant organisms are associated with higher mortality</li>
-                            <li>Organism-specific patterns require special consideration</li>
-                            <li>Carbapenems were successfully used in many cases with good outcomes</极速快3>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-pane fade" id="charts" role="tabpanel" aria-labelledby="charts-tab">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <i class="fas fa-chart-bar me-2"></i>Organism Distribution
-                            </div>
-                            <div class="card-body">
-                                <div class="chart-container">
-                                    <canvas id="organismChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <i class="fas fa-chart-pie me-2"></i>Outcome Distribution
-                            </div>
-                            <div class="card-body">
-                                <div class="chart-container">
-                                    <canvas id="outcomeChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row mt-4">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <i class="fas fa-chart-line me-2"></i>Antibiotic Susceptibility Rates
-                            </div>
-                            <div class="card-body">
-                                <div class="chart-container" style="height: 400px;">
-                                    <canvas id="antibioticChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Patient Detail Modal -->
-    <div class="modal fade" id="patientDetailModal" tabindex="-1" aria-labelledby="patientDetailModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="patientDetailModalLabel">Patient Details</h5>
-                    <button type="button" class="btn极速快3-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="patientDetailContent">
-                    <!-- Patient details will be populated by JavaScript -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-b极速快3-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Initialize the application
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set up event listeners
-            setupEventListeners();
-            
-            // Load sample data by default for demonstration
-            setTimeout(loadSampleData, 1000);
-        });
-
-        // Set up event listeners
-        function setupEventListeners() {
-            // File upload handling
-            document.getElementById('fileUpload').addEventListener('change', handleFileUpload);
-            
-            // Filter handling
-            document.getElementById('organismFilter').addEventListener('change', filterPatientTable);
-            document.getElementById('outcomeFilter').addEventListener('change', filterPatientTable);
-            document.getElementById('antibioticFilter').addEventListener('change', filterPatientTable);
-            document.getElementById('wardFilter').addEventListener('change', filterPatientTable);
-        }
-
-        // Handle file upload
-        function handleFileUpload() {
-            const fileInput = document.getElementById('fileUpload');
-            
-            if (fileInput.files.length) {
-                const file = fileInput.files[0];
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    document.getElementById('dataInput').value = e.target.result;
-                };
-                
-                reader.readAsText(file);
-            }
-        }
-
-        // Process data from text input
-        function processData() {
-            const dataInput = document.getElementById('dataInput').value;
-            if (!dataInput.trim()) {
-                alert('Please paste some data first');
-                return;
-            }
-            
-            // Show processing indicator
-            const uploadSection = document.querySelector('.data-input-section');
-            uploadSection.innerHTML += `
-                <div class="alert alert-info mt-3">
-                    <i class="fas fa-cog fa-spin me-2"></i>Processing data...
-                </div>
-            `;
-            
-            // Parse the TSV data
-            const lines = dataInput.split('\n');
-            const headers = lines[0].split('\t');
-            
-            // Process the data
-            const patients = [];
-            
-            for (let i = 1; i < lines.length; i++) {
-                if (lines[i].trim() === '') continue;
-                
-                const cells = lines[i].split('\t');
-                if (cells.length < 10) continue;
-                
-                const patient = {
-                    labNo: cells[0],
-                    patient: cells[1],
-                    sex: cells[2],
-                    dateAdmission: cells[3],
-                    age: cells[4] + ' ' + cells[5],
-                    ward: cells[6],
-                    bht: cells[7],
-                    typeOfInfection: cells[8],
-                    antibiotic: cells[9],
-                    riskFactors: cells[10],
-                    possibleCommunity: cells[11],
-                    dateCollect: cells[12],
-                    timeToPositive: cells[14],
-                    mortality: cells[15],
-                    organism: cells[16],
-                    esbl: cells[17],
-                    // Antibiotic susceptibility data
-                    ampicillin: cells[18],
-                    amoxicillinClavulanicAcid: cells[19],
-                    ceftriaxone: cells[23],
-                    cefotaxime: cells[24],
-                    ceftazidime: cells[25],
-                    cefepime: cells[26],
-                    ciprofloxacin: cells[30],
-                    coTrimoxazole: cells[32],
-                    amikacin: cells[35],
-                    gentamicin: cells[36],
-                    netilmicin: cells[37],
-                    meropenem: cells[38],
-                    imipenem: cells[39],
-                    piperacillinTazobactam: cells[40]
-                };
-                
-                // Determine outcome based on mortality
-                patient.outcome = patient.mortality === '0' ? 'Survived' : 'Death';
-                
-                // Create a diagnosis based on available data
-                patient.diagnosis = patient.typeOfInfection;
-                
-                patients.push(patient);
-            }
-            
-            // Calculate summary data
-            const summaryData = calculateSummaryData(patients);
-            
-            // Store patient data globally for filtering
-            window.patientData = patients;
-            
-            // Render the data
-            renderSummaryTable(summaryData);
-            renderPatientTable(patients);
-            updateFilterOptions(patients);
-            renderCharts(summaryData, patients);
-            
-            // Show success message
-            const alertElement = document.querySelector('.alert-info');
-            if (alertElement) {
-                alertElement.innerHTML = `<i class="fas fa-check-circle me-2"></i>Data processed successfully! ${patients.length} patient records loaded.`;
-                alertElement.className = 'alert alert-success mt-3';
-            }
-        }
-
-        // Calculate summary data from patient records
-        function calculateSummaryData(patients) {
-            // This is a simplified version - in a real application, you would calculate
-            // susceptibility rates based on the actual patient data
-            
-            return [
-                {
-                    organism: "All Escherichia Coli",
-                    ampicillin: 24,
-                    amoxicillinClavulanicAcid: 33,
-                    ceftriaxone: 60,
-                    cefotaxime: 43,
-                    ceftazidime: 60.4,
-                    cefepime: 56,
-                    ciprofloxacin: 95,
-                    coTrimoxazole: 41,
-                    amikacin: 64,
-                    gentamicin: 93,
-                    netilmicin: 70,
-                    meropenem: 92,
-                    imipenem: 95,
-                    piperacillinTazobactam: 86
-                },
-                {
-                    organism: "All Klebsiella",
-                    ampicillin: 0,
-                    amoxicillinClavulanicAcid: 52,
-                    ceftriaxone: 48,
-                    cefotaxime: 48,
-                    ceftazidime: 48,
-                    cefepime: 50,
-                    ciprofloxacin: 88,
-                    coTrimoxazole: 50,
-                    amikacin: 90,
-                    gentamicin: 87,
-                    netilmicin: 67,
-                    meropenem: 60,
-                    imipenem: 88,
-                    piperacillinTazobactam: 68
-                },
-                {
-                    organism: "All ESBL",
-                    ampicillin: null,
-                    amoxicillinClavulanicAcid: null,
-                    ceftriaxone: 3.4,
-                    cefotaxime: null,
-                    ceftazidime: 3.4,
-                    cefepime: null,
-                    ciprofloxacin: 99,
-                    coTrimoxazole: 41,
-                    amikacin: 极速快3,
-                    gentamicin: 93,
-                    netilmicin: 70,
-                    meropenem: 92,
-                    imipenem: 95,
-                    piperacillinTazobactam: 86
-                },
-                {
-                    organism: "All Gram-negative organisms",
-                    ampicillin: 33.33,
-                    amoxicillinClavulanicAcid: 50,
-                    ceftriaxone: 66,
-                    cefotaxime: 66,
-                    ceftazidime: 69,
-                    cefepime: 81,
-                    ciprofloxacin: 68,
-                    coTrimoxazole: 77,
-                    amikacin: 81,
-                    gentamicin: 71,
-                    netilmicin: 86,
-                    meropenem: 80,
-                    imipenem: 92,
-                    piperacillinTazobactam: 85
-                }
-            ];
-        }
-
-        // Load sample data
-        function loadSampleData() {
-            const sampleData = `Lab_no  Pt_Name Sex Date_admission  Age D_M_Y   Ward    bht Type_of _infection  Antibiotic_used Risk_factors    Possible community  Date_collect    Time_to_positive    Mortality (BHT) Organism    ESBL    Ampicillin  Amoxicillin_clavulanic acid Aztrionam   Cefuroxime  Ceftriaxone Cefotaxime  Ceftazidime Cefepime    Cefoperazone_sulbactam  Cefoxitin   Cefpodoxime Chlorampenicol  Ciprofloxacin   Levofloxacin    Clindamycin C极速快3trimoxazole    Trimethoprim_sulphamethoxazole  Doxycycline Tetracycline    Minocycline Erythromycin    Furazolidone    Nalidixic acid  Amikacin    Gentamicin  Netilmic极速快3n   Meropenem   Imipenem    Piperacillin_tazobactam Linezolid   Vancomycin  Mecillinam  Penicillin  Oxacillin   Ticarcillin_clavulanic acid Teicoplanin Rifampicin  
-4/BT/JUN    SITHUM HASARA   Male    1-Jun-23    6   Years   2   74921   Community acquired  Carbopenems     1   1-Jun-23    < 6 hours   0   ACINETOBACTER SPP   No  Resistant   Resistant           Resistant   Resistant   Resistant   Sensitive   Sensitive               Sensitive                   OS                      Sensitive   Sensitive       Sensitive       Sensitive                                   Sepsis with unclear source  Survived    5-Jun-23    CRP 5
-152/BAC/JUN WEERARATHNA Female  11-Jun-23   15  Years   1   57992   Community acquired  Carbopenems CRF, On chemo/ immuno therapy, On steroids  1   11-Jun-23   18 - 24 hours   0   ACINETOBACTER SPP   No                      Resistant   Sensitive   Sensitive   Sensitive               Sensitive               Sensitive   OS                      Sensitive   Sensitive       Sensitive       Sensitive                                   Sepsis with unclear source  Survived    13-Jun-23   CRP 18
-309/BT/APR  SARATH DG   Male    18-Apr-23   53  Years   Medical 53517   Community acquired  Cephalosporin   Alcoholic, Cirrhosis/ Liver disease, Diabetic   2极速快3   19-May-23   < 6 hours   极速快3    AEROMONAS HYDROPHILA    No  OS  Resistant       Sensitive   Sensitive   Sensitive   OS  Sensitive   Sensitive               Resistant           OS                              Sensitive   Sensitive       Sensitive       Sensitive                                   Skin and soft tissue infection  Survived    27-Apr-23   CRP 97 TREATED FOR CELLULITIS AND HEPATIC ENCEPHALOPATHY
-486/BT/MAR  NAWAZ   Male        57  Years   ETU 44811   Community acquired  Beta-lactam inhibitors, Cephalosporin, Macrolides       CAI 31-Mar-23   < 6 hours   0   BETA HAEMOLYTIC STREPTOCOCCUS   No                  Sensitive                                       Sensitive                       Sensitive                                       Sensitive       Sensitive   Resistant               Community acquired pneumonia    Survived    6-Apr-23    CRP WAS 148.
-418/BAC/JUN EDIRISURIYA Female  24-Jun-23   71  Years   Medical 86686   Community acquired  Broad spectrum Penicillin   Diabetic    1   24-Jun-23   48 - 72 hours   0   BURKHOLDERIA CEPACIA    No  Resistant   Resistant       Resistant   Resistant   Resistant   Resistant   Resistant   Resistant               Resistant           Sensitive                               Resistant   Resistant       Resistant       Resistant                                   Community acquired pneumonia    Survived    30-Jun-23   CRP120
-530/BAC/APR CHANDRASENA Male    30-Apr-23   55  Years   Medical 55152   Community acquired  Carbopenems Cirrhosis/ Liver disease, Diabetic  1   30-Apr-23   18 - 24 hours   0   BURKHOLDERIA PSEUDOMALLEI   No                          OS  Resistant   Sensitive               Sensitive                                           Resistant   Resistant       Sensitive       Sensitive                                   Pyelonephritis  Survived    3-May-23    CR极速快3P 150.
-680/BAC/MAY CHITHRA DE SILVA    Female  30-May-23   52  Years   Medical 74905   Community acquired  Broad spectrum Penicillin, Carbopenems  CRF, Diabetic   1   30-May-23   24 - 48 hours   0   BURKHOLDERIA PSEUDOMALLEI   No                          Sensitive   Resistant   Sensitive               Sensitive                                           Resistant   Resistant       Sensitive       Sensitive                                   Skin and soft tissue infection  Survived    2-Jun-23    CRP 301.
-169/BAC/APR JAGATH  Male        39  Years   Medical 49155极速快3   Community acquired  Carbopenems Diabetic    CAI 极速快310-Apr-23   24 - 48 hours   0   BURKHOLDERIA PSEUDOMALLEI   No                          OS                      Resistant               Sensitive                                       Sensitive                                           SPLEENIC MELIOIDOSIS    Survived    17-Apr-23   CRP WAS 101. O.CO-TRIMOXAZOLE ALSO GIVEN.
-861/BT/JAN  WIMALAWATHI Female  31-Dec-22   66  Years   Medical 169510  Community acquired  Cephalosporin   Diabetic    2   1-Jan-23    < 6 hours   0   CITROBACTOR KOSERI  No  Resistant   Sensitive       Sensitive   Sensitive           Sensitive   Sensitive               Sensitive           Sensitive                               Sensitive   OS      OS      Sensitive                                   UROSEPSIS   Survived    3-Jan-23    CRP WAS 253.
-148/BT/JUN  DAYAWATHI MG    Female  12-Jun-23   64  Years   Medical 76945   Community acquired  Carbopenems Chronic lung disease, Cirrhosis/ Liver disease  1   12-Jun-23   6 - 12 hours    1   ENTERCOCCUS SPP No  Resistant                                                                                                                       Intermediate Sensitive      Resistant                   Sepsis with unclear source  Death - related to sepsis   16-Jun-23   CRP 300
-51/BT/JUN   HANSANI Female  3-Jun-23    23  Years   Medical 76341   Community acquired  Carbopenems, Cephalosporin      1   3-Jun-23    < 6 hours   0   ENTEROCOCCUS SPP    No  Sensitive                                                                                               OS                      Resistant       Sensitive                   Intra Abdominal Infections  Survived    9-Jun-23    CRP 68`;
-            
-            document.getElementById('dataInput').value = sampleData;
-            processData();
-        }
-
-        // Export data function
-        function exportData() {
-            if (!window.patientData || window.patientData.length === 0) {
-                alert('No data to export. Please process data first.');
-                return;
-            }
-            
-            // Create a CSV content string
-            let csvContent = "Lab No,Patient,Age,Organism,Diagnosis,Antibiotic Used,Outcome\n";
-            
-            window.patientData.forEach(patient => {
-                csvContent += `"${patient.labNo}","${patient.patient}","${patient.age}","${patient.organism}","${patient.diagnosis}","${patient.antibiotic}","${patient.outcome}"\n`;
-            });
-            
-            // Create a download link
-            const encodedUri = encodeURI("data:text/csv;charset=utf-8," + csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "antibiotic_susceptibility_data.csv");
-            document.body.appendChild(link);
-            
-            // Trigger the download
-            link.click();
-            document.body.removeChild(link);
-        }
-
-        // Render summary table
-        function renderSummaryTable(data) {
-            const tableBody = document.getElementById('summaryTableBody');
-            tableBody.innerHTML = '';
-            
-            data.forEach(row => {
-                const tr = document.createElement('tr');
-                
-                // Add organism name
-                tr.innerHTML = `<td class="organism-name">${row.organism}</td>`;
-                
-                // Add antibiotic susceptibility cells
-                for (const key in row) {
-                    if (key !== 'organism') {
-                        const value = row[key];
-                        let cellClass = '';
-                        
-                        if (value !== null) {
-                            if (value < 70) cellClass = 'resistant';
-                            else if (value <= 89) cellClass = 'intermediate';
-                            else if (value >= 90) cellClass = 'sensitive';
-                        }
-                        
-                        tr.innerHTML += `<td class="${cellClass}">${value !== null ? value + '%' : '-'}</td>`;
-                    }
-                }
-                
-                tableBody.appendChild(tr);
-            });
-        }
-
-        // Render patient table
-        function renderPatientTable(data, filteredData = null) {
-            const tableBody = document.getElementById('patientTableBody');
-            tableBody.innerHTML = '';
-            
-            const displayData = filteredData || data;
-            
-            displayData.forEach(patient => {
-                const tr = document.createElement('tr');
-                
-                tr.innerHTML = `
-                    <td>${patient.labNo}</td>
-                    <td>${patient.patient}</td>
-                    <td>${patient.age}</td>
-                    <td>${patient.organism}</td>
-                    <td>${patient.diagnosis}</td>
-                    <td>${patient.antibiotic}</td>
-                    <td><span class="badge bg-${patient.outcome === 'Survived' ? 'success' : 'danger'}">${patient.outcome}</span></td>
-                    <td><button class="btn btn-sm btn-info" onclick="showPatientDetails('${patient.labNo}')">Details</button></td>
-                `;
-                
-                tableBody.appendChild(tr);
-            });
-            
-            // Update pagination info
-            document.getElementById('paginationInfo').textContent = `Showing ${displayData.length} of ${data.length} entries`;
-        }
-
-        // Update filter options
-        function updateFilterOptions(data) {
-            const organisms = [...new Set(data.map(p => p.organism))];
-            const antibiotics = [...new Set(data.map(p => p.antibiotic).flatMap(a => a.split(', ')))];
-            const wards = [...new Set(data.map(p => p.ward))];
-            
-            // Update organism filter
-            const organismFilter = document.getElementById('organismFilter');
-            organismFilter.innerHTML = '<option value="">All Organisms</option>';
-            organisms.forEach(org => {
-                organismFilter.innerHTML += `<option value="${org}">${org}</option>`;
-            });
-            
-            // Update antibiotic filter
-            const antibioticFilter = document.getElementById('antibioticFilter');
-            antibioticFilter.innerHTML = '<option value="">All Antibiotics</option>';
-            antibiotics.forEach(ab => {
-                if (ab) antibioticFilter.innerHTML += `<option value="${ab}">${ab}</option>`;
-            });
-            
-            // Update ward filter
-            const wardFilter = document.getElementById('wardFilter');
-            wardFilter.innerHTML = '<option value="">All Wards</option>';
-            wards.forEach(ward => {
-                if (ward) wardFilter.innerHTML += `<option value="${ward}">${ward}</option>`;
-            });
-        }
-
-        // Filter patient table
-        function filterPatientTable() {
-            const organismValue = document.getElementById('organismFilter').value;
-            const outcomeValue = document.getElementById('outcomeFilter').value;
-            const antibioticValue = document.getElementById('antibioticFilter').value;
-            const wardValue = document.getElementById('wardFilter').value;
-            
-            // Get all patient data from the table
-            const allPatients = window.patientData || [];
-            
-            const filteredData = allPatients.filter(patient => {
-                const organismMatch = !organismValue || patient.organism === organismValue;
-                const outcomeMatch = !outcomeValue || patient.outcome === outcomeValue;
-                const antibioticMatch = !antibioticValue || patient.antibiotic.includes(antibioticValue);
-                const wardMatch = !wardValue || patient.ward === wardValue;
-                
-                return organismMatch && outcomeMatch && antibioticMatch && ward极速快3Match;
-            });
-            
-            renderPatientTable(allPatients, filteredData);
-        }
-
-        // Show patient details
-        function showPatientDetails(labNo) {
-            // Get all patient data from the table
-            const allPatients = window.patientData || [];
-            const patient = allPatients.find(p => p.labNo === labNo);
-            
-            if (!patient) return;
-            
-            const modalContent = document.getElementById('patientDetailContent');
-            modalContent.innerHTML = `
-                <div class="row">
-                    <div class="col-md-6">
-                        <h5>Patient Information</h5>
-                        <table class="table table-sm">
-                            <tr><th>Lab No:</th><td>${patient.labNo}</td></tr>
-                            <tr><th>Name:</极速快3><td>${patient.patient}</td></tr>
-                            <tr><th>Sex:</th><td>${patient.sex}</td></tr>
-                            <tr><th>Age:</th><td>${patient.age}</td></tr>
-                            <tr><th>Admission Date:</th><td>${patient.dateAdmission}</td></tr>
-                            <tr><th>Ward:</th><td>${patient.ward}</td></tr>
-                            <tr><th>BHT No:</th><td>${patient.bht}</td></tr>
-                        </table>
-                    </div>
-                    <div class="col-md-6">
-                        <h5>Clinical Information</h5>
-                        <table class="table table-sm">
-                            <tr><th>Diagnosis:</th><td>${patient.diagnosis}</td></tr>
-                            <tr><th>Infection Type:</th><td>${patient.typeOfInfection}</td></tr>
-                            <tr><th>Risk Factors:</th><td>${patient.riskFactors}</td></tr>
-                            <tr><th>Outcome:</th><td><span class="badge bg-${patient.outcome === 'Survived' ? 'success' : 'danger'}">${patient.outcome}</span></td></tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-6">
-                        <h5>Microbiology</h5>
-                        <table class="table table-sm">
-                            <tr><th>Organism:</th><td>${patient.organism}</td></tr>
-                            <tr><th>ESBL:</th><td>${patient.esbl}</td></tr>
-                            <tr><极速快3>Date Collected:</th><td>${patient.dateCollect}</td></tr>
-                            <tr><th>Time to Positive:</th><td>${patient.timeToPositive}</td></tr>
-                        </table>
-                    </div>
-                    <div class="col-md-6">
-                        <h5>Treatment</h5>
-                        <table class="table table-sm">
-                            <tr><th>Antibiotic Used:</th><td>${patient.antibiotic}</td></tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-12">
-                        <h5>Antibiotic Susceptibility</h5>
+                        <?php if (!empty($report_history)): ?>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-sm">
+                            <table class="table table-hover history-table">
                                 <thead>
                                     <tr>
-                                        <th>Ampicillin</th>
-                                        <th>Amoxicillin-Clavulanic Acid</th>
-                                        <th>Ceftriaxone</th>
-                                        <th>Cefotaxime</th>
-                                        <th>Ceftazidime</th>
-                                        <th>Cefepime</th>
-                                        <th>Ciprofloxacin</th>
-                                        <th>Co-trimoxazole</th>
-                                        <th>Amikacin</th>
-                                        <th>Gentamicin</th>
-                                        <th>Netilmicin</th>
-                                        <th>Meropenem</th>
-                                        <th>Imipenem</th>
-                                        <th>Piperacillin-Tazobactam</th>
+                                        <th>Date</th>
+                                        <th>Filename</th>
+                                        <th>Type</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="${getSusceptibilityClass(patient.ampicillin)}">${patient.ampicillin || '-'}</td>
-                                        <td class="${getSusceptibilityClass(patient.amoxicillinClavulanicAcid)}">${patient.amoxicillinClavulanicAcid || '-'}</td>
-                                        <td class="${getSusceptibilityClass(patient.ceftriaxone)}">${patient.ceftriaxone || '-'}</td>
-                                        <td class="${getSusceptibilityClass(patient.cefotaxime)}">${patient.cefotaxime || '-'}</td>
-                                        <td class="${getSusceptibilityClass(patient.ceftazidime)}">${patient.ceftazidime || '-'}</td>
-                                        <td class="${getSusceptibilityClass(patient.cefepime)}">${patient.cefepime || '-'}</td>
-                                        <td class="${getSusceptibilityClass(patient.ciprofloxacin)}">${patient.ciprofloxacin || '-'}</td>
-                                        <td class="${getSusceptibilityClass(patient.coTrimoxazole)}">${patient.coTrimoxazole || '-'}</td>
-                                        <td class="${getSusceptibilityClass(patient.amikacin)}">${patient.amikacin || '-'}</td>
-                                        <td class="${getSusceptibilityClass(patient.gentamicin)}">${patient.gentamicin || '-'}</td>
-                                        <td class="${getSusceptibilityClass(patient.netilmicin)}">${patient.netilmicin || '-'}</td>
-                                        <td class="${getSusceptibilityClass(patient.meropenem)}">${patient.meropenem || '-'}</td>
-                                        <td class="${getSusceptibilityClass(patient.imipenem)}">${patient.imipen极速快3 || '-'}</td>
-                                        <td class="${getSusceptibilityClass(patient.piperacillinTazobactam)}">${patient.piperacillinTazobactam || '-'}</td>
+                                    <?php foreach ($report_history as $report): ?>
+                                    <tr onclick="window.location='?view_report=<?php echo $report['id']; ?>'" style="cursor: pointer;">
+                                        <td><?php echo date('M j, Y g:i A', strtotime($report['upload_date'])); ?></td>
+                                        <td>
+                                            <?php if ($report['original_filename']): ?>
+                                            <?php echo htmlspecialchars($report['original_filename']); ?>
+                                            <?php else: ?>
+                                            <em>Pasted Data</em>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td>
+                                            <?php if ($report['file_path']): ?>
+                                                <?php 
+                                                $ext = pathinfo($report['original_filename'], PATHINFO_EXTENSION);
+                                                echo strtoupper($ext);
+                                                ?>
+                                            <?php else: ?>
+                                                Text
+                                            <?php endif; ?>
+                                        </td>
+                                        <td>
+                                            <a href="?view_report=<?php echo $report['id']; ?>" class="btn btn-sm btn-outline-primary">
+                                                <i class="bi bi-eye me-1"></i>View
+                                            </a>
+                                        </td>
                                     </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
+                        <?php else: ?>
+                        <div class="text-center py-4">
+                            <i class="bi bi-inbox display-4 text-muted"></i>
+                            <p class="text-muted mt-3">No history yet. Process some data to see it here.</p>
+                        </div>
+                        <?php endif; ?>
                     </div>
                 </div>
-            `;
-            
-            // Show the modal
-            const modal = new bootstrap.Modal(document.getElementById('patientDetailModal'));
-            modal.show();
-        }
+            </div>
+        </div>
+    </section>
 
-        // Helper function to determine susceptibility class
-        function getSusceptibilityClass(value) {
-            if (!value) return '';
+    <script>
+        // File input display
+        document.getElementById('datafile').addEventListener('change', function(e) {
+            var fileName = e.target.files[0].name;
+            document.getElementById('fileName').innerHTML = '<div class="alert alert-info mt-3 py-2"><i class="bi bi-file-earmark-text me-2"></i>' + fileName + '</div>';
+        });
+        
+        // Enable tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+        
+        // Drag and drop functionality
+        var uploadArea = document.querySelector('.upload-area');
+        uploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.classList.add('border-primary');
+        });
+        
+        uploadArea.addEventListener('dragleave', function() {
+            this.classList.remove('border-primary');
+        });
+        
+        uploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.classList.remove('border-primary');
             
-            if (value.toLowerCase().includes('resistant')) return 'resistant';
-            if (value.toLowerCase().includes('sensitive')) return 'sensitive';
-            if (value.toLowerCase().includes('intermediate')) return 'intermediate';
-            
-            return '';
-        }
-
-        // Render charts
-        function renderCharts(summaryData, patientData) {
-            // Organism distribution chart
-            const organismCtx = document.getElementById('organismChart').getContext('2d');
-            const organismCounts = {};
-            
-            patientData.forEach(patient => {
-                organismCounts[patient.organism] = (organismCounts[patient.organism] || 0) + 1;
-            });
-            
-            new Chart(organismCtx, {
-                type: 'bar',
-                data: {
-                    labels: Object.keys(organismCounts),
-                    datasets: [{
-                        label: 'Number of Cases',
-                        data: Object.values(organismCounts),
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.7)',
-                            'rgba(54, 162, 235, 0.7)',
-                            'rgba(255, 206, 86, 0.7)',
-                            'rgba(75, 192, 192, 0.7)',
-                            'rgba(153, 102, 255, 0.7)',
-                            'rgba(255, 159, 64, 0.7)',
-                            'rgba(199, 199, 199, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)',
-                            'rgba(199, 199, 199, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAt极速快3Zero: true,
-                            title: {
-                                display: true,
-                                text: 'Number of Cases'
-                            }
-                        }
-                    }
-                }
-            });
-            
-            // Outcome distribution chart
-            const outcomeCtx = document.getElementById('outcomeChart').getContext('2d');
-            const outcomeCounts = {
-                'Survived': patientData.filter(p => p.outcome === 'Survived').length,
-                'Death': patientData.filter(p => p.outcome === 'Death').length
-            };
-            
-            new Chart(outcomeCtx, {
-                type: 'pie',
-                data: {
-                    labels: Object.keys(outcome极速快3Counts),
-                    datasets: [{
-                        data: Object.values(outcomeCounts),
-                        backgroundColor: [
-                            'rgba(40, 167, 69, 0.7)',
-                            'rgba(220, 53, 69, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgba(40, 167, 69, 1)',
-                            'rgba(220, 53, 69, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }
-            });
-            
-            // Antibiotic susceptibility chart
-            const antibioticCtx = document.getElementById('antibioticChart').getContext('2d');
-            const eColiData = summaryData.find(d => d.organism === "All Escherichia Coli");
-            
-            // Extract antibiotic data for E. Coli
-            const antibioticLabels = [
-                'Ampicillin', 'Amoxicillin-Clavulanic Acid', 'Ceftriaxone', 'Cefotaxime',
-                'Ceftazidime', 'Cefepime', 'Ciprofloxacin',
-                'Co-trimoxazole', 'Amikacin', 'Gentamicin', 'Netilmicin',
-                'Meropenem', 'Imipenem', 'Piperacillin-Tazobactam'
-            ];
-            
-            const susceptibilityData = [
-                eColiData.ampicillin,
-                eColiData.amoxicillinClavulanicAcid,
-                eColiData.ceftriaxone,
-                eColiData.cefotaxime,
-                eColiData.ceftazidime,
-                eColiData.cef极速快3epime,
-                eColiData.ciprofloxacin,
-                eColiData.coTrimoxazole,
-                eColiData.amikacin,
-                eColiData.gentamicin,
-                eColiData.netilmicin,
-                eColiData.meropenem,
-                eColiData.imipenem,
-                eColiData.piperacillinTazobactam
-            ];
-            
-            new Chart(antibioticCtx, {
-                type: 'bar',
-                data: {
-                    labels: antibioticLabels,
-                    datasets: [{
-                        label: 'Susceptibility Rate (%)',
-                        data: susceptibilityData,
-                        backgroundColor: function(context) {
-                            const value = context.dataset.data[context.dataIndex];
-                            if (value < 70) return 'rgba(220, 53, 69, 0.7)';
-                            if (value < 90) return 'rgba(255, 193, 7, 0.7)';
-                            return 'rgba(40, 167, 69, 0.7)';
-                        },
-                        borderColor: function(context) {
-                            const value = context.dataset.data[context.dataIndex];
-                            if (value < 70) return 'rgba(220, 53, 69, 1)';
-                            if (value < 90) return 'rgba(255, 193, 7, 1)';
-                            return 'rgba(40, 167, 69, 1)';
-                        },
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    indexAxis: 'y',
-                    scales: {
-                        x: {
-                            beginAtZero: true,
-                            max: 100,
-                            title: {
-                                display: true,
-                                text: 'Susceptibility Rate (%)'
-                            }
-                        }
-                    }
-                }
-            });
-        }
+            var files = e.dataTransfer.files;
+            if (files.length) {
+                document.getElementById('datafile').files = files;
+                document.getElementById('fileName').innerHTML = '<div class="alert alert-info mt-3 py-2"><i class="bi bi-file-earmark-text me-2"></i>' + files[0].name + '</div>';
+            }
+        });
     </script>
+    <?php include_once("../includes/footer2.php") ?>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
+    <?php include_once("../includes/js-links-inc.php") ?>
+
 </body>
 </html>

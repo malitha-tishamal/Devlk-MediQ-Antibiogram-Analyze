@@ -8,7 +8,7 @@
             </a>
         </li>
 
-        <li class="nav-item">
+        <!--li class="nav-item">
             <a class="nav-link collapsed" data-bs-toggle="collapse" href="#users-nav" role="button">
                 <i class="bi bi-people"></i> <span>Users</span> <i class="bi bi-chevron-down ms-auto"></i>
             </a>
@@ -24,7 +24,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li-->
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-toggle="collapse" href="#admins-nav" role="button">

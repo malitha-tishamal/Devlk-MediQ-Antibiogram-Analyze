@@ -153,7 +153,7 @@ session_start();
                                            data-bs-toggle="modal" data-bs-target="#confirmSubmitModal">Create Account</button>
                                         </div>
                                         <div class="col-12">
-                                          <p class="small mb-1">Creat User account? <a href="../pages-signup.php">Click</a></p>
+                                          <!--p class="small mb-1">Creat User account? <a href="../pages-signup.php">Click</a></p-->
                                           <p class="small mb-0">Already have an account? <a href="../index.php">Log in</a></p>
                                         </div>
                                       </form>
