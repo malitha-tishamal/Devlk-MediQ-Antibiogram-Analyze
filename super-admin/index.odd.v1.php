@@ -13,11 +13,6 @@ if (!isset($_SESSION['admin_id'])) {
     exit();
 }
 
-// Generate CSRF token if not exists
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-
 // Fetch user details
 $user_id = $_SESSION['admin_id'];
 $sql = "SELECT name, email, nic, mobile, profile_picture FROM admins WHERE id = ?";
@@ -55,41 +50,6 @@ CREATE TABLE IF NOT EXISTS antibiogram_data (
 $conn->multi_query($create_tables_sql);
 // Clear any remaining results
 while ($conn->next_result()) {;}
-
-// Handle report deletion
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_report'])) {
-    // Verify CSRF token
-    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-        die("CSRF token validation failed");
-    }
-    
-    $report_id = intval($_POST['report_id']);
-    
-    // Verify user owns this report
-    $stmt = $conn->prepare("SELECT id, file_path FROM antibiogram_reports WHERE id = ? AND admin_id = ?");
-    $stmt->bind_param("ii", $report_id, $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows === 1) {
-        $report = $result->fetch_assoc();
-        
-        // Delete file if exists
-        if (!empty($report['file_path']) && file_exists($report['file_path'])) {
-            unlink($report['file_path']);
-        }
-        
-        // Delete from database (cascade will delete related antibiogram_data)
-        $stmt = $conn->prepare("DELETE FROM antibiogram_reports WHERE id = ?");
-        $stmt->bind_param("i", $report_id);
-        $stmt->execute();
-        $stmt->close();
-        
-        // Redirect to avoid form resubmission
-        header("Location: index.php?deleted=1");
-        exit();
-    }
-}
 
 /** Normalize a single cell to S/R/null */
 function normalize_result($val) {
@@ -290,7 +250,7 @@ if ($view_report_id) {
     $saved_report = get_report_data($conn, $view_report_id, $user_id);
 }
 
-if($_SERVER['REQUEST_METHOD']==='POST' && !isset($_POST['download_csv']) && !isset($_POST['delete_report'])){
+if($_SERVER['REQUEST_METHOD']==='POST' && !isset($_POST['download_csv'])){
     if(!empty($_FILES['datafile']['tmp_name'])) {
         $file = $_FILES['datafile'];
         $file_ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
@@ -512,21 +472,6 @@ function pct_class($pct){
             transform: translateY(-2px);
         }
         
-        .btn-danger {
-            background-color: #e74c3c;
-            border-color: #e74c3c;
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-        
-        .btn-danger:hover {
-            background-color: #c0392b;
-            border-color: #c0392b;
-            transform: translateY(-2px);
-        }
-        
         .table th {
             background: linear-gradient(120deg, var(--primary), var(--secondary));
             color: white;
@@ -704,11 +649,6 @@ function pct_class($pct){
             .upload-area {
                 padding: 1.5rem;
             }
-            
-            .btn-group .btn {
-                padding: 0.25rem 0.5rem;
-                font-size: 0.8rem;
-            }
         }
         
         .badge {
@@ -745,10 +685,6 @@ function pct_class($pct){
             justify-content: center;
             margin-right: 12px;
         }
-        
-        .delete-form {
-            display: inline;
-        }
     </style>
 </head>
 <body>
@@ -769,13 +705,6 @@ function pct_class($pct){
         <section class="section">
             <div class="row">
                 <div class="col-lg-12">
-                    <?php if (isset($_GET['deleted'])): ?>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <i class="bi bi-check-circle-fill me-2"></i> Report deleted successfully.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    <?php endif; ?>
-                    
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
@@ -811,7 +740,6 @@ function pct_class($pct){
                             <?php endif; ?>
                             
                             <form method="post" enctype="multipart/form-data" id="uploadForm">
-                                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                                 <div class="mb-4">
                                     <label class="form-label fw-semibold">Upload CSV/TSV/Excel File</label>
                                     <div class="upload-area" id="dropZone">
@@ -1001,12 +929,12 @@ function pct_class($pct){
                                             <th>Date</th>
                                             <th>Filename</th>
                                             <th>Type</th>
-                                            <th>Actions</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($report_history as $report): ?>
-                                        <tr>
+                                        <tr onclick="window.location='?view_report=<?php echo $report['id']; ?>'">
                                             <td><?php echo date('M j, Y g:i A', strtotime($report['upload_date'])); ?></td>
                                             <td>
                                                 <?php if ($report['original_filename']): ?>
@@ -1026,18 +954,9 @@ function pct_class($pct){
                                                 <?php endif; ?>
                                             </td>
                                             <td>
-                                                <div class="btn-group" role="group">
-                                                    <a href="?view_report=<?php echo $report['id']; ?>" class="btn btn-sm btn-outline-primary">
-                                                        <i class="bi bi-eye me-1"></i>View
-                                                    </a>    &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <form class="delete-form" method="post" onsubmit="return confirm('Are you sure you want to delete this report? This action cannot be undone.');">
-                                                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
-                                                        <input type="hidden" name="report_id" value="<?php echo $report['id']; ?>">
-                                                        <button type="submit" name="delete_report" class="btn btn-sm btn-outline-danger">
-                                                            <i class="bi bi-trash me-1"></i>Delete
-                                                        </button>
-                                                    </form>
-                                                </div>
+                                                <a href="?view_report=<?php echo $report['id']; ?>" class="btn btn-sm btn-outline-primary">
+                                                    <i class="bi bi-eye me-1"></i>View
+                                                </a>
                                             </td>
                                         </tr>
                                         <?php endforeach; ?>
