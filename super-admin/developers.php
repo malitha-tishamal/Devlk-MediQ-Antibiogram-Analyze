@@ -275,7 +275,7 @@ $stmt->close();
                 </div>
                 
                 <!-- Team Member 2 -->
-                <div class="col-lg-4 col-md-6 mb-4">
+                <!--div class="col-lg-4 col-md-6 mb-4">
                     <div class="team-card">
                         <img src="../assets/images/Developers/684c0f0cbbca3-1.jpg" alt="Malith Sandeepa">
                         <h3>Malith Sandeepa</h3>
@@ -303,7 +303,7 @@ $stmt->close();
                 </div>
                 
                 <!-- Team Member 3 -->
-                <div class="col-lg-4 col-md-6 mb-4">
+                <!--div class="col-lg-4 col-md-6 mb-4">
                     <div class="team-card">
                         <img src="../assets/images/Developers/tharidu.jpg" alt="Tharindu Sampath">
                         <h3>Tharindu Sampath</h3>
@@ -331,7 +331,7 @@ $stmt->close();
                 </div>
                 
                 <!-- Team Member 4 -->
-                <div class="col-lg-4 col-md-6 mb-4">
+                <!--div class="col-lg-4 col-md-6 mb-4">
                     <div class="team-card">
                         <img src="../assets/images/Developers/nishara.jpg" alt="Nishara de Silva">
                         <h3>Nishara de Silva</h3>
@@ -359,7 +359,7 @@ $stmt->close();
                 </div>
                 
                 <!-- Team Member 5 -->
-                <div class="col-lg-4 col-md-6 mb-4">
+                <!--div class="col-lg-4 col-md-6 mb-4">
                     <div class="team-card">
                         <img src="../assets/images/Developers/amandi.jpg" alt="Amandi Kaushalya">
                         <h3>Amandi Kaushalya</h3>
@@ -385,7 +385,7 @@ $stmt->close();
                         </div>
                     </div>
                 </div>
-            </div>
+            </div-->
             
             <div class="dev-footer">
                 <p>MediQ - Antibiogram Analyze System</p>
