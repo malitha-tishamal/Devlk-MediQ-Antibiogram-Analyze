@@ -18,6 +18,14 @@ if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
+// Check if instructions modal should be shown (show only once per session)
+if (!isset($_SESSION['instructions_shown'])) {
+    $_SESSION['instructions_shown'] = true;
+    $show_instructions_modal = true;
+} else {
+    $show_instructions_modal = false;
+}
+
 // Fetch user details
 $user_id = $_SESSION['admin_id'];
 $sql = "SELECT name, email, nic, mobile, profile_picture FROM admins WHERE id = ?";
@@ -28,6 +36,7 @@ $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 $stmt->close();
 
+// Rest of your existing PHP code remains the same...
 // Create tables if they don't exist
 $create_tables_sql = "
 CREATE TABLE IF NOT EXISTS antibiogram_reports (
@@ -36,6 +45,9 @@ CREATE TABLE IF NOT EXISTS antibiogram_reports (
     original_filename VARCHAR(255) NULL,
     file_path VARCHAR(500) NULL,
     pasted_data TEXT NULL,
+    infection_type_filter VARCHAR(50) NULL,
+    hospital_filter VARCHAR(100) NULL,
+    organism_group_filter VARCHAR(100) NULL,
     upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (admin_id) REFERENCES admins(id) ON DELETE CASCADE
 );
@@ -91,11 +103,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_report'])) {
     }
 }
 
+// Fetch organism groups from database
+function get_organism_groups($conn) {
+    $groups = [
+        'all' => 'All Organisms',
+        'gram_negative' => '🦠 All Gram-negative bacteria',
+        'gram_positive' => '🧫 All Gram-positive bacteria'
+    ];
+    
+    return $groups;
+}
+
+// Fetch specific organisms for each group from database
+function get_organisms_by_group($conn, $group_type) {
+    $organisms = [];
+    
+    $stmt = $conn->prepare("SELECT organism_name FROM organism_groups WHERE group_type = ?");
+    $stmt->bind_param("s", $group_type);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    while ($row = $result->fetch_assoc()) {
+        $organisms[] = $row['organism_name'];
+    }
+    
+    $stmt->close();
+    return $organisms;
+}
+
+// Get organism groups for dropdown
+$organism_groups = get_organism_groups($conn);
+
+// Get organisms for each group
+$gram_negative_organisms = get_organisms_by_group($conn, 'gram_negative');
+$gram_positive_organisms = get_organisms_by_group($conn, 'gram_positive');
+
 /** Normalize a single cell to S/R/null */
 function normalize_result($val) {
     if ($val === null) return null;
     $v = trim(strtolower($val));
-    if ($v === '' || $v === '-' || $v === 'os' || $v === 'nt') return null; // not tested
+    if ($v === '' || $v === '-' || $v === 'os' || $v === 'nt' || $v === 'not reported') return null; // not tested
 
     $sus_patterns = ['sensitive', 'intermediate', 'intermediate sensitive', 's', 'i'];
     $res_patterns = ['resistant','r'];
@@ -165,10 +212,10 @@ function parse_excel_file($file_path) {
 }
 
 /** Save report to database */
-function save_report_to_db($conn, $user_id, $original_filename, $file_path, $pasted_data, $summary, $organism_list, $antibiotics) {
+function save_report_to_db($conn, $user_id, $original_filename, $file_path, $pasted_data, $infection_type_filter, $hospital_filter, $organism_group_filter, $summary, $organism_list, $antibiotics) {
     // Insert report metadata
-    $stmt = $conn->prepare("INSERT INTO antibiogram_reports (admin_id, original_filename, file_path, pasted_data) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("isss", $user_id, $original_filename, $file_path, $pasted_data);
+    $stmt = $conn->prepare("INSERT INTO antibiogram_reports (admin_id, original_filename, file_path, pasted_data, infection_type_filter, hospital_filter, organism_group_filter) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("issssss", $user_id, $original_filename, $file_path, $pasted_data, $infection_type_filter, $hospital_filter, $organism_group_filter);
     $stmt->execute();
     $report_id = $stmt->insert_id;
     $stmt->close();
@@ -194,7 +241,7 @@ function save_report_to_db($conn, $user_id, $original_filename, $file_path, $pas
 
 /** Get user's report history */
 function get_report_history($conn, $user_id) {
-    $stmt = $conn->prepare("SELECT id, original_filename, file_path, upload_date FROM antibiogram_reports WHERE admin_id = ? ORDER BY upload_date DESC");
+    $stmt = $conn->prepare("SELECT id, original_filename, file_path, upload_date, infection_type_filter, hospital_filter, organism_group_filter FROM antibiogram_reports WHERE admin_id = ? ORDER BY upload_date DESC");
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -218,7 +265,7 @@ function get_report_data($conn, $report_id, $user_id) {
     
     // Get report metadata
     $stmt = $conn->prepare("
-        SELECT r.original_filename, r.file_path, r.pasted_data, r.upload_date, 
+        SELECT r.original_filename, r.file_path, r.pasted_data, r.upload_date, r.infection_type_filter, r.hospital_filter, r.organism_group_filter,
                a.name as admin_name 
         FROM antibiogram_reports r 
         JOIN admins a ON r.admin_id = a.id 
@@ -281,6 +328,9 @@ function get_report_data($conn, $report_id, $user_id) {
 $input_text='';
 $upload_error = '';
 $report_id = null;
+$infection_type_filter = $_POST['infection_type'] ?? 'all';
+$hospital_filter = $_POST['hospital'] ?? 'all';
+$organism_group_filter = $_POST['organism_group'] ?? 'all';
 
 // Check if viewing a saved report
 $view_report_id = isset($_GET['view_report']) ? intval($_GET['view_report']) : null;
@@ -345,20 +395,49 @@ if($_SERVER['REQUEST_METHOD']==='POST' && !isset($_POST['download_csv']) && !iss
     }
 }
 
-$summary=[]; $antibiotics=[]; $organism_list=[]; $raw_rows=[];
+$summary=[]; $antibiotics=[]; $organism_list=[]; $raw_rows=[]; $available_hospitals = [];
 
 if(!empty($input_text) && empty($upload_error)){
     list($header,$rows)=parse_table_text($input_text);
     $raw_rows=$rows;
 
-    // find Organism column
-    $organism_col=null;
-    foreach($header as $h) if(preg_match('/organism/i',$h)){$organism_col=$h; break;}
-    if($organism_col===null){ $organism_col=$header[ array_search('Organism',$header) ] ?? null; }
+    // MODIFIED: Updated organism column detection for your Excel structure
+    $organism_col = 'Organism';
+    if(!in_array($organism_col, $header)) {
+        // Fallback: try to find it
+        foreach($header as $h) if(preg_match('/organism/i',$h)){$organism_col=$h; break;}
+    }
 
-    // antibiotic columns (skip meta)
-    $meta_patterns='/lab_no|pt_name|age|sex|date|admission|ward|bht|esbl|organism_type|organism id/i';
-    foreach($header as $h){ if(preg_match($meta_patterns,$h)) continue; if(trim($h)==='') continue; $antibiotics[]=$h; }
+    // NEW: Find infection type column
+    $infection_type_col = 'Type of infection';
+    if(!in_array($infection_type_col, $header)) {
+        // Fallback: try to find it
+        foreach($header as $h) if(preg_match('/type.of.infection|infection.type/i',$h)){$infection_type_col=$h; break;}
+    }
+
+    // NEW: Find hospital column
+    $hospital_col = 'Hospital';
+    if(!in_array($hospital_col, $header)) {
+        // Fallback: try to find it
+        foreach($header as $h) if(preg_match('/hospital/i',$h)){$hospital_col=$h; break;}
+    }
+
+    // Get available hospitals for dropdown
+    $available_hospitals = ['all' => 'All Hospitals'];
+    foreach($rows as $r) {
+        $hospital = trim($r[$hospital_col] ?? '');
+        if($hospital !== '' && !in_array($hospital, $available_hospitals)) {
+            $available_hospitals[$hospital] = $hospital;
+        }
+    }
+
+    // MODIFIED: Updated meta patterns for your Excel structure
+    $meta_patterns = '/hospital|age|gender|ward|type.of.infection|clinical.diagnosis|outcome|esbl|organism_type|organism id/i';
+    foreach($header as $h){ 
+        if(preg_match($meta_patterns,$h)) continue; 
+        if(trim($h)==='') continue; 
+        $antibiotics[]=$h; 
+    }
     if(($k=array_search($organism_col,$antibiotics))!==false) array_splice($antibiotics,$k,1);
 
     // stats
@@ -366,6 +445,46 @@ if(!empty($input_text) && empty($upload_error)){
     foreach($rows as $r){
         $org=trim($r[$organism_col]??'');
         if($org==='') continue;
+        
+        // NEW: Apply infection type filter
+        if($infection_type_filter !== 'all') {
+            $current_infection_type = trim($r[$infection_type_col] ?? '');
+            if($current_infection_type !== $infection_type_filter) {
+                continue;
+            }
+        }
+
+        // NEW: Apply hospital filter
+        if($hospital_filter !== 'all') {
+            $current_hospital = trim($r[$hospital_col] ?? '');
+            if($current_hospital !== $hospital_filter) {
+                continue;
+            }
+        }
+
+        // NEW: Apply organism group filter using database data
+        if($organism_group_filter !== 'all') {
+            $org_upper = strtoupper(trim($org));
+            $is_in_group = false;
+            
+            if($organism_group_filter === 'gram_negative') {
+                $group_organisms = $gram_negative_organisms;
+            } elseif($organism_group_filter === 'gram_positive') {
+                $group_organisms = $gram_positive_organisms;
+            } else {
+                $group_organisms = [];
+            }
+            
+            foreach($group_organisms as $group_org) {
+                if(strpos($org_upper, strtoupper($group_org)) !== false) {
+                    $is_in_group = true;
+                    break;
+                }
+            }
+            
+            if(!$is_in_group) continue;
+        }
+        
         $org=preg_replace('/\s+/',' ',$org);
         $org_key=$org;
         if(!isset($stats[$org_key])){
@@ -404,7 +523,7 @@ if(!empty($input_text) && empty($upload_error)){
     
     // Save to database
     $pasted_data = isset($pasted_data) ? $pasted_data : null;
-    $report_id = save_report_to_db($conn, $user_id, $original_filename, $file_path, $pasted_data, $summary, $organism_list, $antibiotics);
+    $report_id = save_report_to_db($conn, $user_id, $original_filename, $file_path, $pasted_data, $infection_type_filter, $hospital_filter, $organism_group_filter, $summary, $organism_list, $antibiotics);
 }
 
 // Get user's report history
@@ -415,6 +534,24 @@ if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['download_csv']) && !empt
     header('Content-Type:text/csv;charset=utf-8');
     header('Content-Disposition:attachment;filename=antibiogram_summary.csv');
     $out=fopen('php://output','w');
+    
+    // Add filter info to CSV
+    $filter_info = [];
+    if($infection_type_filter !== 'all') {
+        $filter_info[] = 'Infection Type: ' . $infection_type_filter;
+    }
+    if($hospital_filter !== 'all') {
+        $filter_info[] = 'Hospital: ' . $hospital_filter;
+    }
+    if($organism_group_filter !== 'all') {
+        $filter_info[] = 'Organism Group: ' . $organism_groups[$organism_group_filter];
+    }
+    
+    if(!empty($filter_info)) {
+        fputcsv($out, ['Filters:', implode(', ', $filter_info)]);
+        fputcsv($out, []); // empty line
+    }
+    
     fputcsv($out,array_merge(['Organism'],$antibiotics));
     foreach($organism_list as $org){
         $line=[$org];
@@ -432,6 +569,24 @@ function pct_class($pct){
     if($pct<70) return 'bg-danger';
     if($pct<90) return 'bg-warning';
     return 'bg-success';
+}
+
+function getInfectionTypeDisplayName($filter) {
+    switch($filter) {
+        case 'all': return 'All Types';
+        case 'Community acquired': return 'Community Acquired';
+        case 'Hospital acquired': return 'Hospital Acquired';
+        default: return $filter;
+    }
+}
+
+function getHospitalDisplayName($filter) {
+    return $filter === 'all' ? 'All Hospitals' : $filter;
+}
+
+function getOrganismGroupDisplayName($filter) {
+    global $organism_groups;
+    return $organism_groups[$filter] ?? $filter;
 }
 ?>
 <!DOCTYPE html>
@@ -691,6 +846,19 @@ function pct_class($pct){
             background: linear-gradient(120deg, var(--primary), var(--secondary));
             border-radius: 4px;
         }
+        .download-sheet{
+            color: red;
+            font-weight: bold;
+            margin: 20px 0px 10px 5px;
+            font-size: 18px;
+        }
+
+        .download-sheet2{
+            color: blue;
+            font-weight: bold;
+            margin: 0px 0px 10px 5px;
+            font-size: 18px;
+        }
         
         @media (max-width: 768px) {
             .table-container {
@@ -749,6 +917,50 @@ function pct_class($pct){
         .delete-form {
             display: inline;
         }
+        
+        .filter-badge {
+            background: linear-gradient(120deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+        
+        .hospital-badge {
+            background: linear-gradient(120deg, #48cae4, #0096c7);
+            color: white;
+        }
+        
+        .organism-badge {
+            background: linear-gradient(120deg, #9d4edd, #7b2cbf);
+            color: white;
+        }
+
+        /* Modal specific styles */
+        .instructions-modal .modal-header {
+            background: linear-gradient(120deg, #4361ee, #3f37c9);
+            color: white;
+        }
+        
+        .instructions-modal .modal-title {
+            font-weight: 600;
+        }
+        
+        .requirement-badge {
+            background: linear-gradient(120deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+        
+        .optional-badge {
+            background: linear-gradient(120deg, #f39c12, #e67e22);
+            color: white;
+        }
+        
+        .example-table {
+            font-size: 0.8rem;
+        }
+        
+        .example-table th {
+            background: linear-gradient(120deg, #9d4edd, #7b2cbf);
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -776,7 +988,145 @@ function pct_class($pct){
                     </div>
                     <?php endif; ?>
                     
+                    <!-- Instructions Modal -->
+                    <div class="modal fade instructions-modal" id="instructionsModal" tabindex="-1" aria-labelledby="instructionsModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="instructionsModalLabel">
+                                        <i class="bi bi-info-circle me-2"></i>Data Upload Instructions
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="alert alert-info">
+                                        <h6 class="alert-heading"><i class="bi bi-lightbulb me-2"></i>Important: Follow these instructions carefully to avoid errors!</h6>
+                                    </div>
+                                    
+                                    <h6 class="text-primary mb-3">📋 Required Data Structure</h6>
+                                    <div class="table-responsive mb-4">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Column Name</th>
+                                                    <th>Description</th>
+                                                    <th>Status</th>
+                                                    <th>Example Values</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>Organism</strong></td>
+                                                    <td>Name of the microorganism</td>
+                                                    <td><span class="badge requirement-badge">Required</span></td>
+                                                    <td>ESCHERICHIA COLI, STAPHYLOCOCCUS AUREUS</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Type of infection</strong></td>
+                                                    <td>Type of infection</td>
+                                                    <td><span class="badge requirement-badge">Required</span></td>
+                                                    <td>Community acquired, Hospital acquired</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Hospital</strong></td>
+                                                    <td>Hospital name</td>
+                                                    <td><span class="badge requirement-badge">Required</span></td>
+                                                    <td>General Hospital, Teaching Hospital</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Antibiotic Columns</strong></td>
+                                                    <td>Antibiotic susceptibility results</td>
+                                                    <td><span class="badge requirement-badge">Required</span></td>
+                                                    <td>AMIKACIN, GENTAMICIN, AMPICILLIN</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                    <h6 class="text-primary mb-3">🧪 Susceptibility Data Formats</h6>
+                                    <div class="row mb-4">
+                                        <div class="col-md-6">
+                                            <ul class="list-unstyled">
+                                                <li class="mb-2"><i class="bi bi-check text-success me-2"></i><strong>Sensitive:</strong> "S", "Sensitive"</li>
+                                                <li class="mb-2"><i class="bi bi-dash text-warning me-2"></i><strong>Intermediate:</strong> "I", "Intermediate"</li>
+                                                <li class="mb-2"><i class="bi bi-x text-danger me-2"></i><strong>Resistant:</strong> "R", "Resistant"</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <ul class="list-unstyled">
+                                                <li class="mb-2"><i class="bi bi-bar-chart text-info me-2"></i><strong>Count Format:</strong> "S:5 I:0 R:2 /7"</li>
+                                                <li class="mb-2"><i class="bi bi-slash-circle text-secondary me-2"></i><strong>Not Tested:</strong> Empty, "-", "NT"</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <h6 class="text-primary mb-3">📊 Example Data Structure</h6>
+                                    <div class="table-responsive mb-4">
+                                        <table class="table table-bordered example-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Organism</th>
+                                                    <th>Type of infection</th>
+                                                    <th>Hospital</th>
+                                                    <th>AMIKACIN</th>
+                                                    <th>GENTAMICIN</th>
+                                                    <th>AMPICILLIN</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>ESCHERICHIA COLI</td>
+                                                    <td>Community acquired</td>
+                                                    <td>General Hospital</td>
+                                                    <td>S</td>
+                                                    <td>R</td>
+                                                    <td>S:5 I:0 R:2 /7</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>STAPHYLOCOCCUS AUREUS</td>
+                                                    <td>Hospital acquired</td>
+                                                    <td>Teaching Hospital</td>
+                                                    <td>S</td>
+                                                    <td>S</td>
+                                                    <td>R</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                    <div class="alert alert-warning">
+                                        <h6 class="alert-heading"><i class="bi bi-exclamation-triangle me-2"></i>Common Errors to Avoid:</h6>
+                                        <ul class="mb-0">
+                                            <li>Missing required columns (Organism, Type of infection, Hospital)</li>
+                                            <li>Incorrect column names or spelling</li>
+                                            <li>Using lowercase for organism names (use CAPITAL LETTERS)</li>
+                                            <li>Invalid susceptibility formats</li>
+                                            <li>Missing header row</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="form-check me-auto">
+                                        <input class="form-check-input" type="checkbox" id="dontShowAgain">
+                                        <label class="form-check-label" for="dontShowAgain">
+                                            Don't show this again
+                                        </label>
+                                    </div>
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="bi bi-check-circle me-2"></i>I Understand
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="card">
+                        <a href="uploads\data/new.xlsx" class="download-sheet" download="file">
+                            <i class="bi bi-cloud-arrow-down"></i> Download Empty Data Entry Sheet
+                        </a>
+                        <a href="uploads\data/instruction.txt" class="download-sheet2" download="file"> 
+                            <i class="bi bi-cloud-arrow-down"></i> Download Data Entry Instructions Sheet
+                        </a>
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <div class="feature-icon">
@@ -803,6 +1153,15 @@ function pct_class($pct){
                                 <?php if ($saved_report['meta']['original_filename']): ?>
                                 <p class="mb-1"><strong>File:</strong> <?php echo htmlspecialchars($saved_report['meta']['original_filename']); ?></p>
                                 <?php endif; ?>
+                                <?php if ($saved_report['meta']['infection_type_filter'] && $saved_report['meta']['infection_type_filter'] !== 'all'): ?>
+                                <p class="mb-1"><strong>Infection Type Filter:</strong> <?php echo getInfectionTypeDisplayName($saved_report['meta']['infection_type_filter']); ?></p>
+                                <?php endif; ?>
+                                <?php if ($saved_report['meta']['hospital_filter'] && $saved_report['meta']['hospital_filter'] !== 'all'): ?>
+                                <p class="mb-1"><strong>Hospital Filter:</strong> <?php echo getHospitalDisplayName($saved_report['meta']['hospital_filter']); ?></p>
+                                <?php endif; ?>
+                                <?php if ($saved_report['meta']['organism_group_filter'] && $saved_report['meta']['organism_group_filter'] !== 'all'): ?>
+                                <p class="mb-1"><strong>Organism Group Filter:</strong> <?php echo getOrganismGroupDisplayName($saved_report['meta']['organism_group_filter']); ?></p>
+                                <?php endif; ?>
                                 <p class="mb-2"><strong>Generated by:</strong> <?php echo htmlspecialchars($saved_report['meta']['admin_name']); ?></p>
                                 <a href="antibiogram.php" class="btn btn-sm btn-primary">
                                     <i class="bi bi-arrow-left me-1"></i>Back to New Upload
@@ -812,6 +1171,42 @@ function pct_class($pct){
                             
                             <form method="post" enctype="multipart/form-data" id="uploadForm">
                                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                                
+                                <!-- Filters Section -->
+                                <div class="row mb-4">
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-semibold">Filter by Infection Type</label>
+                                        <select class="form-select" name="infection_type">
+                                            <option value="all" <?php echo $infection_type_filter === 'all' ? 'selected' : ''; ?>>All Types</option>
+                                            <option value="Community acquired" <?php echo $infection_type_filter === 'Community acquired' ? 'selected' : ''; ?>>Community Acquired</option>
+                                            <option value="Hospital acquired" <?php echo $infection_type_filter === 'Hospital acquired' ? 'selected' : ''; ?>>Hospital Acquired</option>
+                                        </select>
+                                        <small class="text-muted">Filter by type of infection</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-semibold">Filter by Hospital</label>
+                                        <select class="form-select" name="hospital">
+                                            <?php foreach($available_hospitals as $value => $label): ?>
+                                                <option value="<?php echo $value; ?>" <?php echo $hospital_filter === $value ? 'selected' : ''; ?>>
+                                                    <?php echo $label; ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <small class="text-muted">Filter by hospital</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-semibold">Filter by Organism Group</label>
+                                        <select class="form-select" name="organism_group">
+                                            <?php foreach($organism_groups as $value => $label): ?>
+                                                <option value="<?php echo $value; ?>" <?php echo $organism_group_filter === $value ? 'selected' : ''; ?>>
+                                                    <?php echo $label; ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <small class="text-muted">Filter by organism type</small>
+                                    </div>
+                                </div>
+                                
                                 <div class="mb-4">
                                     <label class="form-label fw-semibold">Upload CSV/TSV/Excel File</label>
                                     <div class="upload-area" id="dropZone">
@@ -847,8 +1242,30 @@ function pct_class($pct){
                                     <?php if(!empty($summary) || $saved_report): 
                                         $display_organisms = $saved_report ? $saved_report['organisms'] : $organism_list;
                                         $display_antibiotics = $saved_report ? $saved_report['antibiotics'] : $antibiotics;
+                                        $current_infection_filter = $saved_report ? $saved_report['meta']['infection_type_filter'] : $infection_type_filter;
+                                        $current_hospital_filter = $saved_report ? $saved_report['meta']['hospital_filter'] : $hospital_filter;
+                                        $current_organism_filter = $saved_report ? $saved_report['meta']['organism_group_filter'] : $organism_group_filter;
                                     ?>
-                                    <div class="d-flex">
+                                    <div class="d-flex align-items-center">
+                                        <?php if($current_infection_filter !== 'all' || $current_hospital_filter !== 'all' || $current_organism_filter !== 'all'): ?>
+                                        <div class="me-3">
+                                            <?php if($current_infection_filter !== 'all'): ?>
+                                            <span class="badge filter-badge me-1 mb-1">
+                                                <i class="bi bi-funnel me-1"></i><?php echo getInfectionTypeDisplayName($current_infection_filter); ?>
+                                            </span>
+                                            <?php endif; ?>
+                                            <?php if($current_hospital_filter !== 'all'): ?>
+                                            <span class="badge hospital-badge me-1 mb-1">
+                                                <i class="bi bi-building me-1"></i><?php echo getHospitalDisplayName($current_hospital_filter); ?>
+                                            </span>
+                                            <?php endif; ?>
+                                            <?php if($current_organism_filter !== 'all'): ?>
+                                            <span class="badge organism-badge me-1 mb-1">
+                                                <i class="bi bi-bug me-1"></i><?php echo getOrganismGroupDisplayName($current_organism_filter); ?>
+                                            </span>
+                                            <?php endif; ?>
+                                        </div>
+                                        <?php endif; ?>
                                         <div class="stat-card me-3">
                                             <div class="stat-number"><?php echo count($display_organisms); ?></div>
                                             <div class="stat-label">Organisms</div>
@@ -870,6 +1287,7 @@ function pct_class($pct){
                         </h6>
                         <ul class="mb-0 ps-3">
                             <li>Upload a CSV/TSV/Excel file or paste tabular data with organism names and antibiotic susceptibility results</li>
+                            <li>Use the filters to analyze specific types of infections, hospitals, and/or organism groups</li>
                             <li>The system will automatically detect the organism column and antibiotic columns</li>
                             <li>Supported susceptibility formats: "Sensitive", "Resistant", "S", "R", "I", "Intermediate", or patterns like "S:5 I:0 R:2 /7"</li>
                         </ul>
@@ -879,6 +1297,9 @@ function pct_class($pct){
                         $display_data = $saved_report ? $saved_report['data'] : $summary;
                         $display_organisms = $saved_report ? $saved_report['organisms'] : $organism_list;
                         $display_antibiotics = $saved_report ? $saved_report['antibiotics'] : $antibiotics;
+                        $current_infection_filter = $saved_report ? $saved_report['meta']['infection_type_filter'] : $infection_type_filter;
+                        $current_hospital_filter = $saved_report ? $saved_report['meta']['hospital_filter'] : $hospital_filter;
+                        $current_organism_filter = $saved_report ? $saved_report['meta']['organism_group_filter'] : $organism_group_filter;
                     ?>
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
@@ -886,7 +1307,21 @@ function pct_class($pct){
                                 <div class="feature-icon">
                                     <i class="bi bi-table"></i>
                                 </div>
-                                <h5 class="card-title mb-0">Antibiogram Summary</h5>
+                                <h5 class="card-title mb-0">Antibiogram Summary 
+                                    <?php if($current_infection_filter !== 'all' || $current_hospital_filter !== 'all' || $current_organism_filter !== 'all'): ?>
+                                    <div class="ms-2">
+                                        <?php if($current_infection_filter !== 'all'): ?>
+                                        <span class="badge filter-badge me-1 mb-1"><?php echo getInfectionTypeDisplayName($current_infection_filter); ?></span>
+                                        <?php endif; ?>
+                                        <?php if($current_hospital_filter !== 'all'): ?>
+                                        <span class="badge hospital-badge me-1 mb-1"><?php echo getHospitalDisplayName($current_hospital_filter); ?></span>
+                                        <?php endif; ?>
+                                        <?php if($current_organism_filter !== 'all'): ?>
+                                        <span class="badge organism-badge me-1 mb-1"><?php echo getOrganismGroupDisplayName($current_organism_filter); ?></span>
+                                        <?php endif; ?>
+                                    </div>
+                                    <?php endif; ?>
+                                </h5>
                             </div>
                             <?php if(!$saved_report && $report_id): ?>
                             <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Saved to history</span>
@@ -1000,6 +1435,7 @@ function pct_class($pct){
                                         <tr>
                                             <th>Date</th>
                                             <th>Filename</th>
+                                            <th>Filters</th>
                                             <th>Type</th>
                                             <th>Actions</th>
                                         </tr>
@@ -1014,6 +1450,22 @@ function pct_class($pct){
                                                 <?php else: ?>
                                                 <em>Pasted Data</em>
                                                 <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex flex-wrap gap-1">
+                                                    <?php if ($report['infection_type_filter'] && $report['infection_type_filter'] !== 'all'): ?>
+                                                    <span class="badge filter-badge"><?php echo getInfectionTypeDisplayName($report['infection_type_filter']); ?></span>
+                                                    <?php endif; ?>
+                                                    <?php if ($report['hospital_filter'] && $report['hospital_filter'] !== 'all'): ?>
+                                                    <span class="badge hospital-badge"><?php echo getHospitalDisplayName($report['hospital_filter']); ?></span>
+                                                    <?php endif; ?>
+                                                    <?php if ($report['organism_group_filter'] && $report['organism_group_filter'] !== 'all'): ?>
+                                                    <span class="badge organism-badge"><?php echo getOrganismGroupDisplayName($report['organism_group_filter']); ?></span>
+                                                    <?php endif; ?>
+                                                    <?php if (($report['infection_type_filter'] === 'all' || !$report['infection_type_filter']) && ($report['hospital_filter'] === 'all' || !$report['hospital_filter']) && ($report['organism_group_filter'] === 'all' || !$report['organism_group_filter'])): ?>
+                                                    <span class="badge bg-secondary">No Filters</span>
+                                                    <?php endif; ?>
+                                                </div>
                                             </td>
                                             <td>
                                                 <?php if ($report['file_path']): ?>
@@ -1093,6 +1545,22 @@ function pct_class($pct){
                 document.getElementById('fileName').innerHTML = '<div class="alert alert-info mt-3 py-2 d-flex align-items-center"><i class="bi bi-file-earmark-text me-2"></i>' + files[0].name + '</div>';
             }
         });
+
+        // Instructions Modal
+        <?php if ($show_instructions_modal): ?>
+        document.addEventListener('DOMContentLoaded', function() {
+            var instructionsModal = new bootstrap.Modal(document.getElementById('instructionsModal'));
+            instructionsModal.show();
+            
+            // Handle "Don't show again" checkbox
+            document.getElementById('dontShowAgain').addEventListener('change', function() {
+                if (this.checked) {
+                    // Set a session storage flag to not show the modal again
+                    sessionStorage.setItem('instructionsShown', 'true');
+                }
+            });
+        });
+        <?php endif; ?>
     </script>
     
     <?php include_once("../includes/footer.php") ?>
