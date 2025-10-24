@@ -1,0 +1,144 @@
+==================================================
+ANTIBIOGRAM DATA UPLOAD INSTRUCTIONS
+==================================================
+
+📋 DATA STRUCTURE REQUIREMENTS
+==================================================
+
+REQUIRED COLUMNS (Must be present):
+• Organism - Name of the microorganism
+• Type of infection - "Community acquired" or "Hospital acquired" 
+• Hospital - Name of the hospital
+
+OPTIONAL COLUMNS (Can be included):
+• Age - Patient age
+• Gender - Patient gender (Male/Female)
+• Ward - Hospital ward (ICU, Surgical, Medical, etc.)
+• Clinical diagnosis - Clinical diagnosis details
+• Outcome - Patient outcome
+• ESBL - Extended Spectrum Beta-Lactamase status
+• Organism_type - Type of organism
+• Organism ID - Organism identification
+
+ANTIBIOTIC COLUMNS:
+• Each antibiotic should be a separate column
+• System automatically detects antibiotic columns
+• Antibiotic names as column headers (e.g., AMIKACIN, GENTAMICIN, AMPICILLIN)
+
+📁 ACCEPTED FILE FORMATS
+==================================================
+• CSV (Comma Separated Values)
+• TSV (Tab Separated Values) 
+• Excel Files (XLSX, XLS)
+• Text files with tabular data
+• Direct paste from spreadsheet
+
+🧪 SUSCEPTIBILITY DATA FORMATS
+==================================================
+
+SINGLE CHARACTER FORMAT:
+S  = Sensitive
+I  = Intermediate  
+R  = Resistant
+
+FULL WORD FORMAT:
+Sensitive
+Intermediate
+Resistant
+
+COUNT FORMAT (Recommended):
+"S:5 I:0 R:2 /7"  = 5 Sensitive, 0 Intermediate, 2 Resistant out of 7 tested
+
+NOT TESTED VALUES:
+• Empty cells
+• "-" (dash)
+• "OS" 
+• "NT"
+• "not reported"
+
+📊 EXAMPLE DATA STRUCTURE
+==================================================
+
+Organism,Type of infection,Hospital,Age,Gender,AMIKACIN,GENTAMICIN,AMPICILLIN,CEFTRIAXONE
+ESCHERICHIA COLI,Community acquired,General Hospital,45,Male,S,R,R,S:5 I:0 R:2 /7
+STAPHYLOCOCCUS AUREUS,Hospital acquired,Teaching Hospital,67,Female,S,S,R,S:8 I:1 R:0 /9
+KLEBSIELLA SPP,Community acquired,General Hospital,32,Male,R,S,R,S:3 I:2 R:4 /9
+
+⚙️ FILTERING OPTIONS
+==================================================
+
+INFECTION TYPE FILTER:
+• All Types - No filtering
+• Community acquired - Only community infections
+• Hospital acquired - Only hospital infections
+
+HOSPITAL FILTER:
+• All Hospitals - No filtering
+• Specific hospital - Data from selected hospital only
+
+ORGANISM GROUP FILTER:
+• All Organisms - No filtering
+• Gram-negative bacteria - Only Gram-negative organisms
+• Gram-positive bacteria - Only Gram-positive organisms
+
+💡 IMPORTANT NOTES
+==================================================
+
+DATA QUALITY:
+✓ First row MUST contain column headers
+✓ Organism names should be consistent (use CAPITAL LETTERS)
+✓ Use standardized antibiotic names
+✓ Maintain consistent data formats
+
+UPLOAD TIPS:
+✓ Ensure file is not open in another program
+✓ Check for special characters in data
+✓ Verify column names match expected format
+✓ Save Excel files before uploading
+
+PROCESSING:
+✓ System automatically detects organism column
+✓ Antibiotic columns are automatically identified
+✓ Metadata columns are excluded from analysis
+✓ Filters are applied before processing
+
+🎯 INTERPRETATION GUIDELINES
+==================================================
+
+SUSCEPTIBILITY PERCENTAGES:
+🟢 GREEN (≥90%) - Highly susceptible - Recommended for empirical therapy
+🟡 YELLOW (70-89%) - Moderately susceptible - Use with caution
+🔴 RED (<70%) - Low susceptibility - Avoid for empirical therapy
+
+DATA VALIDATION:
+✓ Check for missing organism names
+✓ Verify antibiotic susceptibility formats
+✓ Ensure consistent hospital naming
+✓ Confirm infection type categorization
+
+🔧 TROUBLESHOOTING
+==================================================
+
+COMMON UPLOAD ERRORS:
+• File format not supported - Use CSV, TSV, or Excel
+• No column headers - Add headers to first row
+• Missing required columns - Include Organism, Type of infection, Hospital
+• Encoding issues - Save files with UTF-8 encoding
+
+PROCESSING ERRORS:
+• No organisms detected - Check organism column name
+• No antibiotics detected - Verify antibiotic column names
+• Empty results - Check data filters and susceptibility formats
+
+📞 SUPPORT
+==================================================
+
+For technical assistance:
+• Check the online documentation
+• Verify your data structure matches requirements
+• Contact system administrator for file format issues
+• Ensure all required columns are present
+
+==================================================
+LAST UPDATED: October 2024
+==================================================
