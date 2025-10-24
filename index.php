@@ -95,9 +95,9 @@
 
                                         
 
-                                        <!--div class="col-12">
-                                          <p class="small mb-0" style="font-size:14px;"><a href="pages-forgotten-password.php">Forgotten password</a>
-                                        </div-->
+                                        <div class="col-12">
+                                          <p class="small mb-0" style="font-size:14px;"><a href="forgot-password.php">Forgotten password</a>
+                                        </div>
 
                                         <div class="col-12">
                                             <input type="submit" class="btn btn-primary w-100" id="submit" name="submit" value="Login">
