@@ -8,6 +8,12 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="pages-manage-organism.php">
+               <i class="bi bi-virus2"></i> <span>Manage Organism</span>
+            </a>
+        </li>
+
         <!--li class="nav-item">
             <a class="nav-link collapsed" data-bs-toggle="collapse" href="#users-nav" role="button">
                 <i class="bi bi-people"></i> <span>Users</span> <i class="bi bi-chevron-down ms-auto"></i>
@@ -43,6 +49,8 @@
                 </li>
             </ul>
         </li>
+
+
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="user-profile.php">
