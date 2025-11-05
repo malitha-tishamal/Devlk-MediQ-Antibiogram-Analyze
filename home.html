@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antibiogram Analyze System - Advanced AMR Surveillance</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a76d2;
+            --primary-dark: #0d47a1;
+            --primary-light: #42a5f5;
+            --secondary: #00b0a6;
+            --accent: #7e57c2;
+            --dark: #1a237e;
+            --light: #f5fbff;
+            --gray: #546e7a;
+            --success: #00c853;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --gradient-alt: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .navbar {
+            padding: 18px 0;
+            background-color: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 12px 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            color: var(--accent) !important;
+            font-size: 1.9rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 8px;
+            position: relative;
+            color: var(--dark) !important;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .hero-section {
+            background: var(--gradient-alt);
+            color: white;
+            padding: 160px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        .badge-custom {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .section-title {
+            color: var(--dark);
+            font-weight: 800;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 20px;
+            text-align: center;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 5px;
+            background: var(--gradient-alt);
+            border-radius: 5px;
+        }
+        
+        .highlight-card {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            padding: 40px 30px;
+            height: 100%;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        
+        .highlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-alt);
+        }
+        
+        .highlight-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+        
+        .highlight-icon {
+            font-size: 3.2rem;
+            color: var(--accent);
+            margin-bottom: 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(126, 87, 194, 0.1) 0%, rgba(0, 176, 166, 0.1) 100%);
+        }
+        
+        .tech-icon {
+            font-size: 4rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-item {
+            padding: 30px 20px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transform: translateY(-5px);
+        }
+        
+        .tech-item:hover .tech-icon {
+            transform: scale(1.15);
+        }
+        
+        .impact-section {
+            background: linear-gradient(135deg, var(--light) 0%, #e3f2fd 100%);
+            padding: 120px 0;
+            position: relative;
+        }
+        
+        .cta-button {
+            background: var(--gradient-alt);
+            border: none;
+            padding: 16px 40px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(126, 87, 194, 0.3);
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: all 0.6s ease;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(126, 87, 194, 0.4);
+            color: white;
+        }
+        
+        .btn-outline-primary {
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 14px 35px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+        
+        .btn-outline-primary:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, var(--dark) 0%, #0d47a1 100%);
+            color: white;
+            padding: 80px 0 40px;
+        }
+        
+        .hashtag {
+            color: var(--secondary);
+            font-weight: 600;
+            background-color: rgba(255, 255, 255, 0.08);
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .hashtag:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+            text-decoration: none;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gradient-alt);
+            transform: translateX(-50%);
+            border-radius: 4px;
+        }
+        
+        .timeline-item {
+            margin-bottom: 70px;
+            position: relative;
+            width: 50%;
+            padding-right: 60px;
+        }
+        
+        .timeline-item:nth-child(even) {
+            margin-left: 50%;
+            padding-left: 60px;
+            padding-right: 0;
+        }
+        
+        .timeline-content {
+            background-color: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 40px;
+            width: 0;
+            height: 0;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-left: 12px solid white;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 40px;
+            width: 0;
+            height: 0;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-right: 12px solid white;
+        }
+        
+        .timeline-icon {
+            position: absolute;
+            right: -75px;
+            top: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-alt);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-icon {
+            right: auto;
+            left: -75px;
+        }
+        
+        .stats-counter {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+        
+        .stats-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+        
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            right: -100px;
+        }
+        
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            bottom: 50px;
+            left: -80px;
+            background: var(--secondary);
+        }
+        
+        .feature-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(126, 87, 194, 0.1);
+            color: var(--accent);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .feature-badge i {
+            margin-right: 8px;
+        }
+        
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-alt);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 25px rgba(126, 87, 194, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .floating-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            color: white;
+            box-shadow: 0 15px 30px rgba(126, 87, 194, 0.4);
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            padding: 40px 30px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .testimonial-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid var(--accent);
+        }
+        
+        .testimonial-name {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .testimonial-role {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .stats-section {
+            background: var(--gradient-alt);
+            padding: 80px 0;
+            color: white;
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .feature-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .feature-list li {
+            margin-bottom: 15px;
+            padding-left: 35px;
+            position: relative;
+        }
+        
+        .feature-list li:before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--success);
+            background: rgba(0, 200, 83, 0.1);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+                text-align: center;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 80px;
+                padding-right: 0;
+            }
+            
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+                padding-left: 80px;
+            }
+            
+            .timeline-icon {
+                left: 10px;
+                right: auto;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-icon {
+                left: 10px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                display: none;
+            }
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* NEW ANIMATIONS AND STYLES */
+
+        /* Loading screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-alt);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            border-top: 8px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Enhanced hero animations */
+        .hero-title span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Pulse animation for stats */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Parallax effect */
+        .parallax {
+            background-attachment: fixed;
+        }
+
+        /* Typing effect */
+        .typing-text {
+            overflow: hidden;
+            border-right: 2px solid white;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: white }
+        }
+
+        /* Floating particles */
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Glow effect */
+        .glow {
+            box-shadow: 0 0 20px rgba(126, 87, 194, 0.4);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px rgba(126, 87, 194, 0.4);
+            }
+            to {
+                box-shadow: 0 0 20px rgba(126, 87, 194, 0.8);
+            }
+        }
+
+        /* Bounce animation */
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Glassmorphism effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Rotating animation */
+        .rotate {
+            animation: rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Morphing background */
+        .morphing-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: linear-gradient(45deg, var(--accent), var(--secondary), var(--primary));
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -1;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Staggered animations */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .stagger-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hover tilt effect */
+        .tilt-hover {
+            transition: transform 0.3s ease;
+        }
+        
+        .tilt-hover:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+        }
+
+        /* Text gradient animation */
+        .gradient-text {
+            background: linear-gradient(45deg, var(--accent), var(--secondary), var(--primary));
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        /* Modern progress bars */
+        .progress-container {
+            height: 8px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-alt);
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        /* Wave animation */
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        
+        .wave svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 100px;
+        }
+        
+        .wave .shape-fill {
+            fill: #FFFFFF;
+        }
+
+        /* Project-specific styles */
+        .project-tagline {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .feature-item {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .tech-item {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            min-width: 120px;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tech-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .passion-statement {
+            font-size: 1.2rem;
+            font-style: italic;
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(126, 87, 194, 0.05);
+            border-radius: 16px;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .collaboration-cta {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: var(--gradient-alt);
+            color: white;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-microscope me-2"></i>MEDI-Q
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item ms-2">
+                        <a class="btn cta-button" href="index.php">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="morphing-bg"></div>
+        <div class="particles-container" id="particles"></div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+        </div>
+        <div class="wave">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+        <div class="container position-relative">
+            <div class="row align-items-center hero-content">
+                <div class="col-lg-8 mx-auto text-center">
+                    <span class="badge-custom fade-in">Antibiogram Analyze</span>
+                    <h1 class="hero-title fade-in">
+                        Antibiogram Analyze System
+                    </h1>
+                    <p class="hero-subtitle fade-in typing-text">Revolutionizing antimicrobial resistance tracking and analysis</p>
+                    <p class="lead mb-4 fade-in">A comprehensive Cumulative Antibiogram Management System designed to transform how hospitals and laboratories track, analyze, and act on antimicrobial resistance (AMR) data through smart analytics and intuitive visualization.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What Makes It Unique -->
+    <section id="unique" class="py-5" style="background-color: white;">
+        <div class="container">
+            <h2 class="section-title fade-in">✨ What Makes This System Unique</h2>
+            <div class="row g-4 mt-4">
+                <div class="col-md-4 stagger-item">
+                    <div class="highlight-card tilt-hover text-center">
+                        <div class="feature-badge mx-auto">
+                            <i class="fas fa-chart-pie"></i> Smart Data Analytics
+                        </div>
+                        <div class="highlight-icon mx-auto">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h4>Advanced Analytics</h4>
+                        <ul class="feature-list text-start mt-3">
+                            <li>Interactive antibiogram summaries</li>
+                            <li>Percentage and raw count views</li>
+                            <li>Real-time susceptibility pattern analysis</li>
+                            <li>Visual color-coding for resistance recognition</li>
+                            <li>Dynamic filters by Infection Type, Hospital, and Organism Group</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 stagger-item">
+                    <div class="highlight-card tilt-hover text-center">
+                        <div class="feature-badge mx-auto">
+                            <i class="fas fa-users-cog"></i> Robust Admin Management
+                        </div>
+                        <div class="highlight-icon mx-auto">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <h4>Administrative Control</h4>
+                        <ul class="feature-list text-start mt-3">
+                            <li>Full user account lifecycle management</li>
+                            <li>Role-based access control with granular permissions</li>
+                            <li>Secure authentication & authorization</li>
+                            <li>Active/inactive admin status tracking</li>
+                            <li>Comprehensive audit trails</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 stagger-item">
+                    <div class="highlight-card tilt-hover text-center">
+                        <div class="feature-badge mx-auto">
+                            <i class="fas fa-stethoscope"></i> Clinical Decision Support
+                        </div>
+                        <div class="highlight-icon mx-auto">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                        <h4>Clinical Intelligence</h4>
+                        <ul class="feature-list text-start mt-3">
+                            <li>Automated susceptibility interpretation</li>
+                            <li>Comprehensive organism–antibiotic resistance mapping</li>
+                            <li>Data-driven insights for antimicrobial stewardship</li>
+                            <li>Evidence-based prescribing guidance</li>
+                            <li>Real-time resistance pattern alerts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section id="features" class="py-5" style="background-color: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title fade-in">💡 Key Features</h2>
+            <p class="project-tagline fade-in">Comprehensive functionality designed for modern healthcare environments</p>
+            
+            <div class="feature-grid mt-5">
+                <div class="feature-item stagger-item tilt-hover">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-import"></i>
+                    </div>
+                    <h4>CSV/Excel Data Import</h4>
+                    <p>Seamlessly upload and integrate historical data for comprehensive trend analysis and AMR surveillance.</p>
+                </div>
+                
+                <div class="feature-item stagger-item tilt-hover">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h4>Historical Data Analysis</h4>
+                    <p>Upload and analyze historical antibiogram data to identify resistance patterns and trends over time.</p>
+                </div>
+                
+                <div class="feature-item stagger-item tilt-hover">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-export"></i>
+                    </div>
+                    <h4>Multi-format Report Generation</h4>
+                    <p>Generate comprehensive reports in various formats with easy download access for regulatory compliance and clinical decision-making.</p>
+                </div>
+                
+                <div class="feature-item stagger-item tilt-hover">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h4>Real-time Dashboard Analytics</h4>
+                    <p>Interactive dashboard with visualizations that provide immediate insights into antimicrobial resistance patterns.</p>
+                </div>
+                
+                <div class="feature-item stagger-item tilt-hover">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Secure Multi-admin Environment</h4>
+                    <p>Robust security measures with role-based access control to protect sensitive patient and resistance data.</p>
+                </div>
+                
+                <div class="feature-item stagger-item tilt-hover">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>Fully Mobile-responsive Design</h4>
+                    <p>Access the system from any device with an optimized experience across smartphones, tablets, and desktops.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Healthcare Impact -->
+    <section id="impact" class="impact-section">
+        <div class="container">
+            <h2 class="section-title fade-in">🏥 Healthcare Impact</h2>
+            <div class="row mt-4">
+                <div class="col-lg-10 mx-auto fade-in">
+                    <div class="card border-0 shadow tilt-hover">
+                        <div class="card-body p-4 p-md-5">
+                            <p class="card-text fs-5 text-center">
+                                This system empowers healthcare professionals to transform antimicrobial resistance monitoring and clinical decision-making.
+                            </p>
+                            
+                            <div class="row mt-4">
+                                <div class="col-md-6">
+                                    <div class="feature-list">
+                                        <li>Make evidence-based antibiotic prescribing decisions</li>
+                                        <li>Strengthen AMR surveillance and control programs</li>
+                                        <li>Improve patient outcomes through actionable insights</li>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="feature-list">
+                                        <li>Enhance laboratory workflow efficiency</li>
+                                        <li>Enable smart filtering and data visualization</li>
+                                        <li>Support antimicrobial stewardship initiatives</li>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-5">
+                                <div class="row">
+                                    <div class="col-md-3 col-6 mb-4">
+                                        <div class="stat-number">24/7</div>
+                                        <div class="stat-label">Accessibility</div>
+                                    </div>
+                                    <div class="col-md-3 col-6 mb-4">
+                                        <div class="stat-number">100%</div>
+                                        <div class="stat-label">Secure</div>
+                                    </div>
+                                    <div class="col-md-3 col-6 mb-4">
+                                        <div class="stat-number">Real-time</div>
+                                        <div class="stat-label">Analytics</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <style>
+      /* Team Section Styles */
+.team-card {
+    text-align: center;
+    padding: 30px 25px;
+    transition: all 0.4s ease;
+}
+
+.team-img-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.team-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.team-status {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid white;
+}
+
+.team-status.online {
+    background-color: var(--success);
+}
+
+.team-status.busy {
+    background-color: #ff9800;
+}
+
+.team-status.offline {
+    background-color: var(--gray);
+}
+
+.skills-container {
+    text-align: left;
+}
+
+.skill-item {
+    margin-bottom: 15px;
+}
+
+.skill-item span {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.team-social {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-3px);
+}
+
+.process-step {
+    display: flex;
+    align-items: flex-start;
+}
+
+.step-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--gradient);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h5 {
+    margin-bottom: 8px;
+    color: var(--dark);
+}
+
+.step-content p {
+    margin-bottom: 0;
+    color: var(--gray);
+}
+
+.tech-stack {
+    margin-top: 30px;
+}
+
+.tech-item {
+    padding: 20px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.tech-item:hover {
+    background-color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transform: translateY(-5px);
+}
+
+.tech-item:hover .tech-icon {
+    transform: scale(1.15);
+}
+    </style>
+
+
+     <!-- Development Team Section -->
+<section id="team" class="py-5" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);">
+  <div class="container">
+    <h2 class="section-title fade-in text-center mb-3">👨‍💻 Development Team</h2>
+    <p class="text-center mb-5 fade-in">Meet the talented developers behind MediQ - Antibiogram Analyze System</p>
+    
+    <div class="row justify-content-center g-4">
+      <!-- Team Member 1 -->
+      <div class="col-md-4 fade-in">
+        <div class="team-card highlight-card tilt-hover shadow-lg p-4 rounded-4 bg-white text-center">
+          <div class="team-img-container mx-auto mb-4 position-relative">
+            <div class="team-img rounded-circle d-flex align-items-center justify-content-center" 
+                  style="width:120px; height:120px; background:linear-gradient(135deg,#2563eb,#1e40af); color:white; font-size:48px;">
+              <img src="assets\images\Developers\malitha3.jpg" style="width:160px; height:160px; border-radius:50%; background:#22c55e; border:2px solid white";>
+            </div>
+            <div class="team-status online" 
+                 style="width:16px; height:16px; border-radius:50%; background:#22c55e; border:2px solid white; position:absolute; bottom:10px; right:120px;">
+            </div>
+          </div>
+
+          <h4 class="fw-bold mb-1">Malitha Tishamal</h4>
+          <p class="text-primary mb-3">Lead Full-Stack Developer</p>
+
+          <p class="text-muted small px-3">
+            Passionate software Developer specializing in modern technologies. Skilled in Flutter, Firebase, API,  React , Java , Python ,  Boostrap, MySQL, PHP, and Full-stack architecture — focused on creating intelligent solutions.
+          </p>
+
+          <hr class="my-3">
+
+          <div class="team-social mt-3">
+
+            <a href="https://www.malithatishamal.42web.io" target="_blank" class="social-icon mx-2 text-primary" title="Visit My Website">
+              <i class="fas fa-globe fa-lg"></i>
+            </a>
+            <a href="https://github.com/malithatishamal" target="_blank" class="social-icon mx-2 text-dark" title="GitHub">
+              <i class="fab fa-github fa-lg"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/malithatishamal" target="_blank" class="social-icon mx-2 text-primary" title="LinkedIn">
+              <i class="fab fa-linkedin fa-lg"></i>
+            </a>
+
+            </a>
+            <a href="mailto:malithatishamal@example.com" class="social-icon mx-2 text-danger" title="Email">
+              <i class="fas fa-envelope fa-lg"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+
+      
+    </div>
+  </div>
+</section>
+
+    
+
+    <!-- Collaboration CTA -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="collaboration-cta fade-in">
+                <h2 class="mb-4">🤝 Let's Connect!</h2>
+                <p class="mb-4">Open to discussions and collaborations with professionals in HealthTech, Clinical Microbiology, and AMR Research.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4 fade-in">
+                    <h4><i class="fas fa-microscope me-2"></i>Antibiogram Management System</h4>
+                    <p>Advanced AMR Surveillance Platform</p>
+                    <p>Transforming how hospitals and laboratories track, analyze, and act on antimicrobial resistance data through innovative technology solutions.</p>
+
+            <div class="row mt-4 pt-3 border-top">
+                <div class="col text-center">
+                    <p class="mb-0">&copy; 2025 Antibiogram Management System. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <a href="#home" class="floating-btn bounce">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Loading screen
+        window.addEventListener('load', function() {
+            const loadingScreen = document.querySelector('.loading-screen');
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+            }, 250);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Fade-in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(el => {
+            fadeInObserver.observe(el);
+        });
+
+        // Staggered animation on scroll
+        const staggerItems = document.querySelectorAll('.stagger-item');
+        
+        const staggerObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 150);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        staggerItems.forEach(el => {
+            staggerObserver.observe(el);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 5 and 15px
+                const size = Math.random() * 10 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation duration
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random animation delay
+                const delay = Math.random() * 5;
+                particle.style.animationDelay = `${delay}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize particles
+        createParticles();
+    </script>
+</body>
+</html>
