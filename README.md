@@ -82,7 +82,3 @@ Localhost Database Name = <strong>devlk_antibiogram</strong><br /><br />
 <strong>* Before start the works, you have to pull the project.</strong><br />
 <strong>* Don't edit codes, without asking from @malitha.</strong><br />
 
-# Best Practices
-\* You have to name custom css classes like this -> <strong>my-heading </strong><br />
-\* You have to name custom ids like this -><strong> idOne </strong><br />
-\* When naming functions, use a name taht describes what the function does -><strong> showAntibioticAvailability() </strong><br />
